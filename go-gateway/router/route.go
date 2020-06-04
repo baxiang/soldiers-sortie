@@ -1,4 +1,4 @@
-package route
+package router
 
 import (
 	"github.com/baxiang/go-getway/middleware"
