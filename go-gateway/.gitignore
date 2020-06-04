@@ -16,6 +16,6 @@
 # Dependency directories (remove the comment below to include it)
 # vendor/
 
-controller/
+
 go-getway.iml
-main.go
+
