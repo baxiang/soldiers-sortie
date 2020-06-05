@@ -1,13 +1,15 @@
 package router
 
 import (
-	"github.com/baxiang/go-getway/middleware"
+	"github.com/baxiang/go-gateway/middleware"
 	"github.com/baxiang/go-gateway/controller"
-	"github.com/baxiang/go_gateway/docs"
+	"github.com/baxiang/go-gateway/docs"
 	"github.com/e421083458/golang_common/lib"
 	"github.com/gin-gonic/contrib/sessions"
 	"github.com/gin-gonic/gin"
-
+	ginSwagger "github.com/swaggo/gin-swagger"
+	"github.com/swaggo/files"
+	"log"
 )
 
 // @title Swagger Example API

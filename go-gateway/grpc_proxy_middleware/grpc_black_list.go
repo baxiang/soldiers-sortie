@@ -1,4 +1,4 @@
-package middleware
+package grpc_proxy_middleware
 
 import (
 	"github.com/baxiang/go-gateway/dao"
