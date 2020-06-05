@@ -1,4 +1,4 @@
-package router
+package http_proxy_router
 
 import (
 	"github.com/baxiang/go-gateway/middleware"

@@ -1,27 +1,22 @@
-package middleware
+package tcp_proxy_middleware
 
 import (
 	"fmt"
 	"github.com/baxiang/go-gateway/dao"
 	"github.com/baxiang/go-gateway/pkg"
-	"github.com/gin-gonic/gin"
 	"strings"
-	"errors"
 )
 
 //匹配接入方式 基于请求信息
-func HTTPBlackListMiddleware() gin.HandlerFunc {
-	return func(c *gin.Context) {
-		serverInterface, ok := c.Get("service")
-		if !ok {
-			ResponseError(c, 2001, errors.New("service not found"))
+func TCPBlackListMiddleware() func(c *TcpSliceRouterContext) {
+	return func(c *TcpSliceRouterContext) {
+		serverInterface := c.Get("service")
+		if serverInterface == nil {
+			c.conn.Write([]byte("get service empty"))
 			c.Abort()
 			return
 		}
-
 		serviceDetail := serverInterface.(*dao.ServiceDetail)
-
-
 
 		whileIpList := []string{}
 		if serviceDetail.AccessControl.WhiteList != "" {
@@ -32,9 +27,15 @@ func HTTPBlackListMiddleware() gin.HandlerFunc {
 		if serviceDetail.AccessControl.BlackList != "" {
 			blackIpList = strings.Split(serviceDetail.AccessControl.BlackList, ",")
 		}
+
+		splits := strings.Split(c.conn.RemoteAddr().String(), ":")
+		clientIP := ""
+		if len(splits) == 2 {
+			clientIP = splits[0]
+		}
 		if serviceDetail.AccessControl.OpenAuth == 1 && len(whileIpList) == 0 && len(blackIpList) > 0 {
-			if pkg.InStringSlice(blackIpList, c.ClientIP()) {
-				ResponseError(c, 3001, errors.New(fmt.Sprintf("%s in black ip list", c.ClientIP())))
+			if pkg.InStringSlice(blackIpList, clientIP) {
+				c.conn.Write([]byte(fmt.Sprintf("%s in black ip list", clientIP)))
 				c.Abort()
 				return
 			}

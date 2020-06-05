@@ -2,9 +2,8 @@ package dao
 
 import (
 	"fmt"
-	"github.com/baxiang/go-getway/pkg"
-	"github.com/e421083458/go_gateway/public"
-	"github.com/e421083458/go_gateway/reverse_proxy/load_balance"
+	"github.com/baxiang/go-gateway/internal/load_balance"
+	"github.com/baxiang/go-gateway/pkg"
 	"github.com/e421083458/gorm"
 	"github.com/gin-gonic/gin"
 	"net"
@@ -91,7 +90,7 @@ func (lbr *LoadBalancer) GetLoadBalancer(service *ServiceDetail) (load_balance.L
 	if service.HTTPRule.NeedHttps == 1 {
 		schema = "https://"
 	}
-	if service.Info.LoadType==public.LoadTypeTCP || service.Info.LoadType==public.LoadTypeGRPC{
+	if service.Info.LoadType==pkg.LoadTypeTCP || service.Info.LoadType==pkg.LoadTypeGRPC{
 		schema = ""
 	}
 	ipList := service.LoadBalance.GetIPListByModel()
@@ -105,7 +104,8 @@ func (lbr *LoadBalancer) GetLoadBalancer(service *ServiceDetail) (load_balance.L
 	if err != nil {
 		return nil, err
 	}
-	lb := load_balance.LoadBanlanceFactorWithConf(load_balance.LbType(service.LoadBalance.RoundType), mConf)
+
+	lb := load_balance.LoadBalanceFactorWithConf(load_balance.LbType(service.LoadBalance.RoundType), mConf)
 
 	//save to map and slice
 	lbItem := &LoadBalancerItem{

@@ -1,9 +1,11 @@
-package middleware
+package http_proxy_middleware
 
 import (
-	"github.com/baxiang/go-gateway/dao"
-	"github.com/gin-gonic/gin"
 	"errors"
+	"github.com/baxiang/go-gateway/dao"
+	"github.com/baxiang/go-gateway/internal/reverse_proxy"
+	"github.com/baxiang/go-gateway/middleware"
+	"github.com/gin-gonic/gin"
 )
 
 //匹配接入方式 基于请求信息
@@ -11,7 +13,7 @@ func HTTPReverseProxyMiddleware() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		serverInterface, ok := c.Get("service")
 		if !ok {
-			ResponseError(c, 2001, errors.New("service not found"))
+			middleware.ResponseError(c, 2001, errors.New("service not found"))
 			c.Abort()
 			return
 		}
@@ -19,13 +21,13 @@ func HTTPReverseProxyMiddleware() gin.HandlerFunc {
 
 		lb, err := dao.LoadBalancerHandler.GetLoadBalancer(serviceDetail)
 		if err != nil {
-			ResponseError(c, 2002, err)
+			middleware.ResponseError(c, 2002, err)
 			c.Abort()
 			return
 		}
 		trans, err := dao.TransportorHandler.GetTrans(serviceDetail)
 		if err != nil {
-			ResponseError(c, 2003, err)
+			middleware.ResponseError(c, 2003, err)
 			c.Abort()
 			return
 		}

@@ -2,10 +2,10 @@ package controller
 
 import (
 	"encoding/json"
-	"github.com/baxiang/go-getway/middleware"
-	"github.com/e421083458/go_gateway/dao"
-	"github.com/e421083458/go_gateway/dto"
-	"github.com/e421083458/go_gateway/public"
+	"github.com/baxiang/go-gateway/dao"
+	"github.com/baxiang/go-gateway/dto"
+	"github.com/baxiang/go-gateway/middleware"
+	"github.com/baxiang/go-gateway/pkg"
 
 	"github.com/e421083458/golang_common/lib"
 	"github.com/gin-gonic/contrib/sessions"
@@ -65,7 +65,7 @@ func (adminlogin *AdminLoginController) AdminLogin(c *gin.Context) {
 		return
 	}
 	sess := sessions.Default(c)
-	sess.Set(public.AdminSessionInfoKey, string(sessBts))
+	sess.Set(pkg.AdminSessionInfoKey, string(sessBts))
 	sess.Save()
 
 	out := &dto.AdminLoginOutput{Token: admin.UserName}
@@ -83,7 +83,7 @@ func (adminlogin *AdminLoginController) AdminLogin(c *gin.Context) {
 // @Router /admin_login/logout [get]
 func (adminlogin *AdminLoginController) AdminLoginOut(c *gin.Context) {
 	sess := sessions.Default(c)
-	sess.Delete(public.AdminSessionInfoKey)
+	sess.Delete(pkg.AdminSessionInfoKey)
 	sess.Save()
 	middleware.ResponseSuccess(c, "")
 }

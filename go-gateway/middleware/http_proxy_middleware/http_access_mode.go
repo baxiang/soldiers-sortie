@@ -1,7 +1,8 @@
-package middleware
+package http_proxy_middleware
 
 import (
 	"github.com/baxiang/go-gateway/dao"
+	"github.com/baxiang/go-gateway/middleware"
 	"github.com/gin-gonic/gin"
 )
 
@@ -10,7 +11,7 @@ func HTTPAccessModeMiddleware() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		service, err := dao.ServiceManagerHandler.HTTPAccessMode(c)
 		if err != nil {
-			ResponseError(c, 1001, err)
+			middleware.ResponseError(c, 1001, err)
 			c.Abort()
 			return
 		}

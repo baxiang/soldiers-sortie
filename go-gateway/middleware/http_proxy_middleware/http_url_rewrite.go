@@ -1,11 +1,12 @@
-package middleware
+package http_proxy_middleware
 
 import (
+	"errors"
 	"github.com/baxiang/go-gateway/dao"
+	"github.com/baxiang/go-gateway/middleware"
 	"github.com/gin-gonic/gin"
 	"regexp"
 	"strings"
-	"errors"
 )
 
 //匹配接入方式 基于请求信息
@@ -13,7 +14,7 @@ func HTTPUrlRewriteMiddleware() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		serverInterface, ok := c.Get("service")
 		if !ok {
-			ResponseError(c, 2001, errors.New("service not found"))
+			middleware.ResponseError(c, 2001, errors.New("service not found"))
 			c.Abort()
 			return
 		}

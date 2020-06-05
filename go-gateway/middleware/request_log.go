@@ -2,7 +2,7 @@ package middleware
 
 import (
 	"bytes"
-	"github.com/e421083458/go_gateway/public"
+	"github.com/baxiang/go-gateway/pkg"
 	"github.com/e421083458/golang_common/lib"
 	"github.com/gin-gonic/gin"
 	"io/ioutil"
@@ -42,7 +42,7 @@ func RequestOutLog(c *gin.Context) {
 	st, _ := c.Get("startExecTime")
 
 	startExecTime, _ := st.(time.Time)
-	public.ComLogNotice(c, "_com_request_out", map[string]interface{}{
+	pkg.ComLogNotice(c, "_com_request_out", map[string]interface{}{
 		"uri":       c.Request.RequestURI,
 		"method":    c.Request.Method,
 		"args":      c.Request.PostForm,

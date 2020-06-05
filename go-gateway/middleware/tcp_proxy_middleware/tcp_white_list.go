@@ -1,10 +1,10 @@
 package tcp_proxy_middleware
 
 import (
-	"github.com/baxiang/go-gateway/dao"
-	"strings"
 	"fmt"
+	"github.com/baxiang/go-gateway/dao"
 	"github.com/baxiang/go-gateway/pkg"
+	"strings"
 )
 
 //匹配接入方式 基于请求信息

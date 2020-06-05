@@ -1,7 +1,7 @@
 package dao
 
 import (
-	"github.com/baxiang/go-getway/pkg"
+	"github.com/baxiang/go-gateway/pkg"
 	"github.com/e421083458/gorm"
 	"github.com/gin-gonic/gin"
 )

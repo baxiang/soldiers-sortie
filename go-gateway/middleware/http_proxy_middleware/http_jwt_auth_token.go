@@ -1,11 +1,12 @@
-package middleware
+package http_proxy_middleware
 
 import (
+	"errors"
 	"github.com/baxiang/go-gateway/dao"
+	"github.com/baxiang/go-gateway/middleware"
 	"github.com/baxiang/go-gateway/pkg"
 	"github.com/gin-gonic/gin"
 	"strings"
-	"errors"
 )
 
 //jwt auth token
@@ -13,7 +14,7 @@ func HTTPJwtAuthTokenMiddleware() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		serverInterface, ok := c.Get("service")
 		if !ok {
-			ResponseError(c, 2001, errors.New("service not found"))
+			middleware.ResponseError(c, 2001, errors.New("service not found"))
 			c.Abort()
 			return
 		}
@@ -29,7 +30,7 @@ func HTTPJwtAuthTokenMiddleware() gin.HandlerFunc {
 		if token!=""{
 			claims,err:=pkg.JwtDecode(token)
 			if err!=nil{
-				ResponseError(c, 2002, err)
+				middleware.ResponseError(c, 2002, err)
 				c.Abort()
 				return
 			}
@@ -44,7 +45,7 @@ func HTTPJwtAuthTokenMiddleware() gin.HandlerFunc {
 			}
 		}
 		if serviceDetail.AccessControl.OpenAuth==1 && !appMatched{
-			ResponseError(c, 2003, errors.New("not match valid app"))
+			middleware.ResponseError(c, 2003, errors.New("not match valid app"))
 			c.Abort()
 			return
 		}

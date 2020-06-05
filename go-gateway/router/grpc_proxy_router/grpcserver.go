@@ -1,13 +1,14 @@
-package router
+package grpc_proxy_router
 
 import (
 	"fmt"
 	"github.com/baxiang/go-gateway/dao"
-	"github.com/e421083458/go_gateway/grpc_proxy_middleware"
-	"github.com/e421083458/go_gateway/reverse_proxy"
+	"github.com/baxiang/go-gateway/internal/reverse_proxy"
+	"github.com/baxiang/go-gateway/middleware/grpc_proxy_middleware"
+	"github.com/mwitkow/grpc-proxy/proxy"
+	"google.golang.org/grpc"
 	"log"
 	"net"
-	"google.golang.org/grpc"
 )
 
 var grpcServerList = []*warpGrpcServer{}

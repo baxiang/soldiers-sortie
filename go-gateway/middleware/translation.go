@@ -2,7 +2,7 @@ package middleware
 
 import (
 	"fmt"
-	"github.com/e421083458/go_gateway/public"
+	"github.com/baxiang/go-gateway/pkg"
 	"github.com/gin-gonic/gin"
 	"github.com/go-playground/locales/en"
 	"github.com/go-playground/locales/zh"
@@ -163,8 +163,8 @@ func TranslationMiddleware() gin.HandlerFunc {
 			})
 			break
 		}
-		c.Set(public.TranslatorKey, trans)
-		c.Set(public.ValidatorKey, val)
+		c.Set(pkg.TranslatorKey, trans)
+		c.Set(pkg.ValidatorKey, val)
 		c.Next()
 	}
 }

@@ -2,7 +2,6 @@ package dto
 
 import (
 	"github.com/baxiang/go-gateway/pkg"
-	"github.com/e421083458/go_gateway/public"
 	"github.com/gin-gonic/gin"
 	"time"
 )
@@ -42,7 +41,7 @@ type APPDetailInput struct {
 }
 
 func (params *APPDetailInput) GetValidParams(c *gin.Context) error {
-	return public.DefaultGetValidParams(c, params)
+	return pkg.DefaultGetValidParams(c, params)
 }
 
 type StatisticsOutput struct {
@@ -60,7 +59,7 @@ type APPAddHttpInput struct {
 }
 
 func (params *APPAddHttpInput) GetValidParams(c *gin.Context) error {
-	return public.DefaultGetValidParams(c, params)
+	return pkg.DefaultGetValidParams(c, params)
 }
 
 type APPUpdateHttpInput struct {
@@ -74,5 +73,5 @@ type APPUpdateHttpInput struct {
 }
 
 func (params *APPUpdateHttpInput) GetValidParams(c *gin.Context) error {
-	return public.DefaultGetValidParams(c, params)
+	return pkg.DefaultGetValidParams(c, params)
 }

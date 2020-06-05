@@ -1,8 +1,8 @@
 package dao
 
 import (
-	"github.com/e421083458/go_gateway/dto"
-	"github.com/e421083458/go_gateway/public"
+	"github.com/baxiang/go-gateway/dto"
+	"github.com/baxiang/go-gateway/pkg"
 	"github.com/e421083458/gorm"
 	"github.com/gin-gonic/gin"
 	"time"
@@ -28,7 +28,7 @@ func (t *Admin) LoginCheck(c *gin.Context, tx *gorm.DB, param *dto.AdminLoginInp
 	if err != nil {
 		return nil, errors.New("用户信息不存在")
 	}
-	saltPassword := public.GenSaltPassword(adminInfo.Salt, param.Password)
+	saltPassword := pkg.GenSaltPassword(adminInfo.Salt, param.Password)
 	if adminInfo.Password != saltPassword {
 		return nil, errors.New("密码错误，请重新输入")
 	}
@@ -37,7 +37,7 @@ func (t *Admin) LoginCheck(c *gin.Context, tx *gorm.DB, param *dto.AdminLoginInp
 
 func (t *Admin) Find(c *gin.Context, tx *gorm.DB, search *Admin) (*Admin, error) {
 	out := &Admin{}
-	err := tx.SetCtx(public.GetGinTraceContext(c)).Where(search).Find(out).Error
+	err := tx.SetCtx(pkg.GetGinTraceContext(c)).Where(search).Find(out).Error
 	if err != nil {
 		return nil, err
 	}
@@ -45,5 +45,5 @@ func (t *Admin) Find(c *gin.Context, tx *gorm.DB, search *Admin) (*Admin, error)
 }
 
 func (t *Admin) Save(c *gin.Context, tx *gorm.DB) error {
-	return tx.SetCtx(public.GetGinTraceContext(c)).Save(t).Error
+	return tx.SetCtx(pkg.GetGinTraceContext(c)).Save(t).Error
 }

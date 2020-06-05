@@ -1,8 +1,8 @@
 package dao
 
 import (
-	"github.com/e421083458/go_gateway/dto"
-	"github.com/e421083458/go_gateway/public"
+	"github.com/baxiang/go-gateway/dto"
+	"github.com/baxiang/go-gateway/pkg"
 	"github.com/e421083458/golang_common/lib"
 	"github.com/gin-gonic/gin"
 	"net/http/httptest"
@@ -47,7 +47,7 @@ func (s *ServiceManager) GetTcpServiceList() []*ServiceDetail {
 	list := []*ServiceDetail{}
 	for _, serverItem := range s.ServiceSlice {
 		tempItem := serverItem
-		if tempItem.Info.LoadType == public.LoadTypeTCP {
+		if tempItem.Info.LoadType == pkg.LoadTypeTCP {
 			list = append(list, tempItem)
 		}
 	}
@@ -58,7 +58,7 @@ func (s *ServiceManager) GetGrpcServiceList() []*ServiceDetail {
 	list := []*ServiceDetail{}
 	for _, serverItem := range s.ServiceSlice {
 		tempItem := serverItem
-		if tempItem.Info.LoadType == public.LoadTypeGRPC {
+		if tempItem.Info.LoadType == pkg.LoadTypeGRPC {
 			list = append(list, tempItem)
 		}
 	}
@@ -74,15 +74,15 @@ func (s *ServiceManager) HTTPAccessMode(c *gin.Context) (*ServiceDetail, error) 
 	host = host[0:strings.Index(host, ":")]
 	path := c.Request.URL.Path
 	for _, serviceItem := range s.ServiceSlice {
-		if serviceItem.Info.LoadType != public.LoadTypeHTTP {
+		if serviceItem.Info.LoadType != pkg.LoadTypeHTTP {
 			continue
 		}
-		if serviceItem.HTTPRule.RuleType == public.HTTPRuleTypeDomain {
+		if serviceItem.HTTPRule.RuleType == pkg.HTTPRuleTypeDomain {
 			if serviceItem.HTTPRule.Rule == host {
 				return serviceItem, nil
 			}
 		}
-		if serviceItem.HTTPRule.RuleType == public.HTTPRuleTypePrefixURL {
+		if serviceItem.HTTPRule.RuleType == pkg.HTTPRuleTypePrefixURL {
 			if strings.HasPrefix(path, serviceItem.HTTPRule.Rule) {
 				return serviceItem, nil
 			}

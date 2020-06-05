@@ -1,14 +1,14 @@
-package router
+package tcp_proxy_router
 
 import (
+	"context"
+	"fmt"
 	"github.com/baxiang/go-gateway/dao"
 	"github.com/baxiang/go-gateway/internal/reverse_proxy"
-	"github.com/baxiang/go-gateway/tcp_proxy_middleware"
+	"github.com/baxiang/go-gateway/middleware/tcp_proxy_middleware"
 	"github.com/baxiang/go-gateway/tcp_server"
 	"log"
 	"net"
-	"context"
-	"fmt"
 )
 
 var tcpServerList = []*tcp_server.TcpServer{}

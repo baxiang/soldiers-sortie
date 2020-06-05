@@ -1,7 +1,7 @@
 package dto
 
 import (
-	"github.com/baxiang/go-getway/pkg"
+	"github.com/baxiang/go-gateway/pkg"
 	"github.com/gin-gonic/gin"
 	"time"
 )

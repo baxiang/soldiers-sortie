@@ -3,10 +3,10 @@ package controller
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/e421083458/go_gateway/dao"
-	"github.com/e421083458/go_gateway/dto"
-	"github.com/baxiang/go-getway/middleware"
-	"github.com/e421083458/go_gateway/public"
+	"github.com/baxiang/go-gateway/dao"
+	"github.com/baxiang/go-gateway/dto"
+	"github.com/baxiang/go-gateway/middleware"
+	"github.com/baxiang/go-gateway/pkg"
 	"github.com/e421083458/golang_common/lib"
 	"github.com/gin-gonic/contrib/sessions"
 	"github.com/gin-gonic/gin"
@@ -31,7 +31,7 @@ func AdminRegister(group *gin.RouterGroup) {
 // @Router /admin/admin_info [get]
 func (adminlogin *AdminController) AdminInfo(c *gin.Context) {
 	sess := sessions.Default(c)
-	sessInfo := sess.Get(public.AdminSessionInfoKey)
+	sessInfo := sess.Get(pkg.AdminSessionInfoKey)
 	adminSessionInfo := &dto.AdminSessionInfo{}
 	if err := json.Unmarshal([]byte(fmt.Sprint(sessInfo)), adminSessionInfo); err != nil {
 		middleware.ResponseError(c, 2000, err)
@@ -79,7 +79,7 @@ func (adminlogin *AdminController) ChangePwd(c *gin.Context) {
 
 	//session读取用户信息到结构体
 	sess := sessions.Default(c)
-	sessInfo := sess.Get(public.AdminSessionInfoKey)
+	sessInfo := sess.Get(pkg.AdminSessionInfoKey)
 	adminSessionInfo := &dto.AdminSessionInfo{}
 	if err := json.Unmarshal([]byte(fmt.Sprint(sessInfo)), adminSessionInfo); err != nil {
 		middleware.ResponseError(c, 2000, err)
@@ -100,7 +100,7 @@ func (adminlogin *AdminController) ChangePwd(c *gin.Context) {
 	}
 
 	//生成新密码 saltPassword
-	saltPassword := public.GenSaltPassword(adminInfo.Salt, params.Password)
+	saltPassword := pkg.GenSaltPassword(adminInfo.Salt, params.Password)
 	adminInfo.Password = saltPassword
 
 	//执行数据保存

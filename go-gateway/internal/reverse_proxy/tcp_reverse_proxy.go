@@ -1,13 +1,13 @@
 package reverse_proxy
 
 import (
+	"context"
 	"github.com/baxiang/go-gateway/internal/load_balance"
-	"github.com/baxiang/go-gateway/tcp_proxy_middleware"
+	"github.com/baxiang/go-gateway/middleware/tcp_proxy_middleware"
 	"io"
 	"log"
 	"net"
 	"time"
-	"context"
 )
 
 func NewTcpLoadBalanceReverseProxy(c *tcp_proxy_middleware.TcpSliceRouterContext, lb load_balance.LoadBalance) *TcpReverseProxy {

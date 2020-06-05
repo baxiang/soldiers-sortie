@@ -1,11 +1,12 @@
-package middleware
+package http_proxy_middleware
 
 import (
-	"github.com/baxiang/go-gateway/dao"
-	"github.com/baxiang/go-gateway/pkg"
-	"github.com/gin-gonic/gin"
 	"errors"
 	"fmt"
+	"github.com/baxiang/go-gateway/dao"
+	"github.com/baxiang/go-gateway/middleware"
+	"github.com/baxiang/go-gateway/pkg"
+	"github.com/gin-gonic/gin"
 )
 
 func HTTPJwtFlowLimitMiddleware() gin.HandlerFunc {
@@ -21,12 +22,12 @@ func HTTPJwtFlowLimitMiddleware() gin.HandlerFunc {
 				pkg.FlowAppPrefix+appInfo.AppID+"_"+c.ClientIP(),
 				float64(appInfo.Qps))
 			if err != nil {
-				ResponseError(c, 5001, err)
+				middleware.ResponseError(c, 5001, err)
 				c.Abort()
 				return
 			}
 			if !clientLimiter.Allow() {
-				ResponseError(c, 5002, errors.New(fmt.Sprintf("%v flow limit %v", c.ClientIP(), appInfo.Qps), ))
+				middleware.ResponseError(c, 5002, errors.New(fmt.Sprintf("%v flow limit %v", c.ClientIP(), appInfo.Qps), ))
 				c.Abort()
 				return
 			}
