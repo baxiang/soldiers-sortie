@@ -2,10 +2,11 @@ package gorpc
 
 import "time"
 
+// 服务配置模块
 type ServerOptions struct {
-	address string
-	network string
-	protocol string
+	address string // listening address, e.g. :( ip://127.0.0.1:8080、 dns://www.google.com)
+	network string  // network type, e.g. : tcp、udp 传输协议
+	protocol string // protocol typpe, e.g. : proto、json 文件传输格式
 	timeout time.Duration
 	serializationType string
 	selectorSvrAddr string
