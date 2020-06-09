@@ -5,6 +5,12 @@ import (
 	"time"
 )
 
+type Node struct {
+	Key string
+	Value []byte
+	weight int
+}
+
 type Balancer interface {
 	Balance(string, []*Node) *Node
 }
