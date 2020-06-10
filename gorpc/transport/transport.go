@@ -2,6 +2,10 @@ package transport
 
 import (
 	"context"
+	"encoding/binary"
+	"github.com/baxiang/gorpc/codec"
+	"github.com/baxiang/gorpc/codes"
+	"io"
 	"net"
 )
 
@@ -22,4 +26,49 @@ type ClientTransport interface {
 
 type Framer interface {
 	ReadFrame(net.Conn)([]byte,error)
+}
+
+
+
+func NewFramer() Framer{
+	return &framer{
+		buffer: make([]byte,DefaultPayloadLength),
+	}
+}
+type framer struct {
+	buffer []byte
+	counter int
+}
+
+func(f *framer)Resize(){
+	f.buffer = make([]byte,len(f.buffer)*2)
+}
+
+func(f *framer)ReadFrame(conn net.Conn)([]byte,error){
+	frameHeader := make([]byte, codec.FrameHeadLen)
+	if num, err := io.ReadFull(conn, frameHeader); num != codec.FrameHeadLen || err != nil {
+		return nil, err
+	}
+
+	// validate magic
+	if magic := uint8(frameHeader[0]); magic != codec.Magic {
+		return nil, codes.NewFrameworkError(codes.ClientMsgErrorCode, "invalid magic...")
+	}
+
+	length := binary.BigEndian.Uint32(frameHeader[7:11])
+
+	if length > MaxPayloadLength {
+		return nil, codes.NewFrameworkError(codes.ClientMsgErrorCode, "payload too large...")
+	}
+
+	for uint32(len(f.buffer)) < length && f.counter <= 12 {
+		f.buffer = make([]byte, len(f.buffer)*2)
+		f.counter++
+	}
+
+	if num, err := io.ReadFull(conn, f.buffer[:length]); uint32(num) != length || err != nil {
+		return nil, err
+	}
+
+	return append(frameHeader, f.buffer[:length]...), nil
 }

@@ -1,15 +1,25 @@
 package client
 
-import "time"
+import (
+	"github.com/baxiang/gorpc/auth"
+	"github.com/baxiang/gorpc/interceptor"
+	"github.com/baxiang/gorpc/transport"
+	"time"
+)
 
 type Options struct {
-	serviceName string
-	method string
-	target string
-	timeout time.Duration
-	network string
+	serviceName string // 服务名称
+	method string // 方法
+	target string // ip:port 127.0.0.1:8000
+	timeout time.Duration // 超时
+	network string // 网络形式 tcp,udp
 	protocol string
 	serializationType string
+	transportOpts transport.ClientTransportOptions
+	interceptors []interceptor.ClientInterceptor
+	selectorName string // 服务发现方式
+	perRPCAuth []auth.PerRPCAuth
+	transportAuth auth.TransportAuth
 }
 
 type Option func(*Options)
@@ -54,3 +64,27 @@ func WithSerializationType(serializationType string) Option {
 		o.serializationType = serializationType
 	}
 }
+func WithSelectorName(selectorName string) Option {
+	return func(o *Options) {
+		o.selectorName = selectorName
+	}
+}
+
+func WithInterceptor(interceptors ...interceptor.ClientInterceptor) Option {
+	return func(o *Options) {
+		o.interceptors = append(o.interceptors, interceptors...)
+	}
+}
+
+func WithPerRPCAuth(rpcAuth auth.PerRPCAuth) Option {
+	return func(o *Options) {
+		o.perRPCAuth = append(o.perRPCAuth,rpcAuth)
+	}
+}
+
+func WithTransportAuth(transportAuth auth.TransportAuth) Option {
+	return func(o *Options) {
+		o.transportAuth = transportAuth
+	}
+}
+

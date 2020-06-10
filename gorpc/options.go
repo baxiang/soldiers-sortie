@@ -1,6 +1,9 @@
 package gorpc
 
-import "time"
+import (
+	"github.com/baxiang/gorpc/interceptor"
+	"time"
+)
 
 // 服务配置模块
 type ServerOptions struct {
@@ -8,10 +11,13 @@ type ServerOptions struct {
 	network string  // network type, e.g. : tcp、udp 传输协议
 	protocol string // protocol typpe, e.g. : proto、json 文件传输格式
 	timeout time.Duration
+
 	serializationType string
 	selectorSvrAddr string
 	tracingSvrAddr string
+	tracingSpanName string
 	pluginNames []string
+	interceptors []interceptor.ServerInterceptor
 }
 
 
@@ -56,5 +62,24 @@ func WithSelectorSvrAddr(addr string) ServerOption {
 func WithPlugin(pluginName ... string) ServerOption {
 	return func(o *ServerOptions) {
 		o.pluginNames = append(o.pluginNames, pluginName ...)
+	}
+}
+
+
+func WithInterceptor(interceptors ...interceptor.ServerInterceptor) ServerOption {
+	return func(o *ServerOptions) {
+		o.interceptors = append(o.interceptors, interceptors...)
+	}
+}
+
+func WithTracingSvrAddr(addr string) ServerOption {
+	return func(o *ServerOptions) {
+		o.tracingSvrAddr = addr
+	}
+}
+
+func WithTracingSpanName(name string) ServerOption {
+	return func(o *ServerOptions) {
+		o.tracingSpanName = name
 	}
 }

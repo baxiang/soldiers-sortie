@@ -1,6 +1,7 @@
 package main
 
 import (
+	"github.com/baxiang/gorpc/testdata"
 	"github.com/baxiang/gorpc"
 	"time"
 )
@@ -13,6 +14,7 @@ func main()  {
 		gorpc.WithTimeout(time.Millisecond * 2000),
 	}
 	s := gorpc.NewServer(opts ...)
+
 	if err := s.RegisterService("/helloworld.Greeter", new(testdata.Service)); err != nil {
 		panic(err)
 	}
