@@ -2,9 +2,12 @@ package consul
 
 import (
 	"fmt"
+	"github.com/baxiang/gorpc/selector"
 	"github.com/hashicorp/consul/api"
 	"github.com/baxiang/gorpc/plugin"
 	"net/http"
+	"strings"
+	"errors"
 )
 
 type Consul struct {
@@ -48,7 +51,6 @@ func (c *Consul) InitConfig() error {
 }
 
 func (c *Consul) Resolve(serviceName string) ([]*selector.Node, error) {
-
 	pairs, _, err := c.client.KV().List(serviceName, nil)
 	if err != nil {
 		return nil, err
@@ -67,6 +69,20 @@ func (c *Consul) Resolve(serviceName string) ([]*selector.Node, error) {
 	return nodes, nil
 }
 
+func(c *Consul)Select(serviceName string)(string,error){
+	nodes,err := c.Resolve(serviceName)
+	if nodes == nil||len(nodes) ==0 ||err!= nil{
+		return "",err
+	}
+	balancer := selector.GetBalancer(c.balancerName)
+	node := balancer.Balance(serviceName, nodes)
+	if node == nil {
+		return "", fmt.Errorf("no services find in %s", serviceName)
+	}
+	return parseAddrFromNode(node)
+}
+
+// 解析地址
 func parseAddrFromNode(node *selector.Node) (string, error) {
 	if node.Key == "" {
 		return "", errors.New("addr is empty")

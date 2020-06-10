@@ -17,3 +17,5 @@
 # vendor/
 
 gorpc.iml
+.idea
+
