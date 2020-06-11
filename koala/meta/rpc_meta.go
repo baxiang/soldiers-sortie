@@ -21,6 +21,7 @@ type RpcMeta struct {
 	ServiceIDC string
 
 	CurrNode *registry.Node
+	HistoryNodes []*registry.Node
 	AllNodes []*registry.Node
 
 	Conn *grpc.ClientConn
