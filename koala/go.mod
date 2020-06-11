@@ -2,15 +2,17 @@ module github.com/baxiang/koala
 
 go 1.13
 
-replace github.com/coreos/bbolt => go.etcd.io/bbolt v1.3.3
+replace github.com/coreos/bbolt => go.etcd.io/bbolt v1.3.4
+
+replace github.com/coreos/go-systemd => github.com/coreos/go-systemd/v22 v22.1.0
 
 replace google.golang.org/grpc v1.29.1 => google.golang.org/grpc v1.26.0
 
 require (
 	github.com/coreos/bbolt v0.0.0-00010101000000-000000000000 // indirect
-	//github.com/coreos/bbolt v1.3.4 // indirect
 	github.com/coreos/etcd v3.3.22+incompatible // indirect
 	github.com/coreos/go-semver v0.3.0 // indirect
+	github.com/coreos/go-systemd v0.0.0-00010101000000-000000000000 // indirect
 	github.com/coreos/pkg v0.0.0-20180928190104-399ea9e2e55f // indirect
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible // indirect
 	github.com/dustin/go-humanize v1.0.0 // indirect

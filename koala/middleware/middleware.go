@@ -1,0 +1,16 @@
+package middleware
+
+import "context"
+
+type MiddlewareFunc func(ctx context.Context,req interface{})(rsp interface{},err error)
+
+type Middleware func(MiddlewareFunc)MiddlewareFunc
+
+func Chain(outer Middleware, others ...Middleware) Middleware {
+	return func(next MiddlewareFunc) MiddlewareFunc {
+		for i := len(others) - 1; i >= 0; i-- { // reverse
+			next = others[i](next)
+		}
+		return outer(next)
+	}
+}
