@@ -3,6 +3,7 @@ package middleware
 import (
 	"context"
 	"github.com/baxiang/koala/logs"
+	"github.com/baxiang/koala/util"
 	"google.golang.org/grpc/metadata"
 )
 
