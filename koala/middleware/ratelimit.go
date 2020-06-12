@@ -10,7 +10,7 @@ type Limiter interface {
 	Allow() bool
 }
 
-func NewRateLimiterMiddleware(l Limiter)Middleware{
+func NewRateLimitMiddleware(l Limiter)Middleware{
 	return func(next MiddlewareFunc) MiddlewareFunc {
 		return func(ctx context.Context, req interface{}) (rsp interface{}, err error) {
 			allow := l.Allow()
