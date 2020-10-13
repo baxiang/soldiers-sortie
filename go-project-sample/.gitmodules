@@ -1,0 +1,3 @@
+[submodule "scripts/grafana/grafonnet-lib"]
+	path = scripts/grafana/grafonnet-lib
+	url = https://github.com/grafana/grafonnet-lib.git
