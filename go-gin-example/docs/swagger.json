@@ -1,0 +1,13 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "An example of gin",
+        "title": "Golang Gin API",
+        "contact": {},
+        "license": {
+            "name": "MIT"
+        },
+        "version": "1.0"
+    },
+    "paths": {}
+}
