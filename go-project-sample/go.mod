@@ -29,7 +29,6 @@ require (
 	github.com/uber-go/atomic v1.4.0 // indirect
 	github.com/uber/jaeger-client-go v2.16.0+incompatible
 	github.com/uber/jaeger-lib v2.0.0+incompatible
-	github.com/zsais/go-gin-prometheus v0.1.0
 	go.uber.org/zap v1.10.0
 	google.golang.org/grpc v1.22.1
 	gopkg.in/natefinch/lumberjack.v2 v2.0.0

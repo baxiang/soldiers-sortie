@@ -6,9 +6,7 @@ import (
 	"github.com/sdgmf/go-project-sample/internal/pkg/transports/http"
 )
 
-func CreateInitControllersFn(
-	pc *DetailsController,
-) http.InitControllers {
+func CreateInitControllersFn(pc *DetailsController, ) http.InitControllers {
 	return func(r *gin.Engine) {
 		r.GET("/detail/:id", pc.Get)
 	}
