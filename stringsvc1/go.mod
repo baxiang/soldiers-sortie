@@ -1,0 +1,1 @@
+module "github.com/baxiang/soldiers-sortie/stringsvc1"
