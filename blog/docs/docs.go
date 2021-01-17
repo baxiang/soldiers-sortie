@@ -414,10 +414,22 @@ var doc = `{
         },
         "/api/v1/tags/import": {
             "post": {
+                "consumes": [
+                    "multipart/form-data"
+                ],
                 "produces": [
                     "application/json"
                 ],
                 "summary": "Import article tag",
+                "parameters": [
+                    {
+                        "type": "file",
+                        "description": "tag file",
+                        "name": "file",
+                        "in": "formData",
+                        "required": true
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK",

@@ -321,6 +321,14 @@ paths:
       summary: Export article tag
   /api/v1/tags/import:
     post:
+      consumes:
+      - multipart/form-data
+      parameters:
+      - description: tag file
+        in: formData
+        name: file
+        required: true
+        type: file
       produces:
       - application/json
       responses:

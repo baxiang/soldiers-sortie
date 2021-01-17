@@ -1,9 +1,0 @@
-info:
-  contact: {}
-  description: An example of gin
-  license:
-    name: MIT
-  title: Golang Gin API
-  version: "1.0"
-paths: {}
-swagger: "2.0"
