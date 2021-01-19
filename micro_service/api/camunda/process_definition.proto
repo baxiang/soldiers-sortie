@@ -1,0 +1,60 @@
+syntax = "proto3";
+
+import "common.proto";
+
+package pb;
+
+message StartProcessDefinitionReq {
+  string id = 1;
+  StartProcessDefinitionReqBody body = 2;
+}
+
+message StartProcessDefinitionReqBody {
+    map<string, Variable> variables = 1;
+    string businessKey = 2;
+}
+
+message StartProcessDefinitionResp {
+  StartProcessDefinitionRespItem item = 1;
+  int64 code = 2;
+  CamundaError err = 3;
+}
+
+message StartProcessDefinitionRespItem {
+  string id = 1;
+  string definitionId = 2;
+  string businessKey = 3;
+  string caseInstanceId = 4;
+  string tenantId = 5;
+  bool ended = 6;
+  bool suspended = 7;
+  map<string, Variable> variable = 8;
+}
+
+message GetProcessDefinitionReq {
+    string id = 1;
+}
+
+message GetProcessDefinitionResp {
+  string id = 1;
+  string key = 2;
+  string category = 3;
+  string description = 4;
+  string name = 5;
+  int64 version = 6;
+  string resource = 7;
+  string deploymentId = 8;
+  string diagram = 9;
+  bool suspended = 10;
+  string tenantId = 11;
+  string versionTag = 12;
+  int64 historyTimeToLive = 13;
+  bool startableInTasklist = 14;
+  int64 code = 15;
+  CamundaError err = 16;
+}
+
+service ProcessDefinition {
+  rpc Start(StartProcessDefinitionReq) returns (StartProcessDefinitionResp) {}
+  rpc Get(GetProcessDefinitionReq) returns (GetProcessDefinitionResp) {}
+}

@@ -1,0 +1,46 @@
+syntax = "proto3";
+
+import "common.proto";
+
+package pb;
+
+message CreateDeploymentReq {
+  string deploymentName = 1;
+  bool enableDuplicateFiltering = 2;
+  bool deployChangedOnly = 3;
+  string deploymentSource = 4;
+  string tenantId = 5;
+  string fileName = 6;
+}
+
+message CreateDeploymentResp {
+  string id = 1;
+  string name = 2;
+  string source = 3;
+  string tenantId = 4;
+  string time = 5;
+  CamundaError err = 6;
+}
+
+message ListDeploymentReq {
+    string id = 1;
+    string name = 2;
+}
+
+message ListDeploymentResp {
+    repeated DeploymentInfo deployments = 1;
+    CamundaError err = 2;
+}
+
+message DeploymentInfo {
+    string id = 1;
+    string name = 2;
+    string source = 3;
+    string tenantId = 4;
+}
+
+service Deployment {
+  rpc Create(CreateDeploymentReq) returns (CreateDeploymentResp) {}
+  rpc List(ListDeploymentReq) returns (ListDeploymentResp) {}
+}
+

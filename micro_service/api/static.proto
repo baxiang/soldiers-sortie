@@ -1,0 +1,314 @@
+syntax = "proto3";
+
+package pb;
+
+import "error.proto";
+
+service Static {
+    rpc SyncData(StaticSyncDataReq) returns (StaticSyncDataResp) {}
+    rpc GetDictionaryItem(StaticGetDictionaryItemReq) returns (StaticGetDictionaryItemResp) {}
+    rpc GetDicByProdAndBiz(StaticGetDicByProdAndBizReq) returns (StaticGetDicByProdAndBizResp) {}
+    rpc CheckValues(StaticCheckValuesReq) returns (StaticCheckValuesResp) {}
+    rpc GetDictionaryLayerItem(GetDictionaryLayerItemReq) returns (GetDictionaryLayerItemResp) {}
+    rpc GetDictionaryItemByPk(GetDictionaryItemByPkReq) returns (GetDictionaryItemByPkResp) {}
+    rpc GetUnionPayBankList(GetUnionPayBankListRequest) returns (GetUnionPayBankListReply) {}
+    rpc FindUnionPayMccList(FindUnionPayMccListRequest) returns (FindUnionPayMccListReply) {}
+    rpc GetInsProdBizFeeMapInfo(GetInsProdBizFeeMapInfoRequest) returns (GetInsProdBizFeeMapInfoReply) {}
+    rpc SaveInsProdBizFeeMapInfo(SaveInsProdBizFeeMapInfoRequest) returns (SaveInsProdBizFeeMapInfoReply) {}
+    rpc ListTransMap(ListTransMapRequest) returns (ListTransMapReply) {}
+    rpc ListFeeMap(ListFeeMapRequest) returns (ListFeeMapReply) {}
+    rpc FindArea(FindAreaRequest) returns (FindAreaReply) {}
+    rpc FindMerchantFirstThreeCode(FindMerchantFirstThreeCodeRequest) returns (FindMerchantFirstThreeCodeReply) {}
+    rpc SaveOrgDictionaryItem(SaveOrgDictionaryItemRequest) returns (SaveOrgDictionaryItemReply) {}
+    rpc ListOrgDictionaryItem(ListOrgDictionaryItemRequest) returns (ListOrgDictionaryItemReply) {}
+}
+
+message SaveInsProdBizFeeMapInfoRequest {
+    InsProdBizFeeMapInfoField item = 1;
+    string insFeeBizCd = 2;
+}
+
+message SaveInsProdBizFeeMapInfoReply {
+    error err = 1;
+}
+
+message ListOrgDictionaryItemRequest {
+    OrgDictionaryItemField item = 1;
+    int32 page = 2;
+    int32 size = 3;
+}
+
+message ListOrgDictionaryItemReply {
+    error err = 1;
+    repeated OrgDictionaryItemField items = 2;
+    int32 page = 3;
+    int32 size = 4;
+    int32 count = 5;
+}
+
+message OrgDictionaryItemField {
+    int64  id          = 1;
+    string typeCode    = 2;
+    string orgCode     = 3;
+    string itemCode    = 4;
+    string typeParm1   = 5;
+    string typeParm2   = 6;
+    string typeParm3   = 7;
+    string remarks     = 8;
+    string msgResvFld1 = 9;
+    string msgResvFld2 = 10;
+    string msgResvFld3 = 11;
+    string msgResvFld4 = 12;
+    string msgResvFld5 = 13;
+}
+
+message OrgDictionary {
+    repeated OrgDictionaryItemField items = 1;
+    string orgCode = 2;
+    string typeCode = 3;
+}
+
+message SaveOrgDictionaryItemRequest {
+    DictionaryItemField dictionaryItem = 1;
+    OrgDictionary orgDictionary = 2;
+}
+
+message SaveOrgDictionaryItemReply {
+    error err = 1;
+}
+
+message FindAreaRequest {
+    string code = 1;
+    string level = 2;
+}
+
+message Area {
+    string name = 1;
+    string dicCode = 2;
+}
+
+message FindAreaReply {
+    repeated Area items = 1;
+    error err = 2;
+}
+
+message InsProdBizFeeMapInfoField {
+    string prodCd       = 1;
+    string bizCd        = 2;
+    string mccMTp       = 3;
+    string mccSTp       = 4;
+    string insFeeBizCd  = 5;
+    string insFeeBizNm  = 6;
+    string msgResvFld1  = 7;
+    string msgResvFld2  = 8;
+    string msgResvFld3  = 9;
+    string msgResvFld4  = 10;
+    string msgResvFld5  = 11;
+    string msgResvFld6  = 12;
+    string msgResvFld7  = 13;
+    string msgResvFld8  = 14;
+    string msgResvFld9  = 15;
+    string msgResvFld10 = 16;
+    string recOprID     = 17;
+    string recUpdOpr    = 18;
+    string createdAt    = 19;
+    string updatedAt    = 20;
+}
+
+message GetInsProdBizFeeMapInfoReply {
+    repeated InsProdBizFeeMapInfoField items = 1;
+    error err = 2;
+}
+
+message GetInsProdBizFeeMapInfoRequest {
+    InsProdBizFeeMapInfoField item = 1;
+}
+
+message StaticSyncDataReq {
+    string TableName = 1;
+}
+
+message StaticSyncDataResp {
+    bool result = 1;
+    error err = 2;
+}
+
+message DictionaryItemField {
+    string dicType   = 1;
+    string dicCode   = 2;
+    string dicName   = 3;
+    string dispOrder = 4;
+    string memo      = 6;
+}
+
+message StaticGetDictionaryItemReq {
+    DictionaryItemField item = 1;
+}
+
+
+message StaticGetDictionaryItemResp {
+    repeated DictionaryItemField items = 1;
+    error err = 2;
+}
+
+
+message StaticGetDictionaryItem {
+    string dicType = 1;
+    string dicCode = 2;
+    string dicName = 3;
+}
+
+message StaticGetDicByProdAndBizReq {
+    string prodCd = 1;
+    string bizCd = 2;
+}
+
+message StaticGetDicByProdAndBizResp {
+    repeated StaticGetDictionaryItem items = 1;
+    error err = 2;
+}
+
+message StaticCheckValuesReq {
+    string prodCd = 1;
+    string bizCd = 2;
+    string transCd = 3;
+    string insCompanyCd = 4;
+    string fwdInsIdCd = 5;
+}
+
+message StaticCheckValuesResp {
+    bool result = 1;
+    error err = 2;
+}
+
+message GetDictionaryLayerItemReq {
+    string dicType = 1;
+    string dicCode = 2;
+    string dicPCode = 3;
+    string dicLevel = 4;
+}
+
+message DictionaryLayerItem {
+    string dicType = 1;
+    string dicCode = 2;
+    string dicPCode = 3;
+    string dicLevel = 4;
+    string disPOrder = 5;
+    string name = 6;
+    string memo = 7;
+}
+
+message GetDictionaryLayerItemResp {
+    repeated DictionaryLayerItem items = 1;
+    error err = 2;
+}
+
+message GetDictionaryItemByPkReq {
+    string dicType = 1;
+    string dicCode = 2;
+}
+
+message GetDictionaryItemByPkResp {
+    StaticGetDictionaryItem item = 1;
+    error err = 2;
+}
+
+message UnionPayBankListField {
+    int64 id = 1;
+    string code = 2;
+    string name = 3;
+    string updatedAt = 4;
+}
+
+message GetUnionPayBankListRequest {
+    UnionPayBankListField item = 1;
+    int32 page = 2;
+    int32 size = 3;
+}
+
+message GetUnionPayBankListReply {
+    repeated UnionPayBankListField items = 1;
+    int32 page = 2;
+    int32 size = 3;
+    int32 count = 4;
+    error err = 5;
+}
+
+message UnionPayMccField {
+    int64 id = 1;
+    string code = 2;
+    string name = 3;
+    string category = 4;
+    string categoryType = 5;
+    string industry = 6;
+    string status = 7;
+    string updatedAt = 8;
+}
+
+message FindUnionPayMccListRequest {
+    UnionPayMccField item = 1;
+    int32 page = 2;
+    int32 size = 3;
+}
+
+message FindUnionPayMccListReply {
+    repeated UnionPayMccField items = 1;
+    int32 page = 2;
+    int32 size = 3;
+    int32 count = 4;
+    error err = 5;
+}
+
+message ProductBizTransMapField {
+    string prodCd      = 1;
+    string bizCd       = 2;
+    string transCd     = 3;
+    string updateDate  = 4;
+    string description = 5;
+    string resvFld1    = 6;
+    string resvFld2    = 7;
+    string resvFld3    = 8;
+}
+
+message ProductBizFeeMapField {
+    string prodCd      = 1;
+    string bizCd       = 2;
+    string subBizCd    = 3;
+    string updateDate  = 4;
+    string description = 5;
+    string resvFld1    = 6;
+    string resvFld2    = 7;
+    string resvFld3    = 8;
+}
+
+message ListTransMapRequest {
+    ProductBizTransMapField item = 1;
+}
+
+message ListTransMapReply {
+    repeated ProductBizTransMapField items = 1;
+    error err = 2;
+}
+
+message ListFeeMapRequest {
+    ProductBizFeeMapField item = 1;
+}
+
+message ListFeeMapReply {
+    repeated ProductBizFeeMapField items = 1;
+    error err = 2;
+}
+
+message MerchantFirstThreeField {
+    string dicCode = 1;
+    string dicName = 2;
+}
+
+message FindMerchantFirstThreeCodeRequest {
+    string code = 1;
+}
+
+message FindMerchantFirstThreeCodeReply {
+    repeated MerchantFirstThreeField items = 1;
+    error err = 2;
+}

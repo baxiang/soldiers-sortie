@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package apstfrpb;
+
+message error {
+    int32 code = 1;
+    string message = 2;
+    string description = 3;
+}

@@ -1,0 +1,172 @@
+syntax = "proto3";
+
+package pb;
+
+import "error.proto";
+import "merchant.proto";
+
+service Term {
+    rpc ListTermInfo(ListTermInfoRequest) returns (ListTermInfoReply) {}
+    rpc SaveTerm(SaveTermRequest) returns (SaveTermReply) {}
+    rpc ListTermRisk(ListTermRiskRequest) returns (ListTermRiskReply) {}
+    rpc ListTermActivationState(ListTermActivationStateRequest) returns (ListTermActivationStateReply) {}
+    rpc UpdateTermInfo(UpdateTermInfoRequest) returns (UpdateTermInfoReply) {}
+    rpc QueryTermInfo(QueryTermInfoRequest) returns (QueryTermInfoReply) {}
+}
+
+message QueryTermInfoField {
+    TermInfoField term = 1;
+    MerchantInfoField mcht = 2;
+}
+
+message QueryTermInfoRequest {
+    int32 page = 1;
+    int32 size = 2;
+    QueryTermInfoField item = 3;
+}
+
+message QueryTermInfoReply {
+    int32 page = 1;
+    int32 size = 2;
+    int32 count = 3;
+    repeated TermInfoField items = 4;
+    error err = 5;
+}
+
+message UpdateTermInfoRequest {
+    string mchtCd = 1;
+    repeated string termIds = 2;
+    TermInfoField item = 3;
+}
+
+message UpdateTermInfoReply {
+    error err = 1;
+}
+
+message ListTermInfoRequest {
+    int32 page = 1;
+    int32 size = 2;
+    TermInfoField item = 3;
+    string type = 4;
+}
+
+message ListTermInfoReply {
+    int32 page = 1;
+    int32 size = 2;
+    int32 count = 3;
+    repeated TermInfoField items = 4;
+    error err = 5;
+}
+
+message TermInfoField {
+    string mchtCd = 1;
+    string termId = 2;
+    string termTp = 3;
+    string belong = 4;
+    string belongSub = 5;
+    string tmnlMoneyIntype = 6;
+    double tmnlMoney = 7;
+    string tmnlBrand = 8;
+    string tmnlModelNo = 9;
+    string tmnlBarcode = 10;
+    string deviceCd = 11;
+    string installLocation = 12;
+    string tmnlIntype = 13;
+    string dialOut = 14;
+    string dealTypes = 15;
+    string recOprId = 16;
+    string recUpdOpr = 17;
+    string createdAt = 18;
+    string updatedAt = 19;
+    string appCd = 20;
+    string systemFlag = 21;
+    string status = 22;
+    string activeCode = 23;
+    string noFlag = 24;
+    string msgResvFld1 = 25;
+    string msgResvFld2 = 26;
+    string msgResvFld3 = 27;
+    string msgResvFld4 = 28;
+    string msgResvFld5 = 29;
+    string msgResvFld6 = 30;
+    string msgResvFld7 = 31;
+    string msgResvFld8 = 32;
+    string msgResvFld9 = 33;
+    string msgResvFld10 = 34;
+}
+
+message SaveTermRequest {
+    TermInfoField term = 1;
+    TermRiskField risk = 2;
+    TermActivationStateField activation = 3;
+}
+
+message SaveTermReply {
+    error err = 1;
+}
+
+message TermRiskField {
+    string mchtCd           = 1;
+    string termId           = 2;
+    string cardType         = 3;
+    double totalLimitMoney  = 4;
+    string accpetStartTime  = 5;
+    string accpetStartDate  = 6;
+    string accpetEndTime    = 7;
+    string accpetEndDate    = 8;
+    double singleLimitMoney = 9;
+    string controlWay       = 10;
+    double singleMinMoney   = 11;
+    string totalPeriod      = 12;
+    string recOprId         = 13;
+    string recUpdOpr        = 14;
+    string operIn           = 15;
+    string createdAt        = 16;
+    string updatedAt        = 17;
+}
+
+message ListTermRiskRequest {
+    int32 page = 1;
+    int32 size = 2;
+    TermRiskField item = 3;
+    string type = 4;
+}
+
+message ListTermRiskReply {
+    int32 page = 1;
+    int32 size = 2;
+    int32 count = 3;
+    repeated TermRiskField items = 4;
+    error err = 5;
+}
+
+message TermActivationStateField {
+    string activeCode = 1;
+    string activeType = 2;
+    string mchtCd     = 3;
+    string termId     = 4;
+    string newKsn     = 5;
+    string oldKsn     = 6;
+    string isActive   = 7;
+    string recOprId   = 8;
+    string recUpdOpr  = 9;
+    string activeDate = 10;
+    string createDate = 11;
+    string createdAt  = 12;
+    string updatedAt  = 13;
+}
+
+message ListTermActivationStateRequest {
+    int32 page = 1;
+    int32 size = 2;
+    TermActivationStateField item = 3;
+    string type = 4;
+}
+
+message ListTermActivationStateReply {
+    int32 page = 1;
+    int32 size = 2;
+    int32 count = 3;
+    repeated TermActivationStateField items = 4;
+    error err = 5;
+}

@@ -1,0 +1,113 @@
+syntax = "proto3";
+
+import "common.proto";
+
+package pb;
+
+message GetListExternalTaskResp {
+  repeated ExternalTaskItem externalTasks = 1;
+  int64 code = 2;
+  CamundaError err = 3;
+}
+
+message ExternalTaskItem {
+  string activityId = 1;
+  string activityInstanceId = 2;
+  string errorMessage = 3;
+  string errorDetails = 4;
+  string executionId = 5;
+  string id = 6;
+  string lockExpirationTime = 7;
+  string processDefinitionId = 8;
+  string processDefinitionKey = 9;
+  string processInstanceId = 10;
+  string tenantId = 11;
+  int64 retries = 12;
+  bool suspended = 13;
+  string workerId = 14;
+  int64 priority = 15;
+  string topicName = 16;
+  string businessKey = 17;
+}
+
+message FetchAndLockExternalTaskReq {
+  string workerId = 1;
+  int64 maxTasks = 2;
+  bool usePriority = 3;
+  int64 asyncResponseTimeout = 4;
+  repeated Topic topics = 5;
+}
+
+message Topic {
+  string topicName = 1;
+  int64 lockDuration = 2;
+  string variables = 3;
+  bool localVariables = 4;
+  string businessKey = 5;
+  string processDefinitionId = 6;
+  string processDefinitionIdIn = 7;
+  string processDefinitionKey = 8;
+  string processDefinitionKeyIn = 9;
+  string withoutTenantId = 10;
+  string tenantIdIn = 11;
+  bool deserializeValues = 12;
+  map<string, Variable> processVariables = 13;
+}
+
+message FetchAndLockExternalTaskResp {
+  repeated FetchAndLockExternalTaskRespItem item = 1;
+  int64 code = 2;
+  CamundaError err = 3;
+}
+
+message FetchAndLockExternalTaskRespItem {
+  string activityId = 1;
+  string activityInstanceId = 2;
+  string errorMessage = 3;
+  string errorDetails = 4;
+  string executionId = 5;
+  string id = 6;
+  string lockExpirationTime = 7;
+  string processDefinitionId = 8;
+  string processDefinitionKey = 9;
+  string processInstanceId = 10;
+  string tenantId = 11;
+  int64 retries = 12;
+  string workerId = 13;
+  int64 priority = 14;
+  string topicName = 15;
+  string businessKey = 16;
+  // map <string, Variable> variables = 17;
+}
+
+message CompleteExternalTaskReq {
+  string id = 1;
+  CompleteExternalTaskReqBody body = 2;
+}
+
+message CompleteExternalTaskReqBody {
+  map<string, Variable> variables = 1;
+  map<string, Variable> localVariables = 2;
+  string workerId = 3;
+}
+
+message CompleteExternalTaskResp {
+  int64 code = 1;
+  CamundaError err = 2;
+}
+
+message GetExternalTaskReq { string id = 1; }
+
+message GetExternalTaskResp {
+  ExternalTaskItem item = 1;
+  int64 code = 2;
+  CamundaError err = 3;
+}
+
+service ExternalTask {
+  rpc Get(GetExternalTaskReq) returns (GetExternalTaskResp) {}
+  rpc GetList(GetQuery) returns (GetListExternalTaskResp) {}
+  rpc FetchAndLock(FetchAndLockExternalTaskReq)
+      returns (FetchAndLockExternalTaskResp) {}
+  rpc Complete(CompleteExternalTaskReq) returns (CompleteExternalTaskResp) {}
+}

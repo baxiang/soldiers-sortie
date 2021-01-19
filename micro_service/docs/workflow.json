@@ -1,0 +1,260 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "0.0.1",
+    "title": "workflow api"
+  },
+  "host": "172.16.7.120:8080",
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/workflow/start": {
+      "post": {
+        "operationId": "start",
+        "summary": "开启工作流",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Authorization",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "start",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "type",
+                "name",
+                "dataId"
+              ],
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "description": "工作流类型: ins_add为新增机构, mcht_add为商户注册, ins_change 为机构变更, mcht_change为商户变更"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "工作流流程名称"
+                },
+                "dataId": {
+                  "type": "string",
+                  "description": "数据id，机构注册为机构id，商户注册为商户id"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "正确返回",
+            "examples": {
+              "application/json": {
+                "taskId": "20",
+                "err": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/workflow/listTask": {
+      "post": {
+        "operationId": "listTask",
+        "summary": "任务列表",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Authorization",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "start",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "page",
+                "size"
+              ],
+              "properties": {
+                "page": {
+                  "type": "integer",
+                  "description": "页码"
+                },
+                "size": {
+                  "type": "integer",
+                  "description": "页面大小"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "正确返回",
+            "examples": {
+              "application/json": {
+                "items": [
+                  {
+                    "taskId": "94",
+                    "title": "test111112222",
+                    "userId": "",
+                    "currentNode": "编辑节点",
+                    "camundaTaskId": "beca1aa1-ce12-11e9-bd57-0242ac170004",
+                    "instanceId": "35",
+                    "endFlag": false,
+                    "workflowName": "mcht_add",
+                    "username": "test11",
+                    "dataId": "113",
+                    "createdAt": "2019-09-03 14:02:19",
+                    "updatedAt": "2019-09-03 14:02:19"
+                  }
+                ],
+                "count": 1,
+                "size": 10,
+                "page": 1,
+                "err": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/workflow/handleTask": {
+      "post": {
+        "operationId": "handleTask",
+        "summary": "处理任务",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Authorization",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "handleTask",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "taskId",
+                "result"
+              ],
+              "properties": {
+                "taskId": {
+                  "type": "string",
+                  "description": "任务id"
+                },
+                "result": {
+                  "type": "string",
+                  "description": "任务结果"
+                },
+                "remark": {
+                  "type": "string",
+                  "description": "备注"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "正确返回",
+            "examples": {
+              "application/json": {
+                "err": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/workflow/listRemark": {
+      "post": {
+        "operationId": "listRemark",
+        "summary": "备注列表",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "listRemark",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "page",
+                "size",
+                "item"
+              ],
+              "properties": {
+                "page": {
+                  "type": "integer",
+                  "description": "页码"
+                },
+                "size": {
+                  "type": "integer",
+                  "description": "页面大小"
+                },
+                "item": {
+                  "type": "object",
+                  "description": "备注",
+                  "properties": {
+                    "instanceId": {
+                      "type": "integer",
+                      "description": "实例id"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "正确返回",
+            "examples": {
+              "application/json": {
+                "items": [
+                  {
+                    "actionId": "20",
+                    "action": "",
+                    "comment": "提交复审",
+                    "taskId": "25",
+                    "username": "test11",
+                    "createdAt": "2019-07-22 15:40:08",
+                    "updatedAt": "2019-07-22 15:40:08"
+                  }
+                ],
+                "count": 1,
+                "size": 10,
+                "page": 1,
+                "err": null
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

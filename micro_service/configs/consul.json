@@ -1,0 +1,64 @@
+{
+  "watches": [
+    {
+      "type": "key",
+      "key": "static/dictionaryItem",
+      "handler_type": "http",
+      "http_handler_config": {
+         "path":"http://userservice:9000/watch",
+         "method": "POST",
+         "header": {"x-static":["static/dictionaryItem"]},
+         "timeout": "10s",
+         "tls_skip_verify": false
+      }
+    },
+    {
+      "type": "key",
+      "key": "static/insProdBizFeeMapInf",
+      "handler_type": "http",
+      "http_handler_config": {
+         "path":"http://userservice:9000/watch",
+         "method": "POST",
+         "header": {"x-static":["static/insProdBizFeeMapInf"]},
+         "timeout": "10s",
+         "tls_skip_verify": false
+      }
+    },
+    {
+      "type": "key",
+      "key": "static/prodBizTransMap",
+      "handler_type": "http",
+      "http_handler_config": {
+         "path":"http://userservice:9000/watch",
+         "method": "POST",
+         "header": {"x-static":["static/prodBizTransMap"]},
+         "timeout": "10s",
+         "tls_skip_verify": false
+      }
+    },
+    {
+      "type": "key",
+      "key": "static/insInf",
+      "handler_type": "http",
+      "http_handler_config": {
+         "path":"http://userservice:9000/watch",
+         "method": "POST",
+         "header": {"x-static":["static/insInf"]},
+         "timeout": "10s",
+         "tls_skip_verify": false
+      }
+    },
+    {
+      "type": "key",
+      "key": "static/layer",
+      "handler_type": "http",
+      "http_handler_config": {
+        "path":"http://userservice:9000/watch",
+        "method": "POST",
+        "header": {"x-static":["static/layer"]},
+        "timeout": "10s",
+        "tls_skip_verify": false
+      }
+    }
+  ]
+}

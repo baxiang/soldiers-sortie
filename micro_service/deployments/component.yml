@@ -1,0 +1,59 @@
+version: '3'
+services:
+  consul:
+    image: consul:1.4.4
+    container_name: consul
+    ports:
+      - 8300:8300
+      - 8301:8301
+      - 8302:8302
+      - 8500:8500
+      - 8600:8600
+    environment:
+      CONSUL_LOCAL_CONFIG: '{"skip_leave_on_interrupt": true}'
+    volumes:
+      - ./consul/consul.json:/consul/config/consul.json
+  zipkin:
+    image: openzipkin/zipkin:2.12.8
+    container_name: zipkin
+    ports:
+      - 9400:9400
+      - 9411:9411
+  camunda:
+    image: camunda/camunda-bpm-platform:latest
+    container_name: camunda
+    ports:
+      - 8000:8080
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.3.1
+    container_name: elasticsearch
+    volumes:
+      - ./elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+    ports:
+      - 9200:9200
+      - 9300:9300
+    environment:
+      ELASTIC_PASSWORD: elasticsearch
+      ES_JAVA_OPTS: "-Xmx256m -Xms256m"
+  logstash:
+    image: docker.elastic.co/logstash/logstash:7.3.1
+    container_name: logstash
+    volumes:
+      - ./logstash/pipeline/:/usr/share/logstash/pipeline/:ro
+      - ./logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml:ro
+    ports:
+      - 5100:5100
+      - 9600:9600
+    depends_on:
+      - elasticsearch
+    environment:
+      LS_JAVA_OPTS: "-Xmx256m -Xms256m"
+  kibana:
+    image: docker.elastic.co/kibana/kibana:7.3.1
+    container_name: kibana
+    volumes:
+      - ./kibana/config/kibana.yml:/usr/share/kibana/config/kibana.yml:ro
+    ports:
+      - 5601:5601
+    depends_on:
+      - elasticsearch

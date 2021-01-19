@@ -1,0 +1,6 @@
+FROM alpine:3.9.3 as institutionservice
+
+COPY ./configs/ /data/configs/
+COPY ./institutionservice /data/
+WORKDIR /data/
+CMD ./institutionservice

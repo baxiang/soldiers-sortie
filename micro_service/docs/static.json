@@ -1,0 +1,1143 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "0.0.1",
+    "title": "static api"
+  },
+  "host": "172.16.7.120:8080",
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/static/syncData": {
+      "post": {
+        "operationId": "syncData",
+        "summary": "将数据库数据同步到内存",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "tableName",
+            "in": "body",
+            "description": "预留字段",
+            "schema": {
+              "type": "string",
+              "allOf": [
+                {
+                  "properties": {
+                    "TableName": {
+                      "type": "string"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "正确返回",
+            "examples": {
+              "application/json": {
+                "result": true,
+                "err": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/static/getDictionaryItem": {
+      "post": {
+        "operationId": "getDictionaryItem",
+        "summary": "通过dicType获取一级目录",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "dicItem",
+            "in": "body",
+            "description": "可以只传DicType， 其余不传。 如DicType=PROD_CD 则获取全部PROD_Cd的配置",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "item": {
+                  "type": "object",
+                  "properties": {
+                    "dicType": {
+                      "type": "string"
+                    },
+                    "dicCode": {
+                      "type": "string"
+                    },
+                    "dicName": {
+                      "type": "string"
+                    },
+                    "dispOrder": {
+                      "type": "string"
+                    },
+                    "memo": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "正确返回",
+            "examples": {
+              "application/json": {
+                "items": [
+                  {
+                    "dicType": "BIG_TYPE",
+                    "dicCode": "APP_CD",
+                    "dicName": "项目代码",
+                    "dispOrder": "",
+                    "updatedAt": "",
+                    "memo": ""
+                  }
+                ],
+                "err": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/static/getDicByProdAndBiz": {
+      "post": {
+        "operationId": "getDicByProdAndBiz",
+        "summary": "根据产品码(ProdCd)跟业务码(BizCd)获取二级目录bizcd或者交易类型(transcd)",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ProdCd",
+            "in": "body",
+            "description": "如果BizCd等于空， 则找到ProdCd下的全部BizCd如果bizCd 不为空， 则查找ProdCd跟BizCd下的全部TransCd ",
+            "schema": {
+              "type": "object",
+              "allOf": [
+                {
+                  "required": [
+                    "ProdCd"
+                  ],
+                  "properties": {
+                    "prodCd": {
+                      "type": "string"
+                    },
+                    "bizCd": {
+                      "type": "string"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "正确返回",
+            "examples": {
+              "application/json": {
+                "items": [
+                  {
+                    "dicType": "BIZ_CD",
+                    "dicCode": "0000000",
+                    "dicName": "0000000_消费"
+                  },
+                  {
+                    "dicType": "BIZ_CD",
+                    "dicCode": "0000007",
+                    "dicName": "0000007_微信支付"
+                  },
+                  {
+                    "dicType": "BIZ_CD",
+                    "dicCode": "0000008",
+                    "dicName": "0000008_支付宝支付"
+                  }
+                ],
+                "err": null
+              }
+            }
+          },
+          "400": {
+            "description": "错误返回",
+            "examples": {
+              "application/json": {
+                "desc": "必须传入ProdCd",
+                "err": "InvalidParamError"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/static/getDicByInsCmpCd": {
+      "post": {
+        "operationId": "getDicByInsCmpCd",
+        "summary": "根据所属机构(InsCompanyCd)获取收单机构代码",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "InsComCd",
+            "in": "body",
+            "description": "如果InsCompanyCd为空则返回错误",
+            "schema": {
+              "type": "object",
+              "allOf": [
+                {
+                  "required": [
+                    "insCompanyCd"
+                  ],
+                  "properties": {
+                    "insCompanyCd": {
+                      "type": "string"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "正确返回",
+            "examples": {
+              "application/json": {
+                "items": [
+                  {
+                    "dicType": "INS_ID_CD",
+                    "dicCode": "12888772",
+                    "dicName": "12888772_小小皮"
+                  },
+                  {
+                    "dicType": "INS_ID_CD",
+                    "dicCode": "17378999",
+                    "dicName": "17378999_小皮楼上的李开复111"
+                  }
+                ],
+                "err": null
+              }
+            }
+          },
+          "400": {
+            "description": "错误返回",
+            "examples": {
+              "application/json": {
+                "desc": "必须传入InsCompanyCd",
+                "err": "InvalidParamError"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/static/checkValues": {
+      "post": {
+        "operationId": "checkValues",
+        "summary": "校验ProdCd， BizCd， TransCd, InsCompanyCd ,FwdInsIdCd 是否合法",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Values",
+            "in": "body",
+            "description": "不能全部为空",
+            "schema": {
+              "type": "object",
+              "allOf": [
+                {
+                  "properties": {
+                    "prodCd": {
+                      "type": "string"
+                    },
+                    "bizCd": {
+                      "type": "string"
+                    },
+                    "transCd": {
+                      "type": "string"
+                    },
+                    "insCompanyCd": {
+                      "type": "string"
+                    },
+                    "fwdInsIdCd": {
+                      "type": "string"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "正确返回",
+            "examples": {
+              "application/json": {
+                "result": true,
+                "err": null
+              }
+            }
+          },
+          "400": {
+            "description": "错误返回",
+            "examples": {
+              "application/json": {
+                "desc": "必须传入参数",
+                "err": "InvalidParamError"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/static/getDictionaryLayerItem": {
+      "post": {
+        "operationId": "getDictionaryLayerItem",
+        "summary": "查询layer",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "getDictionaryLayerItem",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "dicType": {
+                  "type": "string"
+                },
+                "dicCode": {
+                  "type": "string"
+                },
+                "dicPCode": {
+                  "type": "string"
+                },
+                "dicLevel": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "正确返回",
+            "examples": {
+              "application/json": {
+                "items": [
+                  {
+                    "dicType": "GB_Area_MAP",
+                    "dicCode": "130682",
+                    "dicPCode": "130600",
+                    "dicLevel": "2",
+                    "disPOrder": "130682",
+                    "name": "82_定州市",
+                    "memo": "河北省保定市定州市"
+                  }
+                ],
+                "err": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/static/getDictionaryItemByPk": {
+      "post": {
+        "operationId": "getDictionaryItemByPk",
+        "summary": "根据dicType 和 dicItem 查询",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "getDictionaryItemByPk",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "required": [
+                "dicType",
+                "dicCode"
+              ],
+              "properties": {
+                "dicType": {
+                  "type": "string"
+                },
+                "dicCode": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "正确返回",
+            "examples": {
+              "application/json": {
+                "item": {
+                  "dicType": "CTRL_FEE_STA",
+                  "dicCode": "0",
+                  "dicName": "0-关闭"
+                },
+                "err": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/static/getUnionPayBankList": {
+      "post": {
+        "operationId": "getUnionPayBankList",
+        "summary": "union pay bank list",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "getDictionaryItemByPk",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "required": [
+                "item",
+                "page",
+                "size"
+              ],
+              "properties": {
+                "page": {
+                  "type": "integer"
+                },
+                "size": {
+                  "type": "integer"
+                },
+                "item": {
+                  "properties": {
+                    "code": {
+                      "type": "string",
+                      "description": "为前缀，模糊查询"
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": "精确查询"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "正确返回",
+            "examples": {
+              "application/json": {
+                "items": [
+                  {
+                    "id": "148909",
+                    "code": "313100000013",
+                    "name": "北京银行",
+                    "updatedAt": "2013-08-08 17:11:59"
+                  }
+                ],
+                "page": 1,
+                "size": 10,
+                "count": 15977,
+                "err": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/static/findUnionPayMccList": {
+      "post": {
+        "operationId": "findUnionPayMccList",
+        "summary": "union pay mcc",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "findUnionPayMccList",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "required": [
+                "item",
+                "page",
+                "size"
+              ],
+              "properties": {
+                "page": {
+                  "type": "integer"
+                },
+                "size": {
+                  "type": "integer"
+                },
+                "item": {
+                  "properties": {
+                    "id": {
+                      "type": "integer"
+                    },
+                    "code": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "category": {
+                      "type": "string"
+                    },
+                    "categoryType": {
+                      "type": "string"
+                    },
+                    "industry": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "正确返回",
+            "examples": {
+              "application/json": {
+                "items": [
+                  {
+                    "id": "1",
+                    "code": "7011",
+                    "name": "7011_住宿服务",
+                    "category": "一类",
+                    "categoryType": "宾馆",
+                    "industry": "宾馆",
+                    "status": "0",
+                    "updatedAt": ""
+                  }
+                ],
+                "page": 1,
+                "size": 10,
+                "count": 1,
+                "err": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/static/listTransMap": {
+      "post": {
+        "operationId": "listTransMap",
+        "summary": "prod_biz_trans_map列表",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "listTransMap",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "正确返回",
+            "examples": {
+              "application/json": {
+                "items": [
+                  {
+                    "prodCd": "1000",
+                    "bizCd": "0000000",
+                    "transCd": "1001",
+                    "updateDate": "2016-04-13 13:58:34",
+                    "description": "",
+                    "resvFld1": "",
+                    "resvFld2": "",
+                    "resvFld3": ""
+                  }
+                ],
+                "err": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/static/listFeeMap": {
+      "post": {
+        "operationId": "listFeeMap",
+        "summary": "prod_biz_fee_map列表",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "listFeeMap",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "正确返回",
+            "examples": {
+              "application/json": {
+                "items": [
+                  {
+                    "prodCd": "1000",
+                    "bizCd": "0000000",
+                    "subBizCd": "0001000",
+                    "updateDate": "2016-04-13 14:19:20",
+                    "description": "",
+                    "resvFld1": "",
+                    "resvFld2": "",
+                    "resvFld3": ""
+                  }
+                ],
+                "err": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/static/findArea": {
+      "post": {
+        "operationId": "findArea",
+        "summary": "区域查询",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "findArea",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "string"
+                },
+                "level": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "正确返回",
+            "examples": {
+              "application/json": {
+                "items": [
+                  {
+                    "name": "1000_北京市",
+                    "dicCode": "1000"
+                  }
+                ],
+                "err": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/static/findMerchantFirstThreeCode": {
+      "post": {
+        "operationId": "findMerchantFirstThreeCode",
+        "summary": "商户编码前三位机构代码",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "findMerchantFirstThreeCode",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "正确返回",
+            "examples": {
+              "application/json": {
+                "items": [
+                  {
+                    "dicCode": "201",
+                    "dicName": "201_金苹果"
+                  }
+                ],
+                "err": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/static/saveOrgDictionaryItem": {
+      "post": {
+        "operationId": "saveOrgDictionaryItem",
+        "summary": "保存机构32域和商户前三位",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "saveOrgDictionaryItem",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "dictionaryItem": {
+                  "type": "object",
+                  "properties": {
+                    "dicType": {
+                      "type": "string"
+                    },
+                    "dicCode": {
+                      "type": "string"
+                    },
+                    "dicName": {
+                      "type": "string"
+                    },
+                    "dispOrder": {
+                      "type": "string"
+                    },
+                    "memo": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "orgDictionary": {
+                  "type": "object",
+                  "properties": {
+                    "typeCode": {
+                      "type": "string"
+                    },
+                    "orgCode": {
+                      "type": "string"
+                    },
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "typeCode": {
+                            "type": "string"
+                          },
+                          "orgCode": {
+                            "type": "string"
+                          },
+                          "itemCode": {
+                            "type": "string"
+                          },
+                          "typeParm1": {
+                            "type": "string"
+                          },
+                          "typeParm2": {
+                            "type": "string"
+                          },
+                          "typeParm3": {
+                            "type": "string"
+                          },
+                          "remarks": {
+                            "type": "string"
+                          },
+                          "msgResvFld1": {
+                            "type": "string"
+                          },
+                          "msgResvFld2": {
+                            "type": "string"
+                          },
+                          "msgResvFld3": {
+                            "type": "string"
+                          },
+                          "msgResvFld4": {
+                            "type": "string"
+                          },
+                          "msgResvFld5": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "正确返回",
+            "examples": {
+              "application/json": {
+                "err": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/static/listOrgDictionaryItem": {
+      "post": {
+        "operationId": "listOrgDictionaryItem",
+        "summary": "查询 orgDictionaryItem",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "listOrgDictionaryItem",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "item": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer"
+                    },
+                    "typeCode": {
+                      "type": "string"
+                    },
+                    "orgCode": {
+                      "type": "string"
+                    },
+                    "itemCode": {
+                      "type": "string"
+                    },
+                    "typeParm1": {
+                      "type": "string"
+                    },
+                    "typeParm2": {
+                      "type": "string"
+                    },
+                    "typeParm3": {
+                      "type": "string"
+                    },
+                    "remarks": {
+                      "type": "string"
+                    },
+                    "msgResvFld1": {
+                      "type": "string"
+                    },
+                    "msgResvFld2": {
+                      "type": "string"
+                    },
+                    "msgResvFld3": {
+                      "type": "string"
+                    },
+                    "msgResvFld4": {
+                      "type": "string"
+                    },
+                    "msgResvFld5": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "page": {
+                  "type": "integer"
+                },
+                "size": {
+                  "type": "integer"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "正确返回",
+            "examples": {
+              "application/json": {
+                "err": null,
+                "items": [
+                  {
+                    "id": "3772",
+                    "typeCode": "string",
+                    "orgCode": "string",
+                    "itemCode": "string",
+                    "typeParm1": "string",
+                    "typeParm2": "string",
+                    "typeParm3": "string",
+                    "remarks": "string",
+                    "msgResvFld1": "string",
+                    "msgResvFld2": "string",
+                    "msgResvFld3": "string",
+                    "msgResvFld4": "string",
+                    "msgResvFld5": "string"
+                  }
+                ],
+                "page": 1,
+                "size": 10,
+                "count": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    "/static/getInsProdBizFeeMapInfo": {
+      "post": {
+        "operationId": "getInsProdBizFeeMapInfo",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "getInsProdBizFeeMapInfo",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "item": {
+                  "type": "object",
+                  "properties": {
+                    "prodCd": {
+                      "type": "string"
+                    },
+                    "bizCd": {
+                      "type": "string"
+                    },
+                    "mccMTp": {
+                      "type": "string"
+                    },
+                    "mccSTp": {
+                      "type": "string"
+                    },
+                    "insFeeBizCd": {
+                      "type": "string"
+                    },
+                    "insFeeBizNm": {
+                      "type": "string"
+                    },
+                    "msgResvFld1": {
+                      "type": "string"
+                    },
+                    "msgResvFld2": {
+                      "type": "string"
+                    },
+                    "msgResvFld3": {
+                      "type": "string"
+                    },
+                    "msgResvFld4": {
+                      "type": "string"
+                    },
+                    "msgResvFld5": {
+                      "type": "string"
+                    },
+                    "msgResvFld6": {
+                      "type": "string"
+                    },
+                    "msgResvFld7": {
+                      "type": "string"
+                    },
+                    "msgResvFld8": {
+                      "type": "string"
+                    },
+                    "msgResvFld9": {
+                      "type": "string"
+                    },
+                    "msgResvFld10": {
+                      "type": "string"
+                    },
+                    "recOprID": {
+                      "type": "string"
+                    },
+                    "recUpdOpr": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "正确返回",
+            "examples": {
+              "application/json": {
+                "items": [
+                  {
+                    "ProdCd": "1000",
+                    "BizCd": "0000000",
+                    "MccMTp": "1",
+                    "MccSTp": "0",
+                    "InsFeeBizCd": "1000000000010",
+                    "InsFeeBizNm": "标准类费率",
+                    "MsgResvFld1": "",
+                    "MsgResvFld2": "",
+                    "MsgResvFld3": "",
+                    "MsgResvFld4": "",
+                    "MsgResvFld5": "",
+                    "MsgResvFld6": "",
+                    "MsgResvFld7": "",
+                    "MsgResvFld8": "",
+                    "MsgResvFld9": "",
+                    "MsgResvFld10": "",
+                    "RecOprID": "I",
+                    "RecUpdOpr": "",
+                    "CreateAt": "2016-10-16 15:40:44",
+                    "UpdatedAt": "2016-10-16 15:40:44"
+                  }
+                ],
+                "err": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/static/saveInsProdBizFeeMapInfo": {
+      "post": {
+        "operationId": "saveInsProdBizFeeMapInfo",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "saveInsProdBizFeeMapInfo",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "item": {
+                  "type": "object",
+                  "properties": {
+                    "prodCd": {
+                      "type": "string"
+                    },
+                    "bizCd": {
+                      "type": "string"
+                    },
+                    "mccMTp": {
+                      "type": "string"
+                    },
+                    "mccSTp": {
+                      "type": "string"
+                    },
+                    "insFeeBizCd": {
+                      "type": "string"
+                    },
+                    "insFeeBizNm": {
+                      "type": "string"
+                    },
+                    "msgResvFld1": {
+                      "type": "string"
+                    },
+                    "msgResvFld2": {
+                      "type": "string"
+                    },
+                    "msgResvFld3": {
+                      "type": "string"
+                    },
+                    "msgResvFld4": {
+                      "type": "string"
+                    },
+                    "msgResvFld5": {
+                      "type": "string"
+                    },
+                    "msgResvFld6": {
+                      "type": "string"
+                    },
+                    "msgResvFld7": {
+                      "type": "string"
+                    },
+                    "msgResvFld8": {
+                      "type": "string"
+                    },
+                    "msgResvFld9": {
+                      "type": "string"
+                    },
+                    "msgResvFld10": {
+                      "type": "string"
+                    },
+                    "recOprID": {
+                      "type": "string"
+                    },
+                    "recUpdOpr": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "insFeeBizCd": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "正确返回",
+            "examples": {
+              "application/json": {
+                "err": null
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "dicItemField": {
+      "type": "object",
+      "allOf": [
+        {
+          "properties": {
+            "dicType": {
+              "type": "string"
+            },
+            "dicCode": {
+              "type": "string"
+            },
+            "dicName": {
+              "type": "string"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

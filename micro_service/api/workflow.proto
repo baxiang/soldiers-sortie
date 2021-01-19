@@ -1,0 +1,87 @@
+syntax = "proto3";
+
+package pb;
+
+import "error.proto";
+
+service Workflow {
+    rpc Start(StartWorkflowRequest) returns (StartWorkflowReply) {}
+    rpc ListTask(ListTaskRequest) returns (ListTaskReply) {}
+    rpc HandleTask(HandleTaskRequest) returns (HandleTaskReply) {}
+    rpc ListRemark(ListRemarkRequest) returns (ListRemarkReply) {}
+}
+
+message StartWorkflowRequest {
+    string type = 1;
+    string name = 2;
+    string dataId = 3;
+}
+
+message StartWorkflowReply {
+    int64 taskId = 1;
+    error err = 2;
+}
+
+message ListTaskRequest {
+    int32 page = 1;
+    int32 size = 2;
+    TaskField item = 3;
+}
+
+message TaskField {
+    int64 taskId = 1;
+    string title = 2;
+    string userId = 3;
+    string currentNode = 4;
+    string camundaTaskId = 5;
+    int64 instanceId = 6;
+    bool endFlag = 7;
+    string workflowName = 8;
+    string username = 9;
+    string dataId = 10;
+    string createdAt = 11;
+    string updatedAt = 12;
+}
+
+message ListTaskReply {
+    repeated TaskField items = 1;
+    int32 count = 2;
+    int32 size = 3;
+    int32 page = 4;
+    error err = 5;
+}
+
+message HandleTaskRequest {
+    string taskId = 1;
+    string result = 2;
+    string remark = 3;
+}
+
+message HandleTaskReply {
+    error err = 1;
+}
+
+message RemarkField {
+    int64 actionId = 1;
+    string action = 2;
+    string comment = 3;
+    int64 instanceId = 4;
+    int64 taskId = 5;
+    string username = 6;
+    string createdAt = 7;
+    string updatedAt = 8;
+}
+
+message ListRemarkRequest {
+    int32 page = 1;
+    int32 size = 2;
+    RemarkField item = 3;
+}
+
+message ListRemarkReply {
+    repeated RemarkField items = 1;
+    int32 count = 2;
+    int32 size = 3;
+    int32 page = 4;
+    error err = 5;
+}

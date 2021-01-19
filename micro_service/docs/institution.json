@@ -1,0 +1,1617 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "0.0.1",
+    "title": "static api"
+  },
+  "host": "172.16.7.120:8080",
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/institution/getTfrTrnLogs": {
+      "post": {
+        "operationId": "getTfrTrnLogs",
+        "summary": "交易机构查询流水",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "trnLogParms",
+            "in": "body",
+            "description": "根据条件查询交易机构",
+            "schema": {
+              "type": "object",
+              "allOf": [
+                {
+                  "properties": {
+                    "MchntCd": {
+                      "type": "string"
+                    },
+                    "PriAcctNO": {
+                      "type": "string"
+                    },
+                    "BeginAt": {
+                      "type": "string"
+                    },
+                    "EndAt": {
+                      "type": "string"
+                    },
+                    "CardClass": {
+                      "type": "string"
+                    },
+                    "RoutIndustryInsIdCd": {
+                      "type": "string"
+                    },
+                    "FwdInsIdCd": {
+                      "type": "string"
+                    },
+                    "IssInsIdCd": {
+                      "type": "string"
+                    },
+                    "RespCd": {
+                      "type": "string"
+                    },
+                    "TermId": {
+                      "type": "string"
+                    },
+                    "ProdCd": {
+                      "type": "string"
+                    },
+                    "BizCd": {
+                      "type": "string"
+                    },
+                    "MaTransCd": {
+                      "type": "string"
+                    },
+                    "MsgResvFld2": {
+                      "type": "string"
+                    },
+                    "Limit": {
+                      "type": "integer"
+                    },
+                    "Page": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "正确返回",
+            "examples": {
+              "application/json": {
+                "items": [
+                  {
+                    "KeyRsp": "20180101000001417319",
+                    "MchntCd": "999230641190000",
+                    "CardAccptrNm": "王德宇测试专户不要乱动",
+                    "TransDt": "20190101",
+                    "MaSettleDt": "20180421",
+                    "TransMt": "000001",
+                    "MaTransCd": "4011",
+                    "FwdInsIdCd": "10001000",
+                    "TransAt": "000000000001",
+                    "PriAcctNo": "6221560200870833",
+                    "IssInsIdCd": "05105840",
+                    "TermId": "00000002",
+                    "ProdCd": "1000",
+                    "CardClass": "00",
+                    "TransSt": "2000000000",
+                    "RespCd": "25"
+                  },
+                  {
+                    "KeyRsp": "20180115153558417375",
+                    "MchntCd": "852421141190000",
+                    "CardAccptrNm": "龟苓膏",
+                    "TransDt": "20190115",
+                    "MaSettleDt": "20180421",
+                    "TransMt": "153558",
+                    "MaTransCd": "1011",
+                    "FwdInsIdCd": "11225599",
+                    "TransAt": "000000074100",
+                    "PriAcctNo": "6214850214157858",
+                    "IssInsIdCd": "03080000",
+                    "TermId": "00000001",
+                    "ProdCd": "1000",
+                    "CardClass": "01",
+                    "TransSt": "1000000000",
+                    "RespCd": "00"
+                  }
+                ],
+                "count": "2583",
+                "total": "123727482377",
+                "err": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/institution/getTfrTrnLog": {
+      "post": {
+        "operationId": "getTfrTrnLog",
+        "summary": "获取流水详情",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "keyRsp",
+            "in": "body",
+            "required": true,
+            "description": "流水主键",
+            "schema": {
+              "type": "object",
+              "allOf": [
+                {
+                  "required": [
+                    "KeyRsp"
+                  ],
+                  "properties": {
+                    "KeyRsp": {
+                      "type": "string"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "正确返回",
+            "examples": {
+              "application/json": {
+                "TransDt": "20190101",
+                "TransMt": "000001",
+                "SrcQid": "8",
+                "DesQid": "Ë",
+                "MaTransCd": "4011",
+                "MaTransNm": "",
+                "KeyRsp": "20180101000001417319",
+                "KeyRevsal": "20181212144901417154",
+                "KeyCancel": "",
+                "RespCd": "25",
+                "TransSt": "2000000000",
+                "MaTransSeq": "\ufffd",
+                "OrigMaTransSeq": "\ufffd",
+                "OrigTransSeq": "1011",
+                "OrigTermSeq": "745397",
+                "OrigTransDt": "20181212",
+                "MaSettleDt": "20180421",
+                "AccessMd": "",
+                "MsgTp": "0420",
+                "PriAcctNo": "6221560200870833",
+                "AcctTp": "",
+                "TransProcCd": "000000",
+                "TransAt": "000000000001",
+                "TransTdTm": "1231233157",
+                "TermSeq": "746632",
+                "AcptTransTm": "142609",
+                "AcptTransDt": "1212",
+                "MchntTp": "4119",
+                "PosEntryMdCd": "071",
+                "PosCondCd": "00",
+                "AcptInsIdCd": "10003633",
+                "FwdInsIdCd": "10001000",
+                "TermId": "00000002",
+                "MchntCd": "999230641190000",
+                "CardAccptrNm": "王德宇测试专户不要乱动",
+                "RetriRefNo": "834614745397",
+                "ReqAuthId": "",
+                "TransSubcata": "",
+                "IndustryAddnInf": "",
+                "TransCurrCd": "156",
+                "SecCtrlInf": "",
+                "IcData": "",
+                "UdfFldPure": "00000600030000000000",
+                "CertifId": "",
+                "NetworkMgmtInfCd": "",
+                "OrigDataElemnt": "020074539712121426090001000363300010001000",
+                "RcvInsIdCd": "",
+                "TfrInAcctNoPure": "",
+                "TfrInAcctTp": "",
+                "TfrOutAcctNoPure": "",
+                "AcptInsResvPure": "01000000  103410",
+                "TrrOutAcctTp": "",
+                "IssInsIdCd": "05105840",
+                "CardAttr": "",
+                "CardClass": "00",
+                "CardMedia": "",
+                "CardBin": "622156",
+                "CardBrand": "",
+                "RoutInsIdCd": "99991000",
+                "AcptRegionCd": "",
+                "BussRegionCd": "",
+                "UsrNoTp": "",
+                "UsrNoRegionCd": "",
+                "UsrNoRegionAddnCd": "",
+                "UsrNo": "",
+                "SpInsIdCd": "10003633",
+                "IndustryInsIdCd": "10001001",
+                "RoutIndustryInsIdCd": "10001000",
+                "IndustryMchntCd": "",
+                "IndustryTermCd": "",
+                "IndustryMchntTp": "",
+                "EntrustTp": "",
+                "PmtMd": "",
+                "PmtTp": "00",
+                "PmtNo": "",
+                "PmtMchntCd": "",
+                "PmtNoIndustryInsIdCd": "",
+                "PriAcctNoConv": "6221560200870833",
+                "TransAtConv": "000000000001",
+                "TransDtTmConv": "0101000001",
+                "TransSeqConv": "417319",
+                "MchntTpConv": "4119",
+                "RetriRefNoConv": "834614745397",
+                "AcptInsIdCdConv": "10003633",
+                "TermIdConv": "12201000",
+                "MchntCdConv": "829095115200089",
+                "MchntNmConv": "王德宇测试专户不要乱动",
+                "UdfFldPureConv": "00000600030000000000000",
+                "SpInsIdCdConv": "000",
+                "ExpireDt": "",
+                "SettleDt": "0101",
+                "TransFee": "",
+                "RespAuthId": "",
+                "AcptRespCd": "25",
+                "AddnRespDataPure": "",
+                "AddnAtPure": "",
+                "IssAddnDataPure": "",
+                "IcResDatCups": "",
+                "SwResvPure": "122010000062",
+                "IssInsResvPure": "",
+                "IndustryRespCd": "",
+                "DebtAt": "",
+                "DtlInqData": "9F36020064",
+                "TransChnl": "03",
+                "InterchMdCd": "",
+                "TransChkIn": "",
+                "MchtStlmFlg": "2",
+                "InsStlmFlg": "0",
+                "MsgResvFld1": "",
+                "MsgResvFld2": "",
+                "MsgResvFld3": "99990000",
+                "TransMth": "\u0001",
+                "RecUpdTs": "",
+                "RecCrtTs": "",
+                "ProdCd": "1000",
+                "TranTp": "A0",
+                "BizCd": "0000000",
+                "RevelFlg": "0",
+                "CancelFlg": "0",
+                "MsgResvFld4": "",
+                "MsgResvFld5": "",
+                "MsgResvFld6": "",
+                "MsgResvFld7": "",
+                "MsgResvFld8": "",
+                "MsgResvFld9": "",
+                "err": null
+              }
+            }
+          },
+          "400": {
+            "description": "返回错误",
+            "examples": {
+              "application/json": {
+                "desc": "输入的参数错误",
+                "err": "InvalidParamError"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/institution/listGroups": {
+      "post": {
+        "operationId": "listGroups",
+        "summary": "查询机构组号列表",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "listGroups",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "page",
+                "size"
+              ],
+              "properties": {
+                "page": {
+                  "type": "integer",
+                  "description": "页码"
+                },
+                "size": {
+                  "type": "integer",
+                  "description": "单页大小"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "正确返回",
+            "examples": {
+              "application/json": {
+                "items": [
+                  {
+                    "groupId": "1",
+                    "name": "10005512",
+                    "createdAt": "2019-06-11 15:58:55",
+                    "updatedAt": "2019-06-11 15:58:55"
+                  },
+                  {
+                    "groupId": "2",
+                    "name": "00007294",
+                    "createdAt": "2019-06-11 15:58:27",
+                    "updatedAt": "2019-06-11 15:58:27"
+                  },
+                  {
+                    "groupId": "10005513",
+                    "name": "测试机构组",
+                    "createdAt": "2019-09-19 17:01:53",
+                    "updatedAt": "2019-09-19 17:01:53"
+                  }
+                ],
+                "count": 3,
+                "size": 10,
+                "page": 1,
+                "err": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/institution/saveGroup": {
+      "post": {
+        "operationId": "saveGroup",
+        "summary": "保存机构组",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "saveGroup",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "item"
+              ],
+              "properties": {
+                "item": {
+                  "type": "object",
+                  "description": "机构组信息",
+                  "required": [
+                    "name"
+                  ],
+                  "properties": {
+                    "groupId": {
+                      "type": "string",
+                      "description": "机构组号, 可选，传则更新机构组信息，不传则创建新机构组"
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": "机构组名"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "正确返回",
+            "examples": {
+              "application/json": {
+                "err": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/institution/bindGroup": {
+      "post": {
+        "operationId": "bindGroup",
+        "summary": "绑定机构组",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "bindGroup",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "item"
+              ],
+              "properties": {
+                "item": {
+                  "type": "object",
+                  "description": "绑定信息",
+                  "required": [
+                    "insIdCd",
+                    "groupId"
+                  ],
+                  "properties": {
+                    "groupId": {
+                      "type": "string",
+                      "description": "机构组号"
+                    },
+                    "insIdCd": {
+                      "type": "string",
+                      "description": "机构号"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "正确返回",
+            "examples": {
+              "application/json": {
+                "err": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/institution/listBindGroup": {
+      "post": {
+        "operationId": "listBindGroup",
+        "summary": "绑定机构组列表",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "listBindGroup",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "item"
+              ],
+              "properties": {
+                "item": {
+                  "type": "object",
+                  "description": "绑定信息",
+                  "required": [
+                    "groupId"
+                  ],
+                  "properties": {
+                    "groupId": {
+                      "type": "string",
+                      "description": "机构组号"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "正确返回",
+            "examples": {
+              "application/json": {
+                "items": [
+                  {
+                    "groupId": "1",
+                    "insIdCd": "00007294",
+                    "createdAt": "2019-09-20 10:10:06",
+                    "updatedAt": "2019-09-20 10:10:06"
+                  }
+                ],
+                "err": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/institution/removeBindGroup": {
+      "post": {
+        "operationId": "removeBindGroup",
+        "summary": "移除绑定机构组信息",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "removeBindGroup",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "item"
+              ],
+              "properties": {
+                "item": {
+                  "type": "object",
+                  "description": "绑定信息",
+                  "required": [
+                    "groupId",
+                    "insIdCd"
+                  ],
+                  "properties": {
+                    "groupId": {
+                      "type": "string",
+                      "description": "机构组号"
+                    },
+                    "insIdCd": {
+                      "type": "string",
+                      "description": "机构号"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "正确返回",
+            "examples": {
+              "application/json": {
+                "err": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/institution/listInstitutions": {
+      "post": {
+        "operationId": "listInstitutions",
+        "summary": "查询机构号列表",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "listInstitutions",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "page",
+                "size"
+              ],
+              "properties": {
+                "page": {
+                  "type": "integer",
+                  "description": "页码"
+                },
+                "size": {
+                  "type": "integer",
+                  "description": "单页大小"
+                },
+                "type": {
+                  "type": "string",
+                  "description": "主表为main，默认为编辑表"
+                },
+                "item": {
+                  "type": "object",
+                  "description": "机构具体查询字段",
+                  "properties": {
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "正确返回",
+            "examples": {
+              "application/json": {
+                "items": [
+                  {
+                    "insIdCd": "00007388",
+                    "insCompanyCd": "00007294",
+                    "insType": "1",
+                    "insName": "00007388收单机构",
+                    "insProvCd": "310000",
+                    "insCityCd": "310100",
+                    "insRegionCd": "",
+                    "insSta": "01",
+                    "insStlmTp": "0",
+                    "insAloStlmCycle": "0",
+                    "insAloStlmMd": "1",
+                    "insStlmCNm": "段辉",
+                    "insStlmCAcct": "62159936221233",
+                    "insStlmCBkNo": "105290080077",
+                    "insStlmCBkNm": "中国建设银行股份有限公司上海东开支行",
+                    "insStlmDNm": "王军军",
+                    "insStlmDAcct": "62156632563636",
+                    "insStlmDBkNo": "102290002406",
+                    "insStlmDBkNm": "中国工商银行上海市港汇广场支行",
+                    "msgResvFld1": "",
+                    "msgResvFld2": "",
+                    "msgResvFld3": "",
+                    "msgResvFld4": "",
+                    "msgResvFld5": "",
+                    "msgResvFld6": "",
+                    "msgResvFld7": "",
+                    "msgResvFld8": "",
+                    "msgResvFld9": "",
+                    "msgResvFld10": "",
+                    "recOprId": "U",
+                    "recCrtTs": "1552329465",
+                    "recUpdTs": "1556653918"
+                  },
+                  {
+                    "insIdCd": "10005512",
+                    "insCompanyCd": "00005512",
+                    "insType": "1",
+                    "insName": "001",
+                    "insProvCd": "110000",
+                    "insCityCd": "110100",
+                    "insRegionCd": "",
+                    "insSta": "01",
+                    "insStlmTp": "0",
+                    "insAloStlmCycle": "0",
+                    "insAloStlmMd": "1",
+                    "insStlmCNm": "3131",
+                    "insStlmCAcct": "13154616131",
+                    "insStlmCBkNo": "001121004535",
+                    "insStlmCBkNm": "中国人民银行赞皇县支行",
+                    "insStlmDNm": "",
+                    "insStlmDAcct": "",
+                    "insStlmDBkNo": "",
+                    "insStlmDBkNm": "",
+                    "msgResvFld1": "",
+                    "msgResvFld2": "",
+                    "msgResvFld3": "",
+                    "msgResvFld4": "",
+                    "msgResvFld5": "",
+                    "msgResvFld6": "",
+                    "msgResvFld7": "",
+                    "msgResvFld8": "",
+                    "msgResvFld9": "",
+                    "msgResvFld10": "",
+                    "recOprId": "I",
+                    "recCrtTs": "1481602035",
+                    "recUpdTs": "1546632360"
+                  }
+                ],
+                "count": 2,
+                "size": 10,
+                "page": 1,
+                "err": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/institution/saveInstitution": {
+      "post": {
+        "operationId": "saveInstitution",
+        "summary": "保存机构信息",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "saveInstitution",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "item"
+              ],
+              "properties": {
+                "item": {
+                  "type": "object",
+                  "properties": {
+                    "insIdCd": {
+                      "type": "string"
+                    },
+                    "insCompanyCd": {
+                      "type": "string"
+                    },
+                    "insType": {
+                      "type": "string"
+                    },
+                    "insName": {
+                      "type": "string"
+                    },
+                    "insProvCd": {
+                      "type": "string"
+                    },
+                    "insCityCd": {
+                      "type": "string"
+                    },
+                    "insRegionCd": {
+                      "type": "string"
+                    },
+                    "insSta": {
+                      "type": "string"
+                    },
+                    "insStlmTp": {
+                      "type": "string"
+                    },
+                    "insAloStlmCycle": {
+                      "type": "string"
+                    },
+                    "insAloStlmMd": {
+                      "type": "string"
+                    },
+                    "insStlmCNm": {
+                      "type": "string"
+                    },
+                    "insStlmCAcct": {
+                      "type": "string"
+                    },
+                    "insStlmCBkNo": {
+                      "type": "string"
+                    },
+                    "insStlmCBkNm": {
+                      "type": "string"
+                    },
+                    "insStlmDNm": {
+                      "type": "string"
+                    },
+                    "insStlmDAcct": {
+                      "type": "string"
+                    },
+                    "insStlmDBkNo": {
+                      "type": "string"
+                    },
+                    "insStlmDBkNm": {
+                      "type": "string"
+                    },
+                    "msgResvFld1": {
+                      "type": "string"
+                    },
+                    "msgResvFld2": {
+                      "type": "string"
+                    },
+                    "msgResvFld3": {
+                      "type": "string"
+                    },
+                    "msgResvFld4": {
+                      "type": "string"
+                    },
+                    "msgResvFld5": {
+                      "type": "string"
+                    },
+                    "msgResvFld6": {
+                      "type": "string"
+                    },
+                    "msgResvFld7": {
+                      "type": "string"
+                    },
+                    "msgResvFld8": {
+                      "type": "string"
+                    },
+                    "msgResvFld9": {
+                      "type": "string"
+                    },
+                    "msgResvFld10": {
+                      "type": "string"
+                    },
+                    "recOprId": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "正确返回",
+            "examples": {
+              "application/json": {
+                "err": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/institution/saveInstitutionFeeControlCash": {
+      "post": {
+        "operationId": "saveInstitutionFeeControlCash",
+        "summary": "保存机构相关信息",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "saveInstitutionFeeControlCash",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "properties": {
+                "fees": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "insIdCd": {
+                        "type": "string"
+                      },
+                      "prodCd": {
+                        "type": "string"
+                      },
+                      "bizCd": {
+                        "type": "string"
+                      },
+                      "subBizCd": {
+                        "type": "string"
+                      },
+                      "insFeeBizCd": {
+                        "type": "string"
+                      },
+                      "insFeeCd": {
+                        "type": "string"
+                      },
+                      "insFeeTp": {
+                        "type": "string"
+                      },
+                      "insFeeParam": {
+                        "type": "string"
+                      },
+                      "insFeePercent": {
+                        "type": "string"
+                      },
+                      "insFeePct": {
+                        "type": "string"
+                      },
+                      "insFeePctMin": {
+                        "type": "string"
+                      },
+                      "insFeePctMax": {
+                        "type": "string"
+                      },
+                      "insAFeeSame": {
+                        "type": "string"
+                      },
+                      "insAFeeParam": {
+                        "type": "string"
+                      },
+                      "insAFeePercent": {
+                        "type": "string"
+                      },
+                      "insAFeePct": {
+                        "type": "string"
+                      },
+                      "insAFeePctMin": {
+                        "type": "string"
+                      },
+                      "insAFeePctMax": {
+                        "type": "string"
+                      },
+                      "msgResvFld1": {
+                        "type": "string"
+                      },
+                      "msgResvFld2": {
+                        "type": "string"
+                      },
+                      "msgResvFld3": {
+                        "type": "string"
+                      },
+                      "msgResvFld4": {
+                        "type": "string"
+                      },
+                      "msgResvFld5": {
+                        "type": "string"
+                      },
+                      "msgResvFld6": {
+                        "type": "string"
+                      },
+                      "msgResvFld7": {
+                        "type": "string"
+                      },
+                      "msgResvFld8": {
+                        "type": "string"
+                      },
+                      "msgResvFld9": {
+                        "type": "string"
+                      },
+                      "msgResvFld10": {
+                        "type": "string"
+                      },
+                      "recOprId": {
+                        "type": "string"
+                      },
+                      "recUpdOpr": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "controls": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "insIdCd": {
+                        "type": "string"
+                      },
+                      "insCompanyCd": {
+                        "type": "string"
+                      },
+                      "prodCd": {
+                        "type": "string"
+                      },
+                      "bizCd": {
+                        "type": "string"
+                      },
+                      "ctrlSta": {
+                        "type": "string"
+                      },
+                      "insBegTm": {
+                        "type": "string"
+                      },
+                      "insEndTm": {
+                        "type": "string"
+                      },
+                      "msgResvFld1": {
+                        "type": "string"
+                      },
+                      "msgResvFld2": {
+                        "type": "string"
+                      },
+                      "msgResvFld3": {
+                        "type": "string"
+                      },
+                      "msgResvFld4": {
+                        "type": "string"
+                      },
+                      "msgResvFld5": {
+                        "type": "string"
+                      },
+                      "msgResvFld6": {
+                        "type": "string"
+                      },
+                      "msgResvFld7": {
+                        "type": "string"
+                      },
+                      "msgResvFld8": {
+                        "type": "string"
+                      },
+                      "msgResvFld9": {
+                        "type": "string"
+                      },
+                      "msgResvFld10": {
+                        "type": "string"
+                      },
+                      "recOprId": {
+                        "type": "string"
+                      },
+                      "recUpdOpr": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "cashes": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "insIdCd": {
+                        "type": "string"
+                      },
+                      "prodCd": {
+                        "type": "string"
+                      },
+                      "insDefaultFlag": {
+                        "type": "string"
+                      },
+                      "insDefaultCash": {
+                        "type": "string"
+                      },
+                      "insCurrentCash": {
+                        "type": "string"
+                      },
+                      "msgResvFld1": {
+                        "type": "string"
+                      },
+                      "msgResvFld2": {
+                        "type": "string"
+                      },
+                      "msgResvFld3": {
+                        "type": "string"
+                      },
+                      "msgResvFld4": {
+                        "type": "string"
+                      },
+                      "msgResvFld5": {
+                        "type": "string"
+                      },
+                      "msgResvFld6": {
+                        "type": "string"
+                      },
+                      "msgResvFld7": {
+                        "type": "string"
+                      },
+                      "msgResvFld8": {
+                        "type": "string"
+                      },
+                      "msgResvFld9": {
+                        "type": "string"
+                      },
+                      "msgResvFld10": {
+                        "type": "string"
+                      },
+                      "recOprId": {
+                        "type": "string"
+                      },
+                      "recUpdOpr": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "正确返回",
+            "examples": {
+              "application/json": {
+                "err": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/institution/getInstitutionById": {
+      "post": {
+        "operationId": "getInstitutionById",
+        "summary": "查询机构单条",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "getInstitutionById",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "id"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "description": "机构id"
+                },
+                "type": {
+                  "type": "string",
+                  "description": "main为主表，否则为编辑表"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "正确返回",
+            "examples": {
+              "application/json": {
+                "item": {
+                  "insIdCd": "00000000",
+                  "insCompanyCd": "",
+                  "insType": "0",
+                  "insName": "机构000",
+                  "insProvCd": "110000",
+                  "insCityCd": "110100",
+                  "insRegionCd": "",
+                  "insSta": "01",
+                  "insStlmTp": "",
+                  "insAloStlmCycle": "",
+                  "insAloStlmMd": "",
+                  "insStlmCNm": "",
+                  "insStlmCAcct": "",
+                  "insStlmCBkNo": "",
+                  "insStlmCBkNm": "",
+                  "insStlmDNm": "",
+                  "insStlmDAcct": "",
+                  "insStlmDBkNo": "",
+                  "insStlmDBkNm": "",
+                  "msgResvFld1": "",
+                  "msgResvFld2": "",
+                  "msgResvFld3": "",
+                  "msgResvFld4": "",
+                  "msgResvFld5": "",
+                  "msgResvFld6": "",
+                  "msgResvFld7": "",
+                  "msgResvFld8": "",
+                  "msgResvFld9": "",
+                  "msgResvFld10": "",
+                  "recOprId": "I",
+                  "recUpdOpr": "",
+                  "createdAt": "2016-08-16 00:06:57",
+                  "updatedAt": "2019-01-04 20:06:00"
+                },
+                "err": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/institution/getInstitutionControl": {
+      "post": {
+        "operationId": "getInstitutionControl",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "getInstitutionControl",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "page",
+                "size"
+              ],
+              "properties": {
+                "page": {
+                  "type": "integer",
+                  "description": "页码"
+                },
+                "size": {
+                  "type": "integer",
+                  "description": "一页大小"
+                },
+                "type": {
+                  "type": "string",
+                  "description": "main为主表，默认为编辑表"
+                },
+                "item": {
+                  "type": "object",
+                  "properties": {
+                    "insIdCd": {
+                      "type": "string"
+                    },
+                    "insCompanyCd": {
+                      "type": "string"
+                    },
+                    "prodCd": {
+                      "type": "string"
+                    },
+                    "bizCd": {
+                      "type": "string"
+                    },
+                    "ctrlSta": {
+                      "type": "string"
+                    },
+                    "insBegTm": {
+                      "type": "string"
+                    },
+                    "insEndTm": {
+                      "type": "string"
+                    },
+                    "msgResvFld1": {
+                      "type": "string"
+                    },
+                    "msgResvFld2": {
+                      "type": "string"
+                    },
+                    "msgResvFld3": {
+                      "type": "string"
+                    },
+                    "msgResvFld4": {
+                      "type": "string"
+                    },
+                    "msgResvFld5": {
+                      "type": "string"
+                    },
+                    "msgResvFld6": {
+                      "type": "string"
+                    },
+                    "msgResvFld7": {
+                      "type": "string"
+                    },
+                    "msgResvFld8": {
+                      "type": "string"
+                    },
+                    "msgResvFld9": {
+                      "type": "string"
+                    },
+                    "msgResvFld10": {
+                      "type": "string"
+                    },
+                    "recOprId": {
+                      "type": "string"
+                    },
+                    "recUpdOpr": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "正确返回",
+            "examples": {
+              "application/json": {
+                "items": [
+                  {
+                    "insIdCd": "00000001",
+                    "insCompanyCd": "00000000",
+                    "prodCd": "1171",
+                    "bizCd": "0000001",
+                    "ctrlSta": "1",
+                    "insBegTm": "012139",
+                    "insEndTm": "232143",
+                    "msgResvFld1": "",
+                    "msgResvFld2": "",
+                    "msgResvFld3": "",
+                    "msgResvFld4": "",
+                    "msgResvFld5": "",
+                    "msgResvFld6": "",
+                    "msgResvFld7": "",
+                    "msgResvFld8": "",
+                    "msgResvFld9": "",
+                    "msgResvFld10": "",
+                    "recOprId": "I",
+                    "recUpdOpr": "",
+                    "createdAt": "2016-08-16 00:19:42",
+                    "updatedAt": "2016-08-16 00:19:42"
+                  }
+                ],
+                "page": 1,
+                "size": 10,
+                "count": 1,
+                "err": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/institution/getInstitutionCash": {
+      "post": {
+        "operationId": "getInstitutionCash",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "getInstitutionCash",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "page",
+                "size"
+              ],
+              "properties": {
+                "page": {
+                  "type": "integer",
+                  "description": "页码"
+                },
+                "size": {
+                  "type": "integer",
+                  "description": "一页大小"
+                },
+                "type": {
+                  "type": "string",
+                  "description": "main为主表，默认为编辑表"
+                },
+                "item": {
+                  "type": "object",
+                  "properties": {
+                    "insIdCd": {
+                      "type": "string"
+                    },
+                    "prodCd": {
+                      "type": "string"
+                    },
+                    "insDefaultFlag": {
+                      "type": "string"
+                    },
+                    "insDefaultCash": {
+                      "type": "string"
+                    },
+                    "insCurrentCash": {
+                      "type": "string"
+                    },
+                    "msgResvFld1": {
+                      "type": "string"
+                    },
+                    "msgResvFld2": {
+                      "type": "string"
+                    },
+                    "msgResvFld3": {
+                      "type": "string"
+                    },
+                    "msgResvFld4": {
+                      "type": "string"
+                    },
+                    "msgResvFld5": {
+                      "type": "string"
+                    },
+                    "msgResvFld6": {
+                      "type": "string"
+                    },
+                    "msgResvFld7": {
+                      "type": "string"
+                    },
+                    "msgResvFld8": {
+                      "type": "string"
+                    },
+                    "msgResvFld9": {
+                      "type": "string"
+                    },
+                    "msgResvFld10": {
+                      "type": "string"
+                    },
+                    "recOprId": {
+                      "type": "string"
+                    },
+                    "recUpdOpr": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "正确返回",
+            "examples": {
+              "application/json": {
+                "items": [
+                  {
+                    "insIdCd": "00000001",
+                    "prodCd": "1171",
+                    "insDefaultFlag": "0",
+                    "insDefaultCash": "10000.000000",
+                    "insCurrentCash": "0.000000",
+                    "msgResvFld1": "",
+                    "msgResvFld2": "",
+                    "msgResvFld3": "",
+                    "msgResvFld4": "",
+                    "msgResvFld5": "",
+                    "msgResvFld6": "",
+                    "msgResvFld7": "",
+                    "msgResvFld8": "",
+                    "msgResvFld9": "",
+                    "msgResvFld10": "",
+                    "recOprId": "I",
+                    "recUpdOpr": "",
+                    "createdAt": "2016-08-16 00:19:42",
+                    "updatedAt": "2016-08-16 00:19:42"
+                  }
+                ],
+                "page": 1,
+                "size": 10,
+                "count": 1,
+                "err": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/institution/getInstitutionFee": {
+      "post": {
+        "operationId": "getInstitutionFee",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "getInstitutionFee",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "page",
+                "size"
+              ],
+              "properties": {
+                "page": {
+                  "type": "integer",
+                  "description": "页码"
+                },
+                "size": {
+                  "type": "integer",
+                  "description": "一页大小"
+                },
+                "type": {
+                  "type": "string",
+                  "description": "main为主表，默认为编辑表"
+                },
+                "item": {
+                  "type": "object",
+                  "properties": {
+                    "insIdCd": {
+                      "type": "string"
+                    },
+                    "prodCd": {
+                      "type": "string"
+                    },
+                    "bizCd": {
+                      "type": "string"
+                    },
+                    "subBizCd": {
+                      "type": "string"
+                    },
+                    "insFeeBizCd": {
+                      "type": "string"
+                    },
+                    "insFeeCd": {
+                      "type": "string"
+                    },
+                    "insFeeTp": {
+                      "type": "string"
+                    },
+                    "insFeeParam": {
+                      "type": "string"
+                    },
+                    "insFeePercent": {
+                      "type": "string"
+                    },
+                    "insFeePct": {
+                      "type": "string"
+                    },
+                    "insFeePctMin": {
+                      "type": "string"
+                    },
+                    "insFeePctMax": {
+                      "type": "string"
+                    },
+                    "insAFeeSame": {
+                      "type": "string"
+                    },
+                    "insAFeeParam": {
+                      "type": "string"
+                    },
+                    "insAFeePercent": {
+                      "type": "string"
+                    },
+                    "insAFeePct": {
+                      "type": "string"
+                    },
+                    "insAFeePctMin": {
+                      "type": "string"
+                    },
+                    "insAFeePctMax": {
+                      "type": "string"
+                    },
+                    "msgResvFld1": {
+                      "type": "string"
+                    },
+                    "msgResvFld2": {
+                      "type": "string"
+                    },
+                    "msgResvFld3": {
+                      "type": "string"
+                    },
+                    "msgResvFld4": {
+                      "type": "string"
+                    },
+                    "msgResvFld5": {
+                      "type": "string"
+                    },
+                    "msgResvFld6": {
+                      "type": "string"
+                    },
+                    "msgResvFld7": {
+                      "type": "string"
+                    },
+                    "msgResvFld8": {
+                      "type": "string"
+                    },
+                    "msgResvFld9": {
+                      "type": "string"
+                    },
+                    "msgResvFld10": {
+                      "type": "string"
+                    },
+                    "recOprId": {
+                      "type": "string"
+                    },
+                    "recUpdOpr": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "正确返回",
+            "examples": {
+              "application/json": {
+                "items": [
+                  {
+                    "insIdCd": "00001112",
+                    "prodCd": "1000",
+                    "bizCd": "0000000",
+                    "subBizCd": "0001004",
+                    "insFeeBizCd": "1000000000020",
+                    "insFeeCd": "10000000000200001004",
+                    "insFeeTp": "0",
+                    "insFeeParam": "1",
+                    "insFeePercent": "0.000000",
+                    "insFeePct": "1.000000",
+                    "insFeePctMin": "0.000000",
+                    "insFeePctMax": "0.000000",
+                    "insAFeeSame": "0",
+                    "insAFeeParam": "",
+                    "insAFeePercent": "0.000000",
+                    "insAFeePct": "0.000000",
+                    "insAFeePctMin": "0.000000",
+                    "insAFeePctMax": "0.000000",
+                    "msgResvFld1": "",
+                    "msgResvFld2": "",
+                    "msgResvFld3": "",
+                    "msgResvFld4": "",
+                    "msgResvFld5": "",
+                    "msgResvFld6": "",
+                    "msgResvFld7": "",
+                    "msgResvFld8": "",
+                    "msgResvFld9": "",
+                    "msgResvFld10": "",
+                    "recOprId": "I",
+                    "recUpdOpr": "",
+                    "createdAt": "2017-07-11 18:00:52",
+                    "updatedAt": "2017-07-11 18:00:52"
+                  }
+                ],
+                "page": 1,
+                "size": 10,
+                "count": 1,
+                "err": null
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

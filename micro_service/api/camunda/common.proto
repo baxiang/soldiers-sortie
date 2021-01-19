@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package pb;
+
+message Variable {
+  string value = 1;
+  string type = 2;
+}
+
+message CamundaError {
+  string type = 1;
+  string message = 2;
+}
+
+// get请求参数， 必须是json格式
+message GetQuery { map<string, string> query = 1; }

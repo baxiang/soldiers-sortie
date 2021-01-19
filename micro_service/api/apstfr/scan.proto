@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package apstfrpb;
+
+import "error.proto";
+
+service Scan {
+    rpc Pay(PayRequest) returns (PayReply) {}
+}
+
+message PayRequest {}
+
+message PayReply {
+    error err = 1;
+}

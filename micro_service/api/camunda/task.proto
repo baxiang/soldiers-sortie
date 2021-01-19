@@ -1,0 +1,79 @@
+syntax = "proto3";
+
+import "common.proto";
+
+package pb;
+
+message GetListTaskReq {
+  string processVariables = 1;
+  string processDefinitionKey = 2;
+  string processInstanceId = 3;
+}
+
+message GetListTaskResp {
+  repeated TaskItem tasks = 1;
+  int64 code = 2;
+  CamundaError err = 3;
+}
+
+message TaskItem {
+  string id = 1;
+  string name = 2;
+  string assignee = 3;
+  string created = 4;
+  string due = 5;
+  string followUp = 6;
+  string delegationState = 7;
+  string description = 8;
+  string executionId = 9;
+  string owner = 10;
+  string parentTaskId = 11;
+  int64 priority = 12;
+  string processDefinitionId = 13;
+  string processInstanceId = 14;
+  string taskDefinitionKey = 15;
+  string caseExecutionId = 16;
+  string caseInstanceId = 17;
+  string caseDefinitionId = 18;
+  bool suspended = 19;
+  string formKey = 20;
+  string tenantId = 21;
+}
+
+message GetTaskReq { string id = 1; }
+
+message GetTaskResp {
+  TaskItem task = 1;
+  int64 code = 2;
+  CamundaError err = 3;
+}
+
+message CompleteTaskReq {
+  string Id = 1;
+  CompleteTaskReqBody body = 2;
+}
+
+message CompleteTaskReqBody { map<string, Variable> variables = 1; }
+
+message CompleteTaskResp {
+  int64 code = 1;
+  CamundaError err = 2;
+}
+
+message GetFormValueRequest {
+    string taskId = 1;
+    string valueName = 2;
+}
+
+message GetFormValueReply {
+    string type = 1;
+    string value = 2;
+    CamundaError err = 3;
+}
+
+service Task {
+  rpc GetList(GetListTaskReq) returns (GetListTaskResp) {}
+  rpc Complete(CompleteTaskReq) returns (CompleteTaskResp) {}
+  rpc Get(GetTaskReq) returns (GetTaskResp) {}
+  rpc GetFormValue(GetFormValueRequest) returns (GetFormValueReply) {}
+}

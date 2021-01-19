@@ -1,0 +1,28 @@
+rbacFile = "configs/rbac.conf"
+
+[db]
+[db.mysql]
+host = "172.16.7.120"
+port = 3306
+user = "micro"
+password = "micro"
+db = "apsmgm"
+
+[db.redis]
+host = "127.0.0.1"
+port = 6379
+
+[grpc]
+host = "127.0.0.1"
+port = 5000
+
+[consul]
+host = "127.0.0.1"
+port = 8500
+
+[log]
+path = "log"
+file = "userservice.log"
+
+[watcher]
+addr = "0.0.0.0:9000"

@@ -1,0 +1,449 @@
+syntax = "proto3";
+
+package pb;
+
+import "error.proto";
+
+service Merchant {
+    rpc ListMerchant(ListMerchantRequest) returns (ListMerchantReply) {}
+    rpc ListGroupMerchant(ListGroupMerchantRequest) returns (ListGroupMerchantReply) {}
+    rpc SaveMerchant(SaveMerchantRequest) returns (SaveMerchantReply) {}
+    rpc SaveMerchantBankAccount(SaveMerchantBankAccountRequest) returns (SaveMerchantBankAccountReply) {}
+    rpc SaveMerchantBizDealAndFee(SaveMerchantBizDealAndFeeRequest) returns (SaveMerchantBizDealAndFeeReply) {}
+    rpc SaveMerchantBusiness(SaveMerchantBusinessRequest) returns (SaveMerchantBusinessReply) {}
+    rpc SaveMerchantPicture(SaveMerchantPictureRequest) returns (SaveMerchantPictureReply) {}
+    rpc GetMerchantBankAccount(GetMerchantBankAccountRequest) returns (GetMerchantBankAccountReply) {}
+    rpc GetMerchantBizDeal(GetMerchantBizDealRequest) returns (GetMerchantBizDealReply) {}
+    rpc GetMerchantBizFee(GetMerchantBizFeeRequest) returns (GetMerchantBizFeeReply) {}
+    rpc GetMerchantBusiness(GetMerchantBusinessRequest) returns (GetMerchantBusinessReply) {}
+    rpc GetMerchantPicture(GetMerchantPictureRequest) returns (GetMerchantPictureReply) {}
+    rpc GetMerchantById(GetMerchantByIdRequest) returns (GetMerchantByIdReply) {}
+    rpc GenerateMchtCd(GenerateMchtCdRequest) returns (GenerateMchtCdReply) {}
+    rpc MerchantInfoQuery(MerchantInfoQueryRequest) returns (MerchantInfoQueryReply) {}
+    rpc MerchantForceChangeStatus(MerchantForceChangeStatusRequest) returns (MerchantForceChangeStatusReply) {}
+}
+
+message MerchantForceChangeStatusRequest {
+    string operate = 1;
+    string mchtCd = 2;
+}
+
+message MerchantForceChangeStatusReply {
+    error err = 1;
+}
+
+message GenerateMchtCdReply {
+    string sn = 1;
+    error err = 2;
+}
+
+message GenerateMchtCdRequest {
+    string mchtCd3 = 1;
+    string mchtCdPc = 2;
+    string mccCd = 3;
+}
+
+message ListMerchantRequest {
+    int32 page = 1;
+    int32 size = 2;
+    MerchantField item = 3;
+    string type = 4;
+}
+
+message ListMerchantReply {
+    repeated MerchantField items = 1;
+    int32 count = 2;
+    int32 size = 3;
+    int32 page = 4;
+    error err = 5;
+}
+
+message MerchantField {
+    string mchtCd = 1;
+    string sn = 2;
+    string aipBranCd = 3;
+    string groupCd = 4;
+    string oriChnl = 5;
+    string oriChnlDesc = 6;
+    string bankBelongCd = 7;
+    string dvpBy = 8;
+    string mccCd18 = 9;
+    string applDate = 10;
+    string upBcCd = 11;
+    string upAcCd = 12;
+    string upMccCd = 13;
+    string name = 14;
+    string nameBusi = 15;
+    string busiLiceNo = 16;
+    string busiRang = 17;
+    string busiMain = 18;
+    string certif = 19;
+    string certifType = 20;
+    string certifNo = 21;
+    string provCd = 22;
+    string cityCd = 23;
+    string areaCd = 24;
+    string regAddr = 25;
+    string contactName = 26;
+    string contactPhoneNo = 27;
+    string isGroup = 28;
+    string moneyToGroup = 29;
+    string stlmWay = 30;
+    string stlmWayDesc = 31;
+    string stlmInsCircle = 32;
+    string apprDate = 33;
+    string status = 34;
+    string deleteDate = 35;
+    string ucBcCd32 = 36;
+    string k2WorkflowId = 37;
+    string systemFlag = 38;
+    string approvalUsername = 39;
+    string finalApprovalUsername = 40;
+    string isUpStandard = 41;
+    string billingType = 42;
+    string billingLevel = 43;
+    string slogan = 44;
+    string ext1 = 45;
+    string ext2 = 46;
+    string ext3 = 47;
+    string ext4 = 48;
+    string areaStandard = 49;
+    string mchtCdAreaCd = 50;
+    string ucBcCdArea = 51;
+    string recOprId = 52;
+    string recUpdOpr = 53;
+    string createdAt = 54;
+    string updatedAt= 55;
+    string operIn = 56;
+    string recApllyTs = 57;
+    string oemOrgCode = 58;
+    string isEleInvoice = 59;
+    string dutyParagraph = 60;
+    string taxMachineBrand = 61;
+    string ext5 = 62;
+    string ext6 = 63;
+    string ext7 = 64;
+    string ext8 = 65;
+    string ext9 = 66;
+    string busiLiceSt = 67;
+    string busiLiceDt = 68;
+    string certifSt = 69;
+    string certifDt = 70;
+}
+
+message MerchantGroupField {
+    string jtMchtCd = 1;
+    string jtMchtNm = 2;
+    string jtArea = 3;
+    string mchtStlmCNm = 4;
+    string mchtStlmCAcct = 5;
+    string chtStlmInsIdCd = 6;
+    string mchtStlmInsNm = 7;
+    string mchtPaySysAcct = 8;
+    string provCd = 9;
+    string cityCd = 10;
+    string aipBranCd = 11;
+    string systemFlag = 12;
+    string status = 13;
+    string updatedAt = 14;
+    string createdAt = 15;
+    string recOprId = 16;
+    string recUpdOpr = 17;
+    string jtAddr = 18;
+}
+
+message ListGroupMerchantRequest {
+    int32 page = 1;
+    int32 size = 2;
+    MerchantGroupField item = 3;
+    string type = 4;
+}
+
+message ListGroupMerchantReply {
+    repeated MerchantGroupField items = 1;
+    int32 count = 2;
+    int32 size = 3;
+    int32 page = 4;
+    error err = 5;
+}
+
+message SaveMerchantRequest {
+    MerchantField merchant = 1;
+    MerchantBankAccountField account = 2;
+}
+
+message SaveMerchantReply {
+    error err = 1;
+}
+
+message MerchantBankAccountField {
+    string ownerCd      = 1;
+    string accountType  = 2;
+    string name         = 3;
+    string account      = 4;
+    string ucBcCd       = 5;
+    string province     = 6;
+    string city         = 7;
+    string bankCode     = 8;
+    string bankName     = 9;
+    string operIn       = 10;
+    string recOprId     = 11;
+    string recUpdOpr    = 12;
+    string msgResvFld1  = 13;
+    string msgResvFld2  = 14;
+    string msgResvFld3  = 15;
+    string msgResvFld4  = 16;
+    string msgResvFld5  = 17;
+    string msgResvFld6  = 18;
+    string msgResvFld7  = 19;
+    string msgResvFld8  = 20;
+    string msgResvFld9  = 21;
+    string msgResvFld10 = 22;
+    string createdAt    = 23;
+    string updatedAt    = 24;
+}
+
+message SaveMerchantBankAccountRequest {
+    MerchantBankAccountField item = 1;
+}
+
+message SaveMerchantBankAccountReply {
+    error err = 1;
+}
+
+message MerchantBizDealField {
+    string mchtCd    = 1;
+    string prodCd    = 2;
+    string bizCd     = 3;
+    string transCd   = 4;
+    string operIn    = 5;
+    string recOprId  = 6;
+    string recUpdOpr = 7;
+    string createdAt = 8;
+    string updatedAt = 9;
+}
+
+message SaveMerchantBizDealAndFeeRequest {
+    repeated MerchantBizDealField deals = 1;
+    repeated MerchantBizFeeField fees = 2;
+}
+
+message SaveMerchantBizDealAndFeeReply {
+    error err = 1;
+}
+
+message MerchantBizFeeField {
+    string  mchtCd          = 1;
+    string  prodCd          = 2;
+    string  bizCd           = 3;
+    string  subBizCd        = 4;
+    string  mchtFeeMd       = 5;
+    string  mchtFeePercent  = 6;
+    string  mchtFeePctMin   = 7;
+    string  mchtFeePctMax   = 8;
+    string  mchtFeeSingle   = 9;
+    string  mchtAFeeSame    = 10;
+    string  mchtAFeeMd      = 11;
+    string  mchtAFeePercent = 12;
+    string  mchtAFeePctMin  = 13;
+    string  mchtAFeePctMax  = 14;
+    string  mchtAFeeSingle  = 15;
+    string  operIn          = 16;
+    string  recOprId        = 17;
+    string  recUpdOpr       = 18;
+    string createdAt = 19;
+    string updatedAt = 20;
+}
+
+message MerchantBusinessField {
+    string mchtCd = 1;
+    string prodCd = 2;
+    string prodCdText = 3;
+    string feeMoneyCd = 4;
+    string feeModeType = 5;
+    string feeSettlementType = 6;
+    string feeHoliday = 7;
+    string serviceFeeType = 8;
+    string serviceFeeStaticAmount = 9;
+    string serviceFeeLevelCount = 10;
+    string serviceFeeMode = 11;
+    string serviceFeeUnit = 12;
+    string serviceFeeTerm = 13;
+    string serviceFeeSumto = 14;
+    string serviceFeeCircle = 15;
+    string serviceFeeOthers = 16;
+    string serviceFeeStart = 17;
+    string serviceFeeClct = 18;
+    string serviceFeeClctOthers = 19;
+    string systemFlag = 20;
+    string ext1 = 21;
+    string ext2 = 22;
+    string ext3 = 23;
+    string ext4 = 24;
+    string serviceFeeYesNo = 25;
+    string recOprId = 26;
+    string recUpdOpr = 27;
+    string operIn = 28;
+    string createdAt = 29;
+    string updatedAt = 30;
+}
+
+message SaveMerchantBusinessRequest {
+    MerchantBusinessField item = 1;
+}
+
+message SaveMerchantBusinessReply {
+    error err = 1;
+}
+
+message MerchantPictureField {
+    string fileId = 1;
+    string mchtCd = 2;
+    string docType = 3;
+    string fileType = 4;
+    string fileName = 5;
+    int64  pIndex = 6;
+    string pCode = 7;
+    string url = 8;
+    string systemFlag = 9;
+    string status = 10;
+    string recOprId = 11;
+    string recUpdOpr = 12;
+    string createdAt = 13;
+    string updatedAt = 14;
+}
+
+message SaveMerchantPictureRequest {
+    MerchantPictureField item = 1;
+}
+
+message SaveMerchantPictureReply {
+    error err = 1;
+}
+
+message GetMerchantBankAccountRequest {
+    MerchantBankAccountField item = 1;
+    string type = 2;
+    int32 page = 3;
+    int32 size = 4;
+}
+
+message GetMerchantBankAccountReply {
+    repeated MerchantBankAccountField items = 1;
+    error err = 2;
+    int32 page = 3;
+    int32 size = 4;
+    int32 count = 5;
+}
+
+message GetMerchantBizDealRequest {
+    MerchantBizDealField item = 1;
+    string type = 2;
+    int32 page = 3;
+    int32 size = 4;
+}
+
+message GetMerchantBizDealReply {
+    repeated MerchantBizDealField items = 1;
+    error err = 2;
+    int32 page = 3;
+    int32 size = 4;
+    int32 count = 5;
+}
+
+message GetMerchantBizFeeRequest {
+    MerchantBizFeeField item = 1;
+    string type = 2;
+    int32 page = 3;
+    int32 size = 4;
+}
+
+message GetMerchantBizFeeReply {
+    repeated MerchantBizFeeField items = 1;
+    error err = 2;
+    int32 page = 3;
+    int32 size = 4;
+    int32 count = 5;
+}
+
+message GetMerchantBusinessRequest {
+    MerchantBusinessField item = 1;
+    string type = 2;
+    int32 page = 3;
+    int32 size = 4;
+}
+
+message GetMerchantBusinessReply {
+    repeated MerchantBusinessField items = 1;
+    error err = 2;
+    int32 page = 3;
+    int32 size = 4;
+    int32 count = 5;
+}
+
+message GetMerchantPictureRequest {
+    MerchantPictureField item = 1;
+    string type = 2;
+    int32 page = 3;
+    int32 size = 4;
+}
+
+message GetMerchantPictureReply {
+    repeated MerchantPictureField items = 1;
+    error err = 2;
+    int32 page = 3;
+    int32 size = 4;
+    int32 count = 5;
+}
+
+message GetMerchantByIdRequest {
+    string id = 1;
+    string type = 2;
+}
+
+message GetMerchantByIdReply {
+    MerchantField item = 1;
+    error err = 2;
+}
+
+message MerchantInfoQueryField {
+    string mchtCd = 1;
+    string name = 2;
+    string aipBranCd = 3;
+    string bankBelongCd = 4;
+    string accountName = 5;
+    string account = 6;
+    string status = 7;
+    string systemFlag = 8;
+    string nameBusi = 9;
+    string groupCd = 10;
+}
+
+message MerchantInfoQueryRequest {
+   MerchantInfoQueryField item = 1;
+   string type = 2;
+   int32 page = 3;
+   int32 size = 4;
+}
+
+message MerchantInfoField {
+    string mchtCd       = 1;
+    string name         = 2;
+    string aipBranCd    = 3;
+    string bankBelongCd = 4;
+    string nameBusi     = 5;
+    string groupCd      = 6;
+    string accountName  = 7;
+    string account      = 8;
+    string updatedAt    = 9;
+    string status       = 10;
+    string systemFlag   = 11;
+}
+
+message MerchantInfoQueryReply {
+    repeated MerchantInfoField items = 1;
+    error err = 2;
+    int32 page = 3;
+    int32 size = 4;
+    int32 count = 5;
+}

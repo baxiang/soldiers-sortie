@@ -1,0 +1,24 @@
+[db]
+[db.mysql]
+host = "mysql"
+port = 3306
+user = "test"
+password = "test"
+db = "apsmgm"
+
+[db.redis]
+host = "redis"
+port = 6379
+
+[grpc]
+host = "0.0.0.0"
+port = 4800
+registHost = "127.0.0.1"
+registPost = 4800
+
+[consul]
+host = "consul"
+port = 8500
+
+[info]
+serviceName = "institutionService"

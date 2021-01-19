@@ -1,0 +1,868 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "0.0.1",
+    "title": "term api"
+  },
+  "host": "172.16.7.120:8080",
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/term/listTermInfo": {
+      "post": {
+        "operationId": "listTermInfo",
+        "summary": "终端查询",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "listTermInfo",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "page",
+                "size"
+              ],
+              "properties": {
+                "page": {
+                  "type": "integer",
+                  "description": "页码"
+                },
+                "size": {
+                  "type": "integer",
+                  "description": "单页大小"
+                },
+                "type": {
+                  "type": "string"
+                },
+                "item": {
+                  "type": "object",
+                  "description": "终端具体查询字段",
+                  "properties": {
+                    "mchtCd": {
+                      "type": "string"
+                    },
+                    "termId": {
+                      "type": "string"
+                    },
+                    "termTp": {
+                      "type": "string"
+                    },
+                    "belong": {
+                      "type": "string"
+                    },
+                    "belongSub": {
+                      "type": "string"
+                    },
+                    "tmnlMoneyIntype": {
+                      "type": "string"
+                    },
+                    "tmnlMoney": {
+                      "type": "number"
+                    },
+                    "tmnlBrand": {
+                      "type": "string"
+                    },
+                    "tmnlModelNo": {
+                      "type": "string"
+                    },
+                    "tmnlBarcode": {
+                      "type": "string"
+                    },
+                    "deviceCd": {
+                      "type": "string"
+                    },
+                    "installLocation": {
+                      "type": "string"
+                    },
+                    "tmnlIntype": {
+                      "type": "string"
+                    },
+                    "dialOut": {
+                      "type": "string"
+                    },
+                    "dealTypes": {
+                      "type": "string"
+                    },
+                    "recOprId": {
+                      "type": "string"
+                    },
+                    "recUpdOpr": {
+                      "type": "string"
+                    },
+                    "appCd": {
+                      "type": "string"
+                    },
+                    "systemFlag": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "string"
+                    },
+                    "activeCode": {
+                      "type": "string"
+                    },
+                    "noFlag": {
+                      "type": "string"
+                    },
+                    "msgResvFld1": {
+                      "type": "string"
+                    },
+                    "msgResvFld2": {
+                      "type": "string"
+                    },
+                    "msgResvFld3": {
+                      "type": "string"
+                    },
+                    "msgResvFld4": {
+                      "type": "string"
+                    },
+                    "msgResvFld5": {
+                      "type": "string"
+                    },
+                    "msgResvFld6": {
+                      "type": "string"
+                    },
+                    "msgResvFld7": {
+                      "type": "string"
+                    },
+                    "msgResvFld8": {
+                      "type": "string"
+                    },
+                    "msgResvFld9": {
+                      "type": "string"
+                    },
+                    "msgResvFld10": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "正确返回",
+            "examples": {
+              "application/json": {
+                "page": 1,
+                "size": 2,
+                "count": 1,
+                "items": [
+                  {
+                    "mchtCd": "002130307630000",
+                    "termId": "00000001",
+                    "termTp": "98",
+                    "belong": "7",
+                    "belongSub": "7700",
+                    "tmnlMoneyIntype": "0",
+                    "tmnlMoney": 1111,
+                    "tmnlBrand": "04",
+                    "tmnlModelNo": "22",
+                    "tmnlBarcode": "11",
+                    "deviceCd": "04A81603090232",
+                    "installLocation": "0.0-0.0",
+                    "tmnlIntype": "0",
+                    "dialOut": "11",
+                    "dealTypes": "",
+                    "recOprId": "I",
+                    "recUpdOpr": "42378",
+                    "createdAt": "2016-10-13 04:54:47",
+                    "updatedAt": "2016-10-13 04:58:39",
+                    "appCd": "00",
+                    "systemFlag": "01",
+                    "status": "01",
+                    "activeCode": "P73Z5I",
+                    "noFlag": "",
+                    "msgResvFld1": "",
+                    "msgResvFld2": "",
+                    "msgResvFld3": "",
+                    "msgResvFld4": "",
+                    "msgResvFld5": "",
+                    "msgResvFld6": "",
+                    "msgResvFld7": "",
+                    "msgResvFld8": "",
+                    "msgResvFld9": "",
+                    "msgResvFld10": ""
+                  }
+                ],
+                "err": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/term/saveTerm": {
+      "post": {
+        "operationId": "saveTerm",
+        "description": "保存终端",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "saveTerm",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "term": {
+                  "type": "object",
+                  "properties": {
+                    "mchtCd": {
+                      "type": "string"
+                    },
+                    "termId": {
+                      "type": "string"
+                    },
+                    "termTp": {
+                      "type": "string"
+                    },
+                    "belong": {
+                      "type": "string"
+                    },
+                    "belongSub": {
+                      "type": "string"
+                    },
+                    "tmnlMoneyIntype": {
+                      "type": "string"
+                    },
+                    "tmnlMoney": {
+                      "type": "number"
+                    },
+                    "tmnlBrand": {
+                      "type": "string"
+                    },
+                    "tmnlModelNo": {
+                      "type": "string"
+                    },
+                    "tmnlBarcode": {
+                      "type": "string"
+                    },
+                    "deviceCd": {
+                      "type": "string"
+                    },
+                    "installLocation": {
+                      "type": "string"
+                    },
+                    "tmnlIntype": {
+                      "type": "string"
+                    },
+                    "dialOut": {
+                      "type": "string"
+                    },
+                    "dealTypes": {
+                      "type": "string"
+                    },
+                    "recOprId": {
+                      "type": "string"
+                    },
+                    "recUpdOpr": {
+                      "type": "string"
+                    },
+                    "appCd": {
+                      "type": "string"
+                    },
+                    "systemFlag": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "string"
+                    },
+                    "activeCode": {
+                      "type": "string"
+                    },
+                    "noFlag": {
+                      "type": "string"
+                    },
+                    "msgResvFld1": {
+                      "type": "string"
+                    },
+                    "msgResvFld2": {
+                      "type": "string"
+                    },
+                    "msgResvFld3": {
+                      "type": "string"
+                    },
+                    "msgResvFld4": {
+                      "type": "string"
+                    },
+                    "msgResvFld5": {
+                      "type": "string"
+                    },
+                    "msgResvFld6": {
+                      "type": "string"
+                    },
+                    "msgResvFld7": {
+                      "type": "string"
+                    },
+                    "msgResvFld8": {
+                      "type": "string"
+                    },
+                    "msgResvFld9": {
+                      "type": "string"
+                    },
+                    "msgResvFld10": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "risk": {
+                  "type": "object",
+                  "properties": {
+                    "mchtCd": {
+                      "type": "string"
+                    },
+                    "termId": {
+                      "type": "string"
+                    },
+                    "cardType": {
+                      "type": "string"
+                    },
+                    "totalLimitMoney": {
+                      "type": "number"
+                    },
+                    "accpetStartTime": {
+                      "type": "string"
+                    },
+                    "accpetStartDate": {
+                      "type": "string"
+                    },
+                    "accpetEndTime": {
+                      "type": "string"
+                    },
+                    "accpetEndDate": {
+                      "type": "string"
+                    },
+                    "singleLimitMoney": {
+                      "type": "number"
+                    },
+                    "controlWay": {
+                      "type": "string"
+                    },
+                    "singleMinMoney": {
+                      "type": "number"
+                    },
+                    "totalPeriod": {
+                      "type": "string"
+                    },
+                    "recOprId": {
+                      "type": "string"
+                    },
+                    "recUpdOpr": {
+                      "type": "string"
+                    },
+                    "operIn": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "activation": {
+                  "type": "object",
+                  "properties": {
+                    "activeCode": {
+                      "type": "string"
+                    },
+                    "activeType": {
+                      "type": "string"
+                    },
+                    "mchtCd    ": {
+                      "type": "string"
+                    },
+                    "termId    ": {
+                      "type": "string"
+                    },
+                    "newKsn    ": {
+                      "type": "string"
+                    },
+                    "oldKsn    ": {
+                      "type": "string"
+                    },
+                    "isActive  ": {
+                      "type": "string"
+                    },
+                    "recOprId  ": {
+                      "type": "string"
+                    },
+                    "recUpdOpr ": {
+                      "type": "string"
+                    },
+                    "activeDate": {
+                      "type": "string"
+                    },
+                    "createDate": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "正确返回",
+            "examples": {
+              "application/json": {
+                "err": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/term/listTermRisk": {
+      "post": {
+        "operationId": "listTermRisk",
+        "description": "终端风控列表",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "listTermRisk",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "item": {
+                  "type": "object",
+                  "properties": {
+                    "mchtCd": {
+                      "type": "string"
+                    },
+                    "termId": {
+                      "type": "string"
+                    },
+                    "cardType": {
+                      "type": "string"
+                    },
+                    "totalLimitMoney": {
+                      "type": "number"
+                    },
+                    "accpetStartTime": {
+                      "type": "string"
+                    },
+                    "accpetStartDate": {
+                      "type": "string"
+                    },
+                    "accpetEndTime": {
+                      "type": "string"
+                    },
+                    "accpetEndDate": {
+                      "type": "string"
+                    },
+                    "singleLimitMoney": {
+                      "type": "number"
+                    },
+                    "controlWay": {
+                      "type": "string"
+                    },
+                    "singleMinMoney": {
+                      "type": "number"
+                    },
+                    "totalPeriod": {
+                      "type": "string"
+                    },
+                    "recOprId": {
+                      "type": "string"
+                    },
+                    "recUpdOpr": {
+                      "type": "string"
+                    },
+                    "operIn": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "page": {
+                  "type": "integer"
+                },
+                "size": {
+                  "type": "integer"
+                },
+                "type": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "正确返回",
+            "examples": {
+              "application/json": {
+                "page": 1,
+                "size": 10,
+                "count": 1,
+                "items": [
+                  {
+                    "mchtCd": "005140444110000",
+                    "termId": "00000001",
+                    "cardType": "00",
+                    "totalLimitMoney": 0,
+                    "accpetStartTime": "1400",
+                    "accpetStartDate": "",
+                    "accpetEndTime": "1600",
+                    "accpetEndDate": "",
+                    "singleLimitMoney": 0.89,
+                    "controlWay": "1",
+                    "singleMinMoney": 0.2,
+                    "totalPeriod": "",
+                    "recOprId": "U",
+                    "recUpdOpr": "46392",
+                    "operIn": "U",
+                    "createdAt": "2016-10-28 15:40:06",
+                    "updatedAt": "2016-10-28 16:06:45"
+                  }
+                ],
+                "err": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/term/listTermActivationState": {
+      "post": {
+        "operationId": "listTermActivationState",
+        "summary": "终端激活码信息列表",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "listTermActivationState",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "page": {
+                  "type": "integer"
+                },
+                "size": {
+                  "type": "integer"
+                },
+                "type": {
+                  "type": "string"
+                },
+                "item": {
+                  "type": "object",
+                  "properties": {
+                    "activeCode": {
+                      "type": "string"
+                    },
+                    "activeType": {
+                      "type": "string"
+                    },
+                    "mchtCd    ": {
+                      "type": "string"
+                    },
+                    "termId    ": {
+                      "type": "string"
+                    },
+                    "newKsn    ": {
+                      "type": "string"
+                    },
+                    "oldKsn    ": {
+                      "type": "string"
+                    },
+                    "isActive  ": {
+                      "type": "string"
+                    },
+                    "recOprId  ": {
+                      "type": "string"
+                    },
+                    "recUpdOpr ": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "正确返回",
+            "examples": {
+              "application/json": {
+                "err": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/term/updateTermInfo": {
+      "post": {
+        "operationId": "updateTermInfo",
+        "summary": "修改终端信息",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "updateTermInfo",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "mchtCd": {
+                  "type": "string"
+                },
+                "termIds": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "item": {
+                  "type": "object",
+                  "properties": {
+                    "systemFlag": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "正确返回",
+            "examples": {
+              "application/json": {
+                "err": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/term/queryTermInfo": {
+      "post": {
+        "operationId": "queryTermInfo",
+        "summary": "终端查询",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "description": "Authorization",
+            "type": "string"
+          },
+          {
+            "name": "queryTermInfo",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "page",
+                "size"
+              ],
+              "properties": {
+                "page": {
+                  "type": "integer",
+                  "description": "页码"
+                },
+                "size": {
+                  "type": "integer",
+                  "description": "单页大小"
+                },
+                "item": {
+                  "type": "object",
+                  "properties": {
+                    "term": {
+                      "type": "object",
+                      "description": "终端具体查询字段",
+                      "properties": {
+                        "mchtCd": {
+                          "type": "string"
+                        },
+                        "termId": {
+                          "type": "string"
+                        },
+                        "termTp": {
+                          "type": "string"
+                        },
+                        "belong": {
+                          "type": "string"
+                        },
+                        "belongSub": {
+                          "type": "string"
+                        },
+                        "tmnlMoneyIntype": {
+                          "type": "string"
+                        },
+                        "tmnlMoney": {
+                          "type": "number"
+                        },
+                        "tmnlBrand": {
+                          "type": "string"
+                        },
+                        "tmnlModelNo": {
+                          "type": "string"
+                        },
+                        "tmnlBarcode": {
+                          "type": "string"
+                        },
+                        "deviceCd": {
+                          "type": "string"
+                        },
+                        "installLocation": {
+                          "type": "string"
+                        },
+                        "tmnlIntype": {
+                          "type": "string"
+                        },
+                        "dialOut": {
+                          "type": "string"
+                        },
+                        "dealTypes": {
+                          "type": "string"
+                        },
+                        "recOprId": {
+                          "type": "string"
+                        },
+                        "recUpdOpr": {
+                          "type": "string"
+                        },
+                        "appCd": {
+                          "type": "string"
+                        },
+                        "systemFlag": {
+                          "type": "string"
+                        },
+                        "status": {
+                          "type": "string"
+                        },
+                        "activeCode": {
+                          "type": "string"
+                        },
+                        "noFlag": {
+                          "type": "string"
+                        },
+                        "msgResvFld1": {
+                          "type": "string"
+                        },
+                        "msgResvFld2": {
+                          "type": "string"
+                        },
+                        "msgResvFld3": {
+                          "type": "string"
+                        },
+                        "msgResvFld4": {
+                          "type": "string"
+                        },
+                        "msgResvFld5": {
+                          "type": "string"
+                        },
+                        "msgResvFld6": {
+                          "type": "string"
+                        },
+                        "msgResvFld7": {
+                          "type": "string"
+                        },
+                        "msgResvFld8": {
+                          "type": "string"
+                        },
+                        "msgResvFld9": {
+                          "type": "string"
+                        },
+                        "msgResvFld10": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "mcht": {
+                      "type": "object",
+                      "properties": {
+                        "aipBranCd": {
+                          "type": "string"
+                        },
+                        "bankBelongCd": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "正确返回",
+            "examples": {
+              "application/json": {
+                "page": 1,
+                "size": 2,
+                "count": 1,
+                "items": [
+                  {
+                    "mchtCd": "002130307630000",
+                    "termId": "00000001",
+                    "termTp": "98",
+                    "belong": "7",
+                    "belongSub": "7700",
+                    "tmnlMoneyIntype": "0",
+                    "tmnlMoney": 1111,
+                    "tmnlBrand": "04",
+                    "tmnlModelNo": "22",
+                    "tmnlBarcode": "11",
+                    "deviceCd": "04A81603090232",
+                    "installLocation": "0.0-0.0",
+                    "tmnlIntype": "0",
+                    "dialOut": "11",
+                    "dealTypes": "",
+                    "recOprId": "I",
+                    "recUpdOpr": "42378",
+                    "createdAt": "2016-10-13 04:54:47",
+                    "updatedAt": "2016-10-13 04:58:39",
+                    "appCd": "00",
+                    "systemFlag": "01",
+                    "status": "01",
+                    "activeCode": "P73Z5I",
+                    "noFlag": "",
+                    "msgResvFld1": "",
+                    "msgResvFld2": "",
+                    "msgResvFld3": "",
+                    "msgResvFld4": "",
+                    "msgResvFld5": "",
+                    "msgResvFld6": "",
+                    "msgResvFld7": "",
+                    "msgResvFld8": "",
+                    "msgResvFld9": "",
+                    "msgResvFld10": ""
+                  }
+                ],
+                "err": null
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

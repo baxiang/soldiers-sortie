@@ -1,0 +1,1788 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "0.0.1",
+    "title": "merchant api"
+  },
+  "host": "172.16.7.120:8080",
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/merchant/listMerchant": {
+      "post": {
+        "operationId": "listMerchant",
+        "summary": "查询商户号列表",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "description": "Authorization",
+            "type": "string"
+          },
+          {
+            "name": "listMerchant",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "page",
+                "size"
+              ],
+              "properties": {
+                "page": {
+                  "type": "integer",
+                  "description": "页码"
+                },
+                "size": {
+                  "type": "integer",
+                  "description": "单页大小"
+                },
+                "type": {
+                  "type": "string",
+                  "description": "主表为main，默认为编辑表"
+                },
+                "item": {
+                  "type": "object",
+                  "description": "商户具体查询字段",
+                  "properties": {
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "正确返回",
+            "examples": {
+              "application/json": {
+                "items": [
+                  {
+                    "mchtCd": "0001000F0507465",
+                    "sn": "7465",
+                    "aipBranCd": "80009999",
+                    "groupCd": "",
+                    "oriChnl": "0",
+                    "oriChnlDesc": "",
+                    "bankBelongCd": "80000000",
+                    "dvpBy": "",
+                    "mccCd18": "5499",
+                    "applDate": "2017-12-14",
+                    "upBcCd": "996",
+                    "upAcCd": "",
+                    "upMccCd": "5499",
+                    "name": "买乐便利店",
+                    "nameBusi": "买乐便利店",
+                    "busiLiceNo": "10086",
+                    "busiRang": "专业化服务移交",
+                    "busiMain": "专业化服务移交",
+                    "certif": "刘金令",
+                    "certifType": "01",
+                    "certifNo": "272924198912175431",
+                    "cityCd": "510100",
+                    "areaCd": "510132",
+                    "regAddr": "名扬国际",
+                    "contactName": "刘金令",
+                    "contactPhoneNo": "18616306119",
+                    "isGroup": "0",
+                    "moneyToGroup": "",
+                    "stlmWay": "1",
+                    "stlmWayDesc": "",
+                    "stlmInsCircle": "0",
+                    "apprDate": "",
+                    "status": "01",
+                    "deleteDate": "",
+                    "ucBcCd32": "80002900",
+                    "k2WorkflowId": "",
+                    "systemFlag": "01",
+                    "approvalUsername": "",
+                    "finalApprovalUsername": "",
+                    "isUpStandard": "0",
+                    "billingType": "00",
+                    "billingLevel": "000",
+                    "slogan": "",
+                    "ext1": "",
+                    "ext2": "",
+                    "ext3": "",
+                    "ext4": "",
+                    "areaStandard": "0",
+                    "mchtCdAreaCd": "510000510100",
+                    "ucBcCdArea": "29002900",
+                    "recOprId": "",
+                    "recUpdOpr": "",
+                    "recCrtTs": "2017-12-15 00:50:34",
+                    "recUpdTs": "2017-12-15 00:50:34",
+                    "operIn": "I",
+                    "recApllyTs": "2017-12-15 00:50:34",
+                    "oemOrgCode": "",
+                    "isEleInvoice": "",
+                    "dutyParagraph": "",
+                    "taxMachineBrand": "",
+                    "ext5": "",
+                    "ext6": "",
+                    "ext7": "",
+                    "ext8": "1",
+                    "ext9": "",
+                    "busiLiceSt": "",
+                    "busiLiceDt": "",
+                    "certifSt": "",
+                    "certifDt": ""
+                  }
+                ],
+                "count": 12425,
+                "size": 1,
+                "page": 1,
+                "err": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/merchant/listGroup": {
+      "post": {
+        "operationId": "listGroup",
+        "summary": "查询集团商户列表",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "listGroup",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "page",
+                "size"
+              ],
+              "properties": {
+                "page": {
+                  "type": "integer",
+                  "description": "页码"
+                },
+                "size": {
+                  "type": "integer",
+                  "description": "单页大小"
+                },
+                "type": {
+                  "type": "string",
+                  "description": "主表为main，默认为编辑表"
+                },
+                "item": {
+                  "type": "object",
+                  "description": "集团商户查询字段",
+                  "properties": {
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "正确返回",
+            "examples": {
+              "application/json": {
+                "items": [
+                  {
+                    "jtMchtCd": "100101230001",
+                    "jtMchtNm": "123",
+                    "jtArea": "110101",
+                    "mchtStlmCNm": "123",
+                    "mchtStlmCAcct": "123",
+                    "chtStlmInsIdCd": "001",
+                    "mchtStlmInsNm": "中国人民银行新乡市中心支行",
+                    "mchtPaySysAcct": "001498062691",
+                    "provCd": "110000",
+                    "cityCd": "110100",
+                    "aipBranCd": "10010123",
+                    "systemFlag": "00",
+                    "status": "00",
+                    "updatedAt": "2018-02-05 16:49:04",
+                    "createdAt": "2018-02-05 16:48:55",
+                    "recOprId": "I",
+                    "recUpdOpr": "94258",
+                    "jtAddr": "123"
+                  }
+                ],
+                "count": 47,
+                "size": 1,
+                "page": 1,
+                "err": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/merchant/saveMerchant": {
+      "post": {
+        "operationId": "saveMerchant",
+        "summary": "保存商户信息",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "saveMerchant",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "merchant": {
+                  "type": "object",
+                  "properties": {
+                    "mchtCd": {
+                      "type": "string"
+                    },
+                    "sn": {
+                      "type": "string"
+                    },
+                    "aipBranCd": {
+                      "type": "string"
+                    },
+                    "groupCd": {
+                      "type": "string"
+                    },
+                    "oriChnl": {
+                      "type": "string"
+                    },
+                    "oriChnlDesc": {
+                      "type": "string"
+                    },
+                    "bankBelongCd": {
+                      "type": "string"
+                    },
+                    "dvpBy": {
+                      "type": "string"
+                    },
+                    "mccCd18": {
+                      "type": "string"
+                    },
+                    "applDate": {
+                      "type": "string"
+                    },
+                    "upBcCd": {
+                      "type": "string"
+                    },
+                    "upAcCd": {
+                      "type": "string"
+                    },
+                    "upMccCd": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "nameBusi": {
+                      "type": "string"
+                    },
+                    "busiLiceNo": {
+                      "type": "string"
+                    },
+                    "busiRang": {
+                      "type": "string"
+                    },
+                    "busiMain": {
+                      "type": "string"
+                    },
+                    "certif": {
+                      "type": "string"
+                    },
+                    "certifType": {
+                      "type": "string"
+                    },
+                    "certifNo": {
+                      "type": "string"
+                    },
+                    "cityCd": {
+                      "type": "string"
+                    },
+                    "areaCd": {
+                      "type": "string"
+                    },
+                    "regAddr": {
+                      "type": "string"
+                    },
+                    "contactName": {
+                      "type": "string"
+                    },
+                    "contactPhoneNo": {
+                      "type": "string"
+                    },
+                    "isGroup": {
+                      "type": "string"
+                    },
+                    "moneyToGroup": {
+                      "type": "string"
+                    },
+                    "stlmWay": {
+                      "type": "string"
+                    },
+                    "stlmWayDesc": {
+                      "type": "string"
+                    },
+                    "stlmInsCircle": {
+                      "type": "string"
+                    },
+                    "apprDate": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "string"
+                    },
+                    "deleteDate": {
+                      "type": "string"
+                    },
+                    "ucBcCd32": {
+                      "type": "string"
+                    },
+                    "k2WorkflowId": {
+                      "type": "string"
+                    },
+                    "systemFlag": {
+                      "type": "string"
+                    },
+                    "approvalUsername": {
+                      "type": "string"
+                    },
+                    "finalApprovalUsername": {
+                      "type": "string"
+                    },
+                    "isUpStandard": {
+                      "type": "string"
+                    },
+                    "billingType": {
+                      "type": "string"
+                    },
+                    "billingLevel": {
+                      "type": "string"
+                    },
+                    "slogan": {
+                      "type": "string"
+                    },
+                    "ext1": {
+                      "type": "string"
+                    },
+                    "ext2": {
+                      "type": "string"
+                    },
+                    "ext3": {
+                      "type": "string"
+                    },
+                    "ext4": {
+                      "type": "string"
+                    },
+                    "areaStandard": {
+                      "type": "string"
+                    },
+                    "mchtCdAreaCd": {
+                      "type": "string"
+                    },
+                    "ucBcCdArea": {
+                      "type": "string"
+                    },
+                    "recOprId": {
+                      "type": "string"
+                    },
+                    "recUpdOpr": {
+                      "type": "string"
+                    },
+                    "operIn": {
+                      "type": "string"
+                    },
+                    "recApllyTs": {
+                      "type": "string"
+                    },
+                    "oemOrgCode": {
+                      "type": "string"
+                    },
+                    "isEleInvoice": {
+                      "type": "string"
+                    },
+                    "dutyParagraph": {
+                      "type": "string"
+                    },
+                    "taxMachineBrand": {
+                      "type": "string"
+                    },
+                    "ext5": {
+                      "type": "string"
+                    },
+                    "ext6": {
+                      "type": "string"
+                    },
+                    "ext7": {
+                      "type": "string"
+                    },
+                    "ext8": {
+                      "type": "string"
+                    },
+                    "ext9": {
+                      "type": "string"
+                    },
+                    "busiLiceSt": {
+                      "type": "string"
+                    },
+                    "busiLiceDt": {
+                      "type": "string"
+                    },
+                    "certifSt": {
+                      "type": "string"
+                    },
+                    "certifDt": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "account": {
+                  "type": "object",
+                  "properties": {
+                    "ownerCd": {
+                      "type": "string"
+                    },
+                    "accountType": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "account": {
+                      "type": "string"
+                    },
+                    "ucBcCd": {
+                      "type": "string"
+                    },
+                    "province": {
+                      "type": "string"
+                    },
+                    "city": {
+                      "type": "string"
+                    },
+                    "bankCode": {
+                      "type": "string"
+                    },
+                    "bankName": {
+                      "type": "string"
+                    },
+                    "operIn": {
+                      "type": "string"
+                    },
+                    "recOprId": {
+                      "type": "string"
+                    },
+                    "recUpdOpr": {
+                      "type": "string"
+                    },
+                    "msgResvFld1": {
+                      "type": "string"
+                    },
+                    "msgResvFld2": {
+                      "type": "string"
+                    },
+                    "msgResvFld3": {
+                      "type": "string"
+                    },
+                    "msgResvFld4": {
+                      "type": "string"
+                    },
+                    "msgResvFld5": {
+                      "type": "string"
+                    },
+                    "msgResvFld6": {
+                      "type": "string"
+                    },
+                    "msgResvFld7": {
+                      "type": "string"
+                    },
+                    "msgResvFld8": {
+                      "type": "string"
+                    },
+                    "msgResvFld9": {
+                      "type": "string"
+                    },
+                    "msgResvFld10": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "正确返回",
+            "examples": {
+              "application/json": {
+                "err": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/merchant/saveBankAccount": {
+      "post": {
+        "operationId": "saveBankAccount",
+        "summary": "保存商户银行账户信息",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "saveBankAccount",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "item": {
+                  "type": "object",
+                  "properties": {
+                    "ownerCd": {
+                      "type": "string"
+                    },
+                    "accountType": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "account": {
+                      "type": "string"
+                    },
+                    "ucBcCd": {
+                      "type": "string"
+                    },
+                    "province": {
+                      "type": "string"
+                    },
+                    "city": {
+                      "type": "string"
+                    },
+                    "bankCode": {
+                      "type": "string"
+                    },
+                    "bankName": {
+                      "type": "string"
+                    },
+                    "operIn": {
+                      "type": "string"
+                    },
+                    "recOprId": {
+                      "type": "string"
+                    },
+                    "recUpdOpr": {
+                      "type": "string"
+                    },
+                    "msgResvFld1": {
+                      "type": "string"
+                    },
+                    "msgResvFld2": {
+                      "type": "string"
+                    },
+                    "msgResvFld3": {
+                      "type": "string"
+                    },
+                    "msgResvFld4": {
+                      "type": "string"
+                    },
+                    "msgResvFld5": {
+                      "type": "string"
+                    },
+                    "msgResvFld6": {
+                      "type": "string"
+                    },
+                    "msgResvFld7": {
+                      "type": "string"
+                    },
+                    "msgResvFld8": {
+                      "type": "string"
+                    },
+                    "msgResvFld9": {
+                      "type": "string"
+                    },
+                    "msgResvFld10": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "正确返回",
+            "examples": {
+              "application/json": {
+                "err": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/merchant/saveMerchantBizDealAndFee": {
+      "post": {
+        "operationId": "saveMerchantBizDealAndFee",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "saveMerchantBizDealAndFee",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "deals",
+                "fees"
+              ],
+              "properties": {
+                "deals": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "mchtCd": {
+                        "type": "string"
+                      },
+                      "prodCd": {
+                        "type": "string"
+                      },
+                      "bizCd": {
+                        "type": "string"
+                      },
+                      "transCd": {
+                        "type": "string"
+                      },
+                      "operIn": {
+                        "type": "string"
+                      },
+                      "recOprId": {
+                        "type": "string"
+                      },
+                      "recUpdOpr": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "fees": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "mchtCd": {
+                        "type": "string"
+                      },
+                      "prodCd": {
+                        "type": "string"
+                      },
+                      "bizCd": {
+                        "type": "string"
+                      },
+                      "subBizCd": {
+                        "type": "string"
+                      },
+                      "mchtFeeMd": {
+                        "type": "string"
+                      },
+                      "mchtFeePercent": {
+                        "type": "string"
+                      },
+                      "mchtFeePctMin": {
+                        "type": "string"
+                      },
+                      "mchtFeePctMax": {
+                        "type": "string"
+                      },
+                      "mchtFeeSingle": {
+                        "type": "string"
+                      },
+                      "mchtAFeeSame": {
+                        "type": "string"
+                      },
+                      "mchtAFeeMd": {
+                        "type": "string"
+                      },
+                      "mchtAFeePercent": {
+                        "type": "string"
+                      },
+                      "mchtAFeePctMin": {
+                        "type": "string"
+                      },
+                      "mchtAFeePctMax": {
+                        "type": "string"
+                      },
+                      "mchtAFeeSingle": {
+                        "type": "string"
+                      },
+                      "operIn": {
+                        "type": "string"
+                      },
+                      "recOprId": {
+                        "type": "string"
+                      },
+                      "recUpdOpr": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "正确返回",
+            "examples": {
+              "application/json": {
+                "err": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/merchant/saveMerchantBusiness": {
+      "post": {
+        "operationId": "saveMerchantBusiness",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "saveMerchantBusiness",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "item": {
+                  "type": "object",
+                  "properties": {
+                    "mchtCd": {
+                      "type": "string"
+                    },
+                    "prodCd": {
+                      "type": "string"
+                    },
+                    "prodCdText": {
+                      "type": "string"
+                    },
+                    "feeMoneyCd": {
+                      "type": "string"
+                    },
+                    "feeModeType": {
+                      "type": "string"
+                    },
+                    "feeSettlementType": {
+                      "type": "string"
+                    },
+                    "feeHoliday": {
+                      "type": "string"
+                    },
+                    "serviceFeeType": {
+                      "type": "string"
+                    },
+                    "serviceFeeStaticAmount": {
+                      "type": "string"
+                    },
+                    "serviceFeeLevelCount": {
+                      "type": "string"
+                    },
+                    "serviceFeeMode": {
+                      "type": "string"
+                    },
+                    "serviceFeeUnit": {
+                      "type": "string"
+                    },
+                    "serviceFeeTerm": {
+                      "type": "string"
+                    },
+                    "serviceFeeSumto": {
+                      "type": "string"
+                    },
+                    "serviceFeeCircle": {
+                      "type": "string"
+                    },
+                    "serviceFeeOthers": {
+                      "type": "string"
+                    },
+                    "serviceFeeStart": {
+                      "type": "string"
+                    },
+                    "serviceFeeClct": {
+                      "type": "string"
+                    },
+                    "serviceFeeClctOthers": {
+                      "type": "string"
+                    },
+                    "systemFlag": {
+                      "type": "string"
+                    },
+                    "ext1": {
+                      "type": "string"
+                    },
+                    "ext2": {
+                      "type": "string"
+                    },
+                    "ext3": {
+                      "type": "string"
+                    },
+                    "ext4": {
+                      "type": "string"
+                    },
+                    "serviceFeeYesNo": {
+                      "type": "string"
+                    },
+                    "recOprId": {
+                      "type": "string"
+                    },
+                    "recUpdOpr": {
+                      "type": "string"
+                    },
+                    "operIn": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "正确返回",
+            "examples": {
+              "application/json": {
+                "err": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/merchant/saveMerchantPicture": {
+      "post": {
+        "operationId": "saveMerchantPicture",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "saveMerchantPicture",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "item": {
+                  "type": "object",
+                  "properties": {
+                    "fileId": {
+                      "type": "string"
+                    },
+                    "mchtCd": {
+                      "type": "string"
+                    },
+                    "docType": {
+                      "type": "string"
+                    },
+                    "fileType": {
+                      "type": "string"
+                    },
+                    "fileName": {
+                      "type": "string"
+                    },
+                    "pIndex": {
+                      "type": "integer"
+                    },
+                    "pCode": {
+                      "type": "string"
+                    },
+                    "url": {
+                      "type": "string"
+                    },
+                    "systemFlag": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "string"
+                    },
+                    "recOprId": {
+                      "type": "string"
+                    },
+                    "recUpdOpr": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "正确返回",
+            "examples": {
+              "application/json": {
+                "err": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/merchant/getMerchantBankAccount": {
+      "post": {
+        "operationId": "getMerchantBankAccount",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "getMerchantBankAccount",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "item"
+              ],
+              "properties": {
+                "item": {
+                  "type": "object",
+                  "properties": {
+                    "ownerCd": {
+                      "type": "string"
+                    },
+                    "accountType": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "account": {
+                      "type": "string"
+                    },
+                    "ucBcCd": {
+                      "type": "string"
+                    },
+                    "province": {
+                      "type": "string"
+                    },
+                    "city": {
+                      "type": "string"
+                    },
+                    "bankCode": {
+                      "type": "string"
+                    },
+                    "bankName": {
+                      "type": "string"
+                    },
+                    "operIn": {
+                      "type": "string"
+                    },
+                    "recOprId": {
+                      "type": "string"
+                    },
+                    "recUpdOpr": {
+                      "type": "string"
+                    },
+                    "msgResvFld1": {
+                      "type": "string"
+                    },
+                    "msgResvFld2": {
+                      "type": "string"
+                    },
+                    "msgResvFld3": {
+                      "type": "string"
+                    },
+                    "msgResvFld4": {
+                      "type": "string"
+                    },
+                    "msgResvFld5": {
+                      "type": "string"
+                    },
+                    "msgResvFld6": {
+                      "type": "string"
+                    },
+                    "msgResvFld7": {
+                      "type": "string"
+                    },
+                    "msgResvFld8": {
+                      "type": "string"
+                    },
+                    "msgResvFld9": {
+                      "type": "string"
+                    },
+                    "msgResvFld10": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "type": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "正确返回",
+            "examples": {
+              "application/json": {
+                "items": [
+                  {
+                    "ownerCd": "0001000F0507465",
+                    "accountType": "01",
+                    "name": "刘金令",
+                    "account": "6212250200002368254",
+                    "ucBcCd": "102",
+                    "province": "",
+                    "city": "",
+                    "bankCode": "102271204130",
+                    "bankName": "中国工商银行保福寺支行",
+                    "operIn": "I",
+                    "recOprId": "",
+                    "recUpdOpr": "",
+                    "msgResvFld1": "",
+                    "msgResvFld2": "",
+                    "msgResvFld3": "",
+                    "msgResvFld4": "",
+                    "msgResvFld5": "",
+                    "msgResvFld6": "",
+                    "msgResvFld7": "",
+                    "msgResvFld8": "",
+                    "msgResvFld9": "",
+                    "msgResvFld10": "",
+                    "createdAt": "2017-12-14 16:50:34",
+                    "updatedAt": "2017-12-14 16:50:34"
+                  }
+                ],
+                "err": null,
+                "page": 1,
+                "size": 10,
+                "count": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    "/merchant/getMerchantBizDeal": {
+      "post": {
+        "operationId": "getMerchantBizDeal",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "getMerchantBizDeal",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "item"
+              ],
+              "properties": {
+                "item": {
+                  "type": "object",
+                  "properties": {
+                    "mchtCd": {
+                      "type": "string"
+                    },
+                    "prodCd": {
+                      "type": "string"
+                    },
+                    "bizCd": {
+                      "type": "string"
+                    },
+                    "transCd": {
+                      "type": "string"
+                    },
+                    "operIn": {
+                      "type": "string"
+                    },
+                    "recOprId": {
+                      "type": "string"
+                    },
+                    "recUpdOpr": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "type": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "正确返回",
+            "examples": {
+              "application/json": {
+                "items": [
+                  {
+                    "mchtCd": "0001000F0507465",
+                    "prodCd": "1151",
+                    "bizCd": "0000007",
+                    "transCd": "1131",
+                    "operIn": "I",
+                    "recOprId": "",
+                    "recUpdOpr": "1",
+                    "createdAt": "2017-12-14 16:50:34",
+                    "updatedAt": "2017-12-14 16:50:34"
+                  }
+                ],
+                "err": null,
+                "page": 1,
+                "size": 10,
+                "count": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    "/merchant/getMerchantBizFee": {
+      "post": {
+        "operationId": "getMerchantBizFee",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "getMerchantBizFee",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "item"
+              ],
+              "properties": {
+                "item": {
+                  "type": "object",
+                  "properties": {
+                    "mchtCd": {
+                      "type": "string"
+                    },
+                    "prodCd": {
+                      "type": "string"
+                    },
+                    "bizCd": {
+                      "type": "string"
+                    },
+                    "subBizCd": {
+                      "type": "string"
+                    },
+                    "mchtFeeMd": {
+                      "type": "string"
+                    },
+                    "mchtFeePercent": {
+                      "type": "string"
+                    },
+                    "mchtFeePctMin": {
+                      "type": "string"
+                    },
+                    "mchtFeePctMax": {
+                      "type": "string"
+                    },
+                    "mchtFeeSingle": {
+                      "type": "string"
+                    },
+                    "mchtAFeeSame": {
+                      "type": "string"
+                    },
+                    "mchtAFeeMd": {
+                      "type": "string"
+                    },
+                    "mchtAFeePercent": {
+                      "type": "string"
+                    },
+                    "mchtAFeePctMin": {
+                      "type": "string"
+                    },
+                    "mchtAFeePctMax": {
+                      "type": "string"
+                    },
+                    "mchtAFeeSingle": {
+                      "type": "string"
+                    },
+                    "operIn": {
+                      "type": "string"
+                    },
+                    "recOprId": {
+                      "type": "string"
+                    },
+                    "recUpdOpr": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "type": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "正确返回",
+            "examples": {
+              "application/json": {
+                "items": [
+                  {
+                    "mchtCd": "0001000F0507465",
+                    "prodCd": "1151",
+                    "bizCd": "0000007",
+                    "subBizCd": "0003001",
+                    "mchtFeeMd": "0",
+                    "mchtFeePercent": "0.600000",
+                    "mchtFeePctMin": "0.000000",
+                    "mchtFeePctMax": "0.000000",
+                    "mchtFeeSingle": "0.000000",
+                    "mchtAFeeSame": "0",
+                    "mchtAFeeMd": "",
+                    "mchtAFeePercent": "0.000000",
+                    "mchtAFeePctMin": "0.000000",
+                    "mchtAFeePctMax": "0.000000",
+                    "mchtAFeeSingle": "0.000000",
+                    "operIn": "I",
+                    "recOprId": "",
+                    "recUpdOpr": "",
+                    "createdAt": "2017-12-14 16:50:34",
+                    "updatedAt": "2017-12-14 16:50:34"
+                  }
+                ],
+                "err": null,
+                "page": 1,
+                "size": 10,
+                "count": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    "/merchant/getMerchantBusiness": {
+      "post": {
+        "operationId": "getMerchantBusiness",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "getMerchantBusiness",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "item"
+              ],
+              "properties": {
+                "item": {
+                  "type": "object",
+                  "properties": {
+                    "mchtCd": {
+                      "type": "string"
+                    },
+                    "prodCd": {
+                      "type": "string"
+                    },
+                    "prodCdText": {
+                      "type": "string"
+                    },
+                    "feeMoneyCd": {
+                      "type": "string"
+                    },
+                    "feeModeType": {
+                      "type": "string"
+                    },
+                    "feeSettlementType": {
+                      "type": "string"
+                    },
+                    "feeHoliday": {
+                      "type": "string"
+                    },
+                    "serviceFeeType": {
+                      "type": "string"
+                    },
+                    "serviceFeeStaticAmount": {
+                      "type": "string"
+                    },
+                    "serviceFeeLevelCount": {
+                      "type": "string"
+                    },
+                    "serviceFeeMode": {
+                      "type": "string"
+                    },
+                    "serviceFeeUnit": {
+                      "type": "string"
+                    },
+                    "serviceFeeTerm": {
+                      "type": "string"
+                    },
+                    "serviceFeeSumto": {
+                      "type": "string"
+                    },
+                    "serviceFeeCircle": {
+                      "type": "string"
+                    },
+                    "serviceFeeOthers": {
+                      "type": "string"
+                    },
+                    "serviceFeeStart": {
+                      "type": "string"
+                    },
+                    "serviceFeeClct": {
+                      "type": "string"
+                    },
+                    "serviceFeeClctOthers": {
+                      "type": "string"
+                    },
+                    "systemFlag": {
+                      "type": "string"
+                    },
+                    "ext1": {
+                      "type": "string"
+                    },
+                    "ext2": {
+                      "type": "string"
+                    },
+                    "ext3": {
+                      "type": "string"
+                    },
+                    "ext4": {
+                      "type": "string"
+                    },
+                    "serviceFeeYesNo": {
+                      "type": "string"
+                    },
+                    "recOprId": {
+                      "type": "string"
+                    },
+                    "recUpdOpr": {
+                      "type": "string"
+                    },
+                    "operIn": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "type": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "正确返回",
+            "examples": {
+              "application/json": {
+                "items": [
+                  {
+                    "mchtCd": "0001000F0507465",
+                    "prodCd": "",
+                    "prodCdText": "",
+                    "feeMoneyCd": "RMB",
+                    "feeModeType": "0",
+                    "feeSettlementType": "",
+                    "feeHoliday": "0",
+                    "serviceFeeType": "",
+                    "serviceFeeStaticAmount": "0.000000",
+                    "serviceFeeLevelCount": "0",
+                    "serviceFeeMode": "",
+                    "serviceFeeUnit": "",
+                    "serviceFeeTerm": "",
+                    "serviceFeeSumto": "",
+                    "serviceFeeCircle": "",
+                    "serviceFeeOthers": "",
+                    "serviceFeeStart": "",
+                    "serviceFeeClct": "",
+                    "serviceFeeClctOthers": "",
+                    "systemFlag": "",
+                    "ext1": "25056174",
+                    "ext2": "",
+                    "ext3": "",
+                    "ext4": "",
+                    "serviceFeeYesNo": "0",
+                    "recOprId": "",
+                    "recUpdOpr": "",
+                    "operIn": "I",
+                    "createdAt": "2017-12-14 16:50:34",
+                    "updatedAt": "2017-12-14 16:50:34"
+                  }
+                ],
+                "err": null,
+                "page": 1,
+                "size": 10,
+                "count": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    "/merchant/getMerchantPicture": {
+      "post": {
+        "operationId": "getMerchantPicture",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "getMerchantPicture",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "item"
+              ],
+              "properties": {
+                "item": {
+                  "type": "object",
+                  "properties": {
+                    "fileId": {
+                      "type": "string"
+                    },
+                    "mchtCd": {
+                      "type": "string"
+                    },
+                    "docType": {
+                      "type": "string"
+                    },
+                    "fileType": {
+                      "type": "string"
+                    },
+                    "fileName": {
+                      "type": "string"
+                    },
+                    "pIndex": {
+                      "type": "string"
+                    },
+                    "pCode": {
+                      "type": "string"
+                    },
+                    "url": {
+                      "type": "string"
+                    },
+                    "systemFlag": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "string"
+                    },
+                    "recOprId": {
+                      "type": "string"
+                    },
+                    "recUpdOpr": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "type": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "正确返回",
+            "examples": {
+              "application/json": {
+                "items": [
+                  {
+                    "fileId": "FILE_ID_57b16bf486c205.16207617",
+                    "mchtCd": "679110158120000",
+                    "docType": "00",
+                    "fileType": "",
+                    "fileName": "6791101581200000001.jpg",
+                    "pIndex": "1",
+                    "pCode": "6791101581200000001",
+                    "url": "/upload/62500000/679110158120000/6791101581200000001.jpg",
+                    "systemFlag": "00",
+                    "status": "0",
+                    "recOprId": "I",
+                    "recUpdOpr": "5",
+                    "createdAt": "2016-08-15 15:15:01",
+                    "updatedAt": "2016-08-15 15:15:01"
+                  }
+                ],
+                "err": null,
+                "page": 1,
+                "size": 10,
+                "count": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    "/merchant/getMerchantById": {
+      "post": {
+        "operationId": "getMerchantById",
+        "description": "查询单条商户",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "getMerchantById",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "id"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "description": "商户id"
+                },
+                "type": {
+                  "type": "string",
+                  "description": "main为主表，否则为编辑表"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "正确返回",
+            "examples": {
+              "application/json": {
+              }
+            }
+          }
+        }
+      }
+    },
+    "/merchant/generateMchtCd": {
+      "post": {
+        "operationId": "generateMchtCd",
+        "description": "生成商户号",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "generateMchtCd",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "mchtCd3",
+                "mchtCdPc",
+                "mccCd"
+              ],
+              "properties": {
+                "mchtCd3": {
+                  "type": "string"
+                },
+                "mchtCdPc": {
+                  "type": "string"
+                },
+                "mccCd": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "正确返回",
+            "examples": {
+              "application/json": {
+                "sn": "0001",
+                "err": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/merchant/merchantInfoQuery": {
+      "post": {
+        "operationId": "merchantInfoQuery",
+        "summary": "查询商户列表",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "description": "Authorization",
+            "type": "string"
+          },
+          {
+            "name": "merchantInfoQuery",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "page",
+                "size"
+              ],
+              "properties": {
+                "page": {
+                  "type": "integer",
+                  "description": "页码"
+                },
+                "size": {
+                  "type": "integer",
+                  "description": "单页大小"
+                },
+                "type": {
+                  "type": "string",
+                  "description": "主表为main，默认为编辑表"
+                },
+                "item": {
+                  "type": "object",
+                  "description": "商户具体查询字段",
+                  "properties": {
+                    "mchtCd": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "aipBranCd": {
+                      "type": "string"
+                    },
+                    "bankBelongCd": {
+                      "type": "string"
+                    },
+                    "accountName": {
+                      "type": "string"
+                    },
+                    "account": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "string"
+                    },
+                    "systemFlag": {
+                      "type": "string"
+                    },
+                    "nameBusi": {
+                      "type": "string"
+                    },
+                    "groupCd": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "正确返回",
+            "examples": {
+              "application/json": {
+                "items": [
+                  {
+                    "mchtCd": "0001000F0507465",
+                    "name": "买乐便利店",
+                    "aipBranCd": "80009999",
+                    "bankBelongCd": "80000000",
+                    "nameBusi": "买乐便利店",
+                    "groupCd": "",
+                    "accountName": "刘金令",
+                    "account": "6212250200002368254",
+                    "updatedAt": "2017-12-15 00:50:34",
+                    "status": "01",
+                    "systemFlag": "01"
+                  }
+                ],
+                "err": null,
+                "page": 1,
+                "size": 10,
+                "count": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    "/merchant/merchantForceChangeStatus": {
+      "post": {
+        "operationId": "merchantForceChangeStatus",
+        "summary": "强制商户修改状态",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "merchantForceChangeStatus",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "operate",
+                "mchtCd"
+              ],
+              "properties": {
+                "operate": {
+                  "type": "string",
+                  "description": "修改动作, freeze, unfreeze, cancel"
+                },
+                "mchtCd": {
+                  "type": "string",
+                  "description": "商户号"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "正确返回",
+            "examples": {
+              "application/json": {
+                "err": null
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,507 @@
+syntax = "proto3";
+
+package pb;
+
+import "error.proto";
+
+service Institution {
+    rpc TnxHisDownload(InstitutionTnxHisDownloadReq) returns (InstitutionTnxHisDownloadResp){}
+    rpc GetTfrTrnLogs(GetTfrTrnLogsReq) returns (GetTfrTrnLogsResp){}
+    rpc GetTfrTrnLog(GetTfrTrnLogReq) returns (GetTfrTrnLogResp){}
+    rpc DownloadTfrTrnLogs(DownloadTfrTrnLogsReq) returns (DownloadTfrTrnLogsResp){}
+    rpc ListGroups(ListGroupsRequest) returns (ListGroupsReply) {}
+    rpc SaveGroup(SaveGroupRequest) returns (SaveGroupReply) {}
+    rpc BindGroup(BindGroupRequest) returns (BindGroupReply) {}
+    rpc ListBindGroup(ListBindGroupRequest) returns (ListBindGroupReply) {}
+    rpc RemoveBindGroup(RemoveBindGroupRequest) returns (RemoveBindGroupReply) {}
+    rpc ListInstitutions(ListInstitutionsRequest) returns (ListInstitutionsReply) {}
+    rpc SaveInstitution(SaveInstitutionRequest) returns (SaveInstitutionReply) {}
+    rpc SaveInstitutionFeeControlCash(SaveInstitutionFeeControlCashRequest) returns (SaveInstitutionFeeControlCashReply) {}
+    rpc GetInstitutionById(GetInstitutionByIdRequest) returns (GetInstitutionByIdReply) {}
+    rpc GetInstitutionControl(GetInstitutionControlRequest) returns (GetInstitutionControlReply) {}
+    rpc GetInstitutionCash(GetInstitutionCashRequest) returns (GetInstitutionCashReply) {}
+    rpc GetInstitutionFee(GetInstitutionFeeRequest) returns (GetInstitutionFeeReply) {}
+}
+
+message InstitutionTnxHisDownloadReq {
+    string StartTime = 1;
+    string EndTime = 2;
+    string Name = 3;
+}
+
+message InstitutionTnxHisDownloadResp {
+	bool Result = 1;
+	error err = 2;
+}
+
+
+message GetTfrTrnLogsReq {
+    string MchntCd = 1;
+    string PriAcctNO = 2;
+    string BeginAt = 3;
+    string EndAt = 4;
+    string KeyRsp = 5;
+    string CardClass = 6;
+    string RoutIndustryInsIdCd = 7;
+    string FwdInsIdCd = 8;
+    string IssInsIdCd = 9;
+    string RespCd = 10;
+    string TermId = 11;
+    string ProdCd = 12;
+    string BizCd = 13;
+    string MaTransCd = 14;
+    string MsgResvFld2 = 15;
+    int64 Limit = 16;
+	int64 Page = 17;
+}
+
+message GetTfrTrnLogsResp {
+    repeated GetTfrTrnLogsItem Items = 1;
+    int64 count = 2;
+	string total = 3;
+	error err = 4;
+}
+
+message GetTfrTrnLogsItem {
+    string KeyRsp = 1;
+    string MchntCd = 2;
+    string CardAccptrNm = 3;
+    string TransDt = 4;
+    string MaSettleDt = 5;
+    string TransMt = 6;
+    string MaTransCd = 7;
+    string FwdInsIdCd = 8;
+    string TransAt = 9;
+    string PriAcctNo = 10;
+    string IssInsIdCd = 11;
+    string TermId = 12;
+    string ProdCd = 13;
+    string CardClass = 14;
+    string TransSt = 15;
+    string RespCd = 16;
+}
+
+
+message GetTfrTrnLogReq {
+    string KeyRsp = 1;
+}
+
+message GetTfrTrnLogResp {
+	string TransDt = 1;
+	string TransMt = 2; 
+	string SrcQid = 3;  
+	string DesQid = 4;    
+	string MaTransCd = 5; 
+	string MaTransNm = 6; 
+	string KeyRsp = 7;    
+	string KeyRevsal = 8;
+	string KeyCancel = 9;  
+	string RespCd = 10;   
+	string TransSt = 11;   
+	string MaTransSeq = 12;    
+	string OrigMaTransSeq = 13;    
+	string OrigTransSeq = 14;   
+	string OrigTermSeq = 15;   
+	string OrigTransDt = 16;  
+	string MaSettleDt = 17;  
+	string AccessMd = 18;   
+	string MsgTp = 19;   
+	string PriAcctNo = 20;  
+	string AcctTp = 21;   
+	string TransProcCd = 22;  
+	string TransAt = 23;  
+	string TransTdTm = 24;   
+	string TermSeq = 25;   
+	string AcptTransTm = 26;   
+	string AcptTransDt = 27;    
+	string MchntTp = 28;   
+	string PosEntryMdCd = 29;  
+	string PosCondCd = 30;   
+	string AcptInsIdCd = 31;  
+	string FwdInsIdCd = 32;  
+	string TermId = 33;   
+	string MchntCd = 34;   
+	string CardAccptrNm = 35;  
+	string RetriRefNo = 36; 
+	string ReqAuthId = 37;   
+	string TransSubcata = 38;   
+	string IndustryAddnInf = 39;  
+	string TransCurrCd = 40;    
+	string SecCtrlInf = 41;    
+	string IcData = 42;    
+	string UdfFldPure = 43;    
+	string CertifId = 44;    
+	string NetworkMgmtInfCd = 45;    
+	string OrigDataElemnt = 46;    
+	string RcvInsIdCd = 47;    
+	string TfrInAcctNoPure = 48;    
+	string TfrInAcctTp = 49;    
+	string TfrOutAcctNoPure = 50;    
+	string AcptInsResvPure = 51;    
+	string TrrOutAcctTp = 52;    
+	string IssInsIdCd = 53;    
+	string CardAttr = 54;    
+	string CardClass = 55;    
+	string CardMedia = 56;    
+	string CardBin = 57;    
+	string CardBrand = 58;    
+	string RoutInsIdCd = 59;    
+	string AcptRegionCd = 60;    
+	string BussRegionCd = 61;    
+	string UsrNoTp = 62;    
+	string UsrNoRegionCd = 63;    
+	string UsrNoRegionAddnCd = 64;    
+	string UsrNo = 65;    
+	string SpInsIdCd = 66;    
+	string IndustryInsIdCd = 67;    
+	string RoutIndustryInsIdCd = 68;    
+	string IndustryMchntCd = 69;    
+	string IndustryTermCd = 70;    
+	string IndustryMchntTp = 71;    
+	string EntrustTp = 72;    
+	string PmtMd = 73;    
+	string PmtTp = 74;    
+	string PmtNo = 75;    
+	string PmtMchntCd = 76;    
+	string PmtNoIndustryInsIdCd = 77;    
+	string PriAcctNoConv = 78;    
+	string TransAtConv = 79;    
+	string TransDtTmConv = 80;    
+	string TransSeqConv = 81;    
+	string MchntTpConv = 82;    
+	string RetriRefNoConv = 83;    
+	string AcptInsIdCdConv = 84;    
+	string TermIdConv = 85;    
+	string MchntCdConv = 86;    
+	string MchntNmConv = 87;    
+	string UdfFldPureConv = 88;    
+	string SpInsIdCdConv = 89;    
+	string ExpireDt = 90;    
+	string SettleDt = 91;    
+	string TransFee = 92;    
+	string RespAuthId = 93;    
+	string AcptRespCd = 94;    
+	string AddnRespDataPure = 95;    
+	string AddnAtPure = 96;    
+	string IssAddnDataPure = 97;    
+	string IcResDatCups = 98;    
+	string SwResvPure = 99;    
+	string IssInsResvPure = 100;    
+	string IndustryRespCd = 101;    
+	string DebtAt = 102;    
+	string DtlInqData = 103;    
+	string TransChnl = 104;    
+	string InterchMdCd = 105;    
+	string TransChkIn = 106;    
+	string MchtStlmFlg = 107;    
+	string InsStlmFlg = 108;    
+	string MsgResvFld1 = 109;    
+	string MsgResvFld2 = 110;    
+	string MsgResvFld3 = 111;    
+	string TransMth = 112; 
+	string RecUpdTs = 113;    
+	string RecCrtTs = 114;    
+	string ProdCd = 115;    
+	string TranTp = 116;    
+	string BizCd = 117;    
+	string RevelFlg = 118;    
+	string CancelFlg = 119;    
+	string MsgResvFld4 = 120;    
+	string MsgResvFld5 = 121;    
+	string MsgResvFld6 = 122;    
+	string MsgResvFld7 = 123;    
+	string MsgResvFld8 = 124;    
+	string MsgResvFld9 = 125;  
+	error err = 126;  
+}
+
+message DownloadTfrTrnLogsReq {
+    string MchntCd = 1;
+    string PriAcctNO = 2;
+    string BeginAt = 3;
+    string EndAt = 4;
+    string KeyRsp = 5;
+    string CardClass = 6;
+    string RoutIndustryInsIdCd = 7;
+    string FwdInsIdCd = 8;
+    string IssInsIdCd = 9;
+    string RespCd = 10;
+    string TermId = 11;
+    string ProdCd = 12;
+    string BizCd = 13;
+    string MaTransCd = 14;
+    string MsgResvFld2 = 15;
+	string Name = 16;
+}
+
+
+//下载logs文件code 0代表失败， 1代表成功
+message DownloadTfrTrnLogsResp {
+	bool code = 1;
+	error err = 2;
+}
+
+message ListGroupsRequest {
+    int32 page = 1;
+    int32 size = 2;
+}
+
+message InstitutionGroupField {
+    string groupId = 1;
+    string name = 2;
+    string createdAt = 3;
+    string updatedAt = 4;
+}
+
+message ListGroupsReply {
+    repeated InstitutionGroupField items = 1;
+    int32 count = 2;
+    int32 size = 3;
+    int32 page = 4;
+    error err = 5;
+}
+
+message ListInstitutionsReply {
+    repeated InstitutionField items = 1;
+    int32 count = 2;
+    int32 size = 3;
+    int32 page = 4;
+    error err = 5;
+}
+
+message ListInstitutionsRequest {
+    int32 page = 1;
+    int32 size = 2;
+    string type = 3;
+    InstitutionField item = 5;
+}
+
+message InstitutionField {
+    string insIdCd = 1;
+    string insCompanyCd = 2;
+    string insType = 3;
+    string insName = 4;
+    string insProvCd = 5;
+    string insCityCd = 6;
+    string insRegionCd= 7;
+    string insSta = 8;
+    string insStlmTp = 9;
+    string insAloStlmCycle = 10;
+    string insAloStlmMd = 11;
+    string insStlmCNm = 12;
+    string insStlmCAcct = 13;
+    string insStlmCBkNo = 14;
+    string insStlmCBkNm = 15;
+    string insStlmDNm = 16;
+    string insStlmDAcct = 17;
+    string insStlmDBkNo = 18;
+    string insStlmDBkNm = 19;
+    string msgResvFld1 = 20;
+    string msgResvFld2 = 21;
+    string msgResvFld3 = 22;
+    string msgResvFld4 = 23;
+    string msgResvFld5 = 24;
+    string msgResvFld6 = 25;
+    string msgResvFld7 = 26;
+    string msgResvFld8 = 27;
+    string msgResvFld9 = 28;
+    string msgResvFld10 = 29;
+    string recOprId = 30;
+    string recUpdOpr = 31;
+    string createdAt = 32;
+    string updatedAt = 33;
+}
+
+message SaveInstitutionRequest {
+    InstitutionField item = 1;
+}
+
+message SaveInstitutionReply {
+    error err = 1;
+}
+
+message SaveInstitutionFeeControlCashRequest {
+    repeated InstitutionFeeField fees = 1;
+    repeated InstitutionControlField controls = 2;
+    repeated InstitutionCashField cashes = 3;
+}
+
+message SaveInstitutionFeeControlCashReply {
+    error err = 1;
+}
+
+message InstitutionFeeField {
+    string insIdCd = 1;
+    string prodCd = 2;
+    string bizCd = 3;
+    string subBizCd = 4;
+    string insFeeBizCd = 5;
+    string insFeeCd = 6;
+    string insFeeTp = 7;
+    string insFeeParam = 8;
+    string insFeePercent = 9;
+    string insFeePct = 10;
+    string insFeePctMin = 11;
+    string insFeePctMax = 12;
+    string insAFeeSame = 13;
+    string insAFeeParam = 14;
+    string insAFeePercent = 15;
+    string insAFeePct = 16;
+    string insAFeePctMin = 17;
+    string insAFeePctMax = 18;
+    string msgResvFld1 = 19;
+    string msgResvFld2 = 20;
+    string msgResvFld3 = 21;
+    string msgResvFld4 = 22;
+    string msgResvFld5 = 23;
+    string msgResvFld6 = 24;
+    string msgResvFld7 = 25;
+    string msgResvFld8 = 26;
+    string msgResvFld9 = 27;
+    string msgResvFld10 = 28;
+    string recOprId = 29;
+    string recUpdOpr = 30;
+    string createdAt = 31;
+    string updatedAt = 32;
+}
+
+message InstitutionControlField {
+    string insIdCd = 1;
+    string insCompanyCd = 2;
+    string prodCd = 3;
+    string bizCd = 4;
+    string ctrlSta = 5;
+    string insBegTm = 6;
+    string insEndTm = 7;
+    string msgResvFld1 = 8;
+    string msgResvFld2 = 9;
+    string msgResvFld3 = 10;
+    string msgResvFld4 = 11;
+    string msgResvFld5 = 12;
+    string msgResvFld6 = 13;
+    string msgResvFld7 = 14;
+    string msgResvFld8 = 15;
+    string msgResvFld9 = 16;
+    string msgResvFld10 = 17;
+    string recOprId = 18;
+    string recUpdOpr = 19;
+    string createdAt = 20;
+    string updatedAt = 21;
+}
+
+message InstitutionCashField {
+     string insIdCd = 1;
+     string prodCd = 2;
+     string insDefaultFlag = 3;
+     string insDefaultCash = 4;
+     string insCurrentCash = 5;
+     string msgResvFld1 = 6;
+     string msgResvFld2 = 7;
+     string msgResvFld3 = 8;
+     string msgResvFld4 = 9;
+     string msgResvFld5 = 10;
+     string msgResvFld6 = 11;
+     string msgResvFld7 = 12;
+     string msgResvFld8 = 13;
+     string msgResvFld9 = 14;
+     string msgResvFld10 = 15;
+     string recOprId = 16;
+     string recUpdOpr = 17;
+     string createdAt = 18;
+     string updatedAt = 19;
+}
+
+message GetInstitutionByIdRequest {
+    string id = 1;
+    string type = 2;
+}
+
+message GetInstitutionByIdReply {
+    InstitutionField item = 1;
+    error err = 2;
+}
+
+message GetInstitutionControlRequest {
+    int32 page = 1;
+    int32 size = 2;
+    InstitutionControlField item = 3;
+    string type = 4;
+}
+
+message GetInstitutionControlReply {
+    repeated InstitutionControlField items = 1;
+    int32 page = 2;
+    int32 size = 3;
+    int32 count = 4;
+    error err = 5;
+}
+
+message GetInstitutionCashRequest {
+    int32 page = 1;
+    int32 size = 2;
+    InstitutionCashField item = 3;
+    string type = 4;
+}
+
+message GetInstitutionCashReply {
+    repeated InstitutionCashField items = 1;
+    int32 page = 2;
+    int32 size = 3;
+    int32 count = 4;
+    error err = 5;
+}
+
+message GetInstitutionFeeRequest {
+    int32 page = 1;
+    int32 size = 2;
+    InstitutionFeeField item = 3;
+    string type = 4;
+}
+
+message GetInstitutionFeeReply {
+    repeated InstitutionFeeField items = 1;
+    int32 page = 2;
+    int32 size = 3;
+    int32 count = 4;
+    error err = 5;
+}
+
+message SaveGroupRequest {
+    InstitutionGroupField item = 1;
+}
+
+message SaveGroupReply {
+    error err = 1;
+}
+
+message BindGroupField {
+    string groupId = 1;
+    string insIdCd = 2;
+    string createdAt = 3;
+    string updatedAt = 4;
+}
+
+message BindGroupRequest {
+    BindGroupField item = 1;
+}
+
+message BindGroupReply {
+    error err = 1;
+}
+
+message ListBindGroupRequest {
+    BindGroupField item = 1;
+}
+
+message ListBindGroupReply {
+    repeated BindGroupField items = 1;
+    error err = 2;
+}
+
+message RemoveBindGroupRequest {
+    BindGroupField item = 1;
+}
+
+message RemoveBindGroupReply {
+    error err = 1;
+}

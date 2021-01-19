@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+import "common.proto";
+
+package pb;
+
+message GetListHistoryProcessInstanceResp {
+  repeated GetListHistoryProcessInstanceRespItem item = 1;
+  int64 code = 2;
+  CamundaError err = 3;
+}
+
+message GetListHistoryProcessInstanceRespItem {
+  string id = 1;
+  string rootProcessInstanceId = 2;
+  string superProcessInstanceId = 3;
+  string superCaseInstanceId = 4;
+  string processDefinitionName = 5;
+  string processDefinitionKey = 7;
+  int64 processDefinitionVersion = 8;
+  string processDefinitionId = 9;
+  string businessKey = 10;
+  string startTime = 11;
+  string endTime = 12;
+  string removalTime = 13;
+  int64 durationInMillis = 14;
+  string startUserId = 15;
+  string startActivityId = 16;
+  string deleteReason = 17;
+  string tenantId = 18;
+  string state = 19;
+}
+
+service History {
+  rpc GetListProcessInstance(GetQuery)
+      returns (GetListHistoryProcessInstanceResp) {}
+}

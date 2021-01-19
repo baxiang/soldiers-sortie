@@ -1,0 +1,8 @@
+FROM alpine:3.9.3
+
+COPY ./apigateway /data/
+
+RUN ls -alh /data/
+
+WORKDIR /data/
+CMD ./apigateway

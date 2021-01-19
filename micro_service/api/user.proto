@@ -1,0 +1,503 @@
+syntax = "proto3";
+
+package pb;
+
+import "error.proto";
+
+// 路由 -> 权限 -> 角色 -> 用户
+
+service User {
+    // 登录注册，用户权限信息
+    rpc Login(LoginRequest) returns (LoginReply) {}
+    rpc Register(RegisterRequest) returns (RegisterReply) {}
+    rpc GetPermissions(GetPermissionsRequest) returns (GetPermissionsReply) {}
+    rpc CheckPermission(CheckPermissionRequest) returns (CheckPermissionReply) {}
+    rpc GetUserTypeInfo(GetUserTypeInfoRequest) returns (GetUserTypeInfoReply) {}
+    rpc GetUser(GetUserRequest) returns (GetUserReply) {}
+
+    // 权限和路由
+    rpc AddRoutes(AddRoutesRequest) returns (AddRoutesReply) {}
+    rpc ListRoutes(ListRoutesRequest) returns (ListRoutesReply) {}
+    rpc CreatePermission(CreatePermissionRequest) returns (CreatePermissionReply) {}
+    rpc UpdatePermission(UpdatePermissionRequest) returns (UpdatePermissionReply) {}
+    rpc AddRouteForPermission(AddRouteForPermissionRequest) returns (AddRouteForPermissionReply) {}
+    rpc RemoveRouteForPermission(RemoveRouteForPermissionRequest) returns (RemoveRouteForPermissionReply) {}
+    rpc RemovePermission(RemovePermissionRequest) returns (RemovePermissionReply) {}
+    rpc ListPermissions(ListPermissionsRequest) returns (ListPermissionsReply) {}
+    rpc AddPermissionForPermission(AddPermissionForPermissionRequest) returns (AddPermissionForPermissionReply) {}
+    rpc RemovePermissionForPermission(RemovePermissionForPermissionRequest) returns (RemovePermissionForPermissionReply) {}
+    rpc GetPermissionsAndRoutes(GetPermissionsAndRoutesRequest) returns (GetPermissionsAndRoutesReply) {}
+    rpc RemoveRoute(RemoveRouteRequest) returns (RemoveRouteReply) {}
+
+    // 角色和权限
+    rpc CreateRole(CreateRoleRequest) returns(CreateRoleReply) {}
+    rpc ListRole(ListRoleRequest) returns (ListRoleReply) {}
+    rpc UpdateRole(UpdateRoleRequest) returns (UpdateRoleReply) {}
+    rpc AddPermissionForRole(AddPermissionForRoleRequest) returns (AddPermissionForRoleReply) {}
+    rpc RemovePermissionForRole(RemovePermissionForRoleRequest) returns (RemovePermissionForRoleReply) {}
+    rpc AddRoleForRole(AddRoleForRoleRequest) returns (AddRoleForRoleReply) {}
+    rpc RemoveRoleForRole(RemoveRoleForRoleRequest) returns (RemoveRoleForRoleReply) {}
+    rpc RemoveRole(RemoveRoleRequest) returns (RemoveRoleReply) {}
+    rpc GetRolePermissionsAndRoles(GetRolePermissionsAndRolesRequest) returns (GetRolePermissionsAndRolesReply) {}
+
+    // 用户和角色
+    rpc ListUsers(ListUsersRequest) returns (ListUsersReply) {}
+    rpc UpdateUser(UpdateUserRequest) returns (UpdateUserReply) {}
+    rpc AddPermissionForUser(AddPermissionForUserRequest) returns (AddPermissionForUserReply) {}
+    rpc RemovePermissionForUser(RemovePermissionForUserRequest) returns (RemovePermissionForUserReply) {}
+    rpc AddRoleForUser(AddRoleForUserRequest) returns (AddRoleForUserReply) {}
+    rpc RemoveRoleForUser(RemoveRoleForUserRequest) returns (RemoveRoleForUserReply) {}
+    rpc GetUserPermissionsAndRoles(GetUserPermissionsAndRolesRequest) returns (GetUserPermissionsAndRolesReply) {}
+
+    // 菜单和路由
+    rpc ListMenus(ListMenusRequest) returns (ListMenusReply) {}
+    rpc CreateMenu(CreateMenuRequest) returns (CreateMenuReply) {}
+    rpc RemoveMenu(RemoveMenuRequest) returns (RemoveMenuReply) {}
+
+    // 会员
+    rpc ListLeaguer(ListLeaguerRequest) returns (ListLeaguerReply) {}
+}
+
+message RemoveRouteRequest {
+    string route = 1;
+}
+
+message RemoveRouteReply {
+    error err = 1;
+}
+
+message LoginRequest {
+    string username = 1;
+    string password = 2;
+}
+
+message LoginReply {
+    int64 id = 1;
+    string leaguerNo = 2;
+    string username = 3;
+    string email = 4;
+    string userType = 5;
+    int64 userStatus = 6;
+    int64 createdAt = 7;
+    string token = 8;
+    error err = 9;
+}
+
+message GetPermissionsRequest {
+}
+
+message GetPermissionsReply {
+    repeated Menu menus = 1;
+    error err = 2;
+}
+
+message Menu {
+    int32 id = 1;
+    string name = 2;
+    int32 parent = 3;
+    string route = 4;
+    string data = 5;
+    int32 order = 6;
+    repeated Menu children = 7;
+}
+
+message CheckPermissionRequest {
+    string route = 1;
+}
+
+message CheckPermissionReply {
+    bool result = 1;
+    error err = 2;
+}
+
+message RegisterRequest {
+    string username = 1;
+    string password = 2;
+    string leaguerNo = 3;
+    string email = 4;
+    string userType = 5;
+    string userGroupNo = 6;
+}
+
+message RegisterReply {
+    int64 id = 1;
+    string leaguerNo = 2;
+    string username = 3;
+    string email = 4;
+    string userType = 5;
+    int64 userStatus = 6;
+    int64 createdAt = 7;
+    error err = 8;
+}
+
+message AddPermissionForRoleRequest {
+    string role = 1;
+    string permission = 2;
+}
+message AddPermissionForRoleReply {
+    error err = 1;
+}
+
+message AddRoleForRoleRequest {
+    string from = 1;
+    string child = 2;
+}
+message AddRoleForRoleReply {
+    error err = 1;
+}
+
+message CreateRoleRequest {
+    string role = 1;
+}
+
+message CreateRoleReply {
+    error err = 1;
+}
+
+message AddRoleForUserRequest {
+    string username = 1;
+    string role = 2;
+}
+
+message AddRoleForUserReply {
+    error err = 1;
+}
+
+message AddPolicyRequest {
+    string permission = 1;
+    string resource = 2;
+}
+
+message AddPolicyReply {
+    error err = 1;
+}
+
+message AddRoutesRequest {
+    repeated string routes = 1;
+}
+
+message AddRoutesReply {
+    error err = 1;
+}
+
+message ListRoutesRequest {}
+
+message ListRoutesReply {
+    repeated Route routes = 1;
+    error err = 2;
+}
+
+message Route {
+    int32 id = 1;
+    string name = 2;
+}
+
+message CreatePermissionRequest {
+    string name = 1;
+}
+
+message CreatePermissionReply {
+    error err = 1;
+}
+
+message UpdatePermissionRequest {
+    int64 id = 2;
+    string name = 1;
+}
+message UpdatePermissionReply {
+    error err = 1;
+}
+
+message AddRouteForPermissionRequest {
+    string permission = 1;
+    string route = 2;
+}
+message AddRouteForPermissionReply {
+    error err = 1;
+}
+
+message RemoveRouteForPermissionRequest {
+    string permission = 1;
+    string route = 2;
+}
+
+message RemoveRouteForPermissionReply {
+    error err = 1;
+}
+
+message RemovePermissionRequest {
+    string permission = 1;
+}
+
+message RemovePermissionReply {
+    error err = 1;
+}
+
+message ListPermissionsRequest {
+    int32 page = 1;
+    int32 size = 2;
+    PermissionField permission = 3;
+}
+message ListPermissionsReply {
+    int32 page = 1;
+    int32 size = 2;
+    int32 count = 3;
+    repeated PermissionField permissions = 4;
+    error err = 5;
+}
+message PermissionField {
+    int64 id = 1;
+    string permission = 2;
+}
+
+message AddPermissionForPermissionRequest {
+    string from = 1;
+    string child = 2;
+}
+
+message AddPermissionForPermissionReply {
+    error err = 1;
+}
+
+message RemovePermissionForPermissionRequest {
+    string from = 1;
+    string child = 2;
+}
+
+message RemovePermissionForPermissionReply {
+    error err = 1;
+}
+
+message ListRoleRequest {
+    int32 page = 1;
+    int32 size = 2;
+    RoleField role = 3;
+}
+message ListRoleReply {
+    int32 page = 1;
+    int32 size = 2;
+    int32 count = 3;
+    repeated RoleField roles = 4;
+    error err = 5;
+}
+
+message RoleField {
+    int64 id = 1;
+    string role = 2;
+}
+
+message UpdateRoleRequest {
+    int64 id = 2;
+    string name = 1;
+}
+
+message UpdateRoleReply {
+    error err = 1;
+}
+
+message RemovePermissionForRoleRequest {
+    string role = 1;
+    string permission = 2;
+}
+
+message RemovePermissionForRoleReply {
+    error err = 1;
+}
+
+message RemoveRoleForRoleRequest {
+    string from = 1;
+    string child = 2;
+}
+
+message RemoveRoleForRoleReply {
+    error err = 1;
+}
+
+message RemoveRoleRequest {
+    string role = 1;
+}
+
+message RemoveRoleReply {
+    error err = 1;
+}
+
+message ListUsersRequest {
+    int32 page = 1;
+    int32 size = 2;
+    UserField user = 3;
+}
+
+message ListUsersReply {
+    repeated UserField users = 1;
+    int32 count = 2;
+    int32 size = 3;
+    int32 page = 4;
+    error err = 5;
+}
+
+message UserField {
+    string id = 1;
+    string leaguerNo = 2;
+    string username = 3;
+    string email = 4;
+    string userType = 5;
+    string userStatus = 6;
+    string userGroupNo = 7;
+    string createdAt = 8;
+}
+
+message UpdateUserRequest {
+    string id = 1;
+    string username = 2;
+    string email = 3;
+    string userType = 4;
+    string userGroupNo = 5;
+}
+
+message UpdateUserReply {
+    error err = 1;
+}
+
+message AddPermissionForUserRequest {
+    string username = 1;
+    string permission = 2;
+}
+
+message AddPermissionForUserReply {
+    error err = 1;
+}
+
+message RemovePermissionForUserRequest {
+    string username = 1;
+    string permission = 2;
+}
+
+message RemovePermissionForUserReply {
+    error err = 1;
+}
+
+message RemoveRoleForUserRequest {
+    string username = 1;
+    string role = 2;
+}
+
+message RemoveRoleForUserReply {
+    error err = 1;
+}
+
+message ListMenusRequest {
+    int32 page = 1;
+    int32 size = 2;
+    Menu menu = 3;
+}
+
+message ListMenusReply {
+    repeated Menu menus = 1;
+    int32 count = 2;
+    int32 size = 3;
+    int32 page = 4;
+    error err = 5;
+}
+
+message CreateMenuRequest {
+    string name = 1;
+    int32 order = 2;
+    string parent = 3;
+    string route = 4;
+    string data = 5;
+}
+
+message CreateMenuReply {
+    error err = 1;
+}
+
+message RemoveMenuRequest {
+    int32 id = 1;
+}
+
+message RemoveMenuReply {
+    error err = 1;
+}
+
+message GetUserTypeInfoRequest {
+}
+
+message GetUserTypeInfoReply {
+    repeated UserTypeInfo infos = 1;
+    error err = 2;
+}
+
+message UserTypeInfo {
+    string userType = 1;
+    string userDesc = 2;
+    string userInfo = 3;
+}
+
+message GetUserRequest {
+    int64 id = 1;
+}
+
+message GetUserReply {
+    int64 id = 1;
+    string userGroupNo = 2;
+    string username = 3;
+    string email = 4;
+    string userType = 5;
+    int64 userStatus = 6;
+    int64 createdAt = 7;
+    error err = 8;
+}
+
+message GetUserPermissionsAndRolesRequest {
+    int64 id = 1;
+}
+
+message GetUserPermissionsAndRolesReply {
+    repeated PermissionField permissions = 1;
+    repeated RoleField roles = 2;
+    error err = 3;
+}
+
+message GetRolePermissionsAndRolesRequest {
+    int64 id = 1;
+}
+
+message GetRolePermissionsAndRolesReply {
+    repeated PermissionField permissions = 1;
+    repeated RoleField roles = 2;
+    error err = 3;
+}
+
+message GetPermissionsAndRoutesRequest {
+    int64 id = 1;
+}
+
+message GetPermissionsAndRoutesReply {
+    repeated PermissionField permissions = 1;
+    repeated string routes = 2;
+    error err = 3;
+}
+
+message ListLeaguerRequest {
+    int32 page = 1;
+    int32 size = 2;
+    LeaguerField leaguer = 3;
+}
+
+message ListLeaguerReply {
+    int32 page = 1;
+    int32 size = 2;
+    int32 count = 3;
+    repeated LeaguerField leaguers = 4;
+    error err = 5;
+}
+
+message LeaguerField {
+    string leaguerNo = 1;
+    string leaguerName = 2;
+    string leaguerType = 3;
+    string leaguerInfo = 4;
+    int32 leaguerStatus = 5;
+    int64 created = 6;
+    int64 updated = 7;
+}

@@ -1,0 +1,6 @@
+FROM alpine:3.9.3 as staticservice
+
+COPY ./configs/ /data/configs/
+COPY ./staticservice /data/
+WORKDIR /data/
+CMD ./staticservice
