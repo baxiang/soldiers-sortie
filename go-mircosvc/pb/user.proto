@@ -1,0 +1,97 @@
+syntax = "proto3";
+
+package pb;
+
+service Usersvc {
+
+  rpc GetUser (GetUserRequest) returns (GetUserResponse) {
+  }
+
+  rpc Login (LoginRequest) returns (LoginResponse) {
+  }
+
+  rpc SendCode (SendCodeRequest) returns (SendCodeResponse) {
+  }
+
+  rpc Register (RegisterRequest) returns (RegisterResponse) {
+  }
+
+  rpc UserList (UserListRequest) returns (UserListResponse) {
+  }
+
+  rpc Logout (LogoutRequest) returns (LogoutResponse) {
+  }
+}
+
+// GetUser
+message GetUserRequest {
+  string uid = 1;
+}
+
+message GetUserResponse {
+  string uid = 1;
+}
+
+// Login
+message LoginRequest {
+  string username = 1;
+  string password = 2;
+}
+
+message LoginResponse {
+  int32 id = 1;
+  string username = 2;
+  string avatar = 3;
+  int32 roleID = 4;
+  string recentTime = 5;
+  string createdTime = 6;
+  string updatedTime = 7;
+  string cookie = 8;
+}
+
+//SendCode
+message SendCodeRequest {
+}
+
+message SendCodeResponse {
+  string codeID = 1;
+}
+
+// Register
+message RegisterRequest {
+  string username = 1;
+  string password = 2;
+  int32 codeID = 3;
+}
+
+message RegisterResponse {
+}
+
+// UserList
+message UserListRequest {
+  int32 page = 1;
+  int32 size = 2;
+}
+
+message UserListResponse {
+  int64 count = 1;
+  repeated UserResponse data = 2;
+}
+
+message UserResponse {
+  int32 id = 1;
+  string username = 2;
+  string avatar = 3;
+  int32 roleID = 4;
+  string recentTime = 5;
+  string createdTime = 6;
+  string updatedTime = 7;
+}
+
+//Logout
+message LogoutRequest {
+  string sid = 1;
+}
+
+message LogoutResponse {
+}
