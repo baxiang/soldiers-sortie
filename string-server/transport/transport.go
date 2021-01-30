@@ -40,7 +40,7 @@ func GetReverseHandler(ep endpoint.Endpoint) *httptransport.Server {
 }
 
 func decodeGetReverseRequest(_ context.Context, r *http.Request) (interface{}, error) {
-	var req endpoints.ReverseRequest
+	var req *endpoints.ReverseRequest
 	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
 		return nil, err
 	}
