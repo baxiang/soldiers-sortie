@@ -1,1 +1,0 @@
-module "github.com/baxiang/soldiers-sortie/consul-discovery"
