@@ -1,7 +1,7 @@
 syntax = "proto3";
 
 package proto;
-//option go_package = "github.com/baxiang/soldiers-sortie/go-grpc-example/proto";
+option go_package = "github.com/baxiang/soldiers-sortie/go-grpc-example/proto";
 service StreamService {
   rpc List(StreamRequest) returns (stream StreamResponse) {};
 

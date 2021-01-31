@@ -1,0 +1,20 @@
+syntax = "proto3";// 协议为proto3
+
+package proto;
+
+// 定义发送请求信息
+message SimpleReq{
+  string para = 1;
+}
+
+// 定义流式响应信息
+message StreamResp{
+  // 流式响应数据
+  string val = 1;
+}
+
+// 定义服务
+service StreamServer{
+  // 服务端流式rpc，在响应数据前添加stream
+  rpc ListValue(SimpleReq)returns(stream StreamResp){};
+}
