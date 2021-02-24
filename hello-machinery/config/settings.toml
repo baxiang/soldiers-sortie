@@ -1,8 +1,2 @@
 config_path = "./config.yml"
-app_port = 18578 # app对外的的端口
-
-task_redis_host = "127.0.0.1"
-task_redis_port = 6379
-task_redis_password = ""
-task_redis_db = 0
-task_redis_pool_size = 20 #redis线程池大小
+app_port = 8080 # app对外的的端口

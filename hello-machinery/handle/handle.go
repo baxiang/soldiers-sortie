@@ -6,7 +6,7 @@ import (
 	"github.com/RichardKnop/machinery/v2/tasks"
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
-	"log"
+	"net/http"
 )
 
 //Add test task method add
@@ -30,13 +30,14 @@ func Add(c *gin.Context, s *machinery.Server) {
 			},
 		},
 	}
-
 	asyncResult, err := s.SendTask(signature)
+	res, err := asyncResult.Get(1)
 	if err != nil {
-		panic(err.Error())
+		c.JSON(http.StatusInternalServerError, gin.H{"data": tasks.HumanReadableResults(res), "uuid": uid})
 	}
-	c.JSON(200, gin.H{"add": err, "uuid": uid})
-	log.Printf("add %v",asyncResult)
+
+	c.JSON(http.StatusOK, gin.H{"data": tasks.HumanReadableResults(res), "uuid": uid})
+
 
 }
 //Add test task method longRunningTask

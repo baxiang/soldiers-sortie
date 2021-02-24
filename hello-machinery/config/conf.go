@@ -12,11 +12,6 @@ import (
 type BaseConfig struct {
 	ConfigPath string `toml:"config_path"`
 	AppPort    int64  `toml:"app_port"`
-	TaskRedisHost     string   `toml:"task_redis_host"`
-	TaskRedisPort     int      `toml:"task_redis_port"`
-	TaskRedisPassword string   `toml:"task_redis_password"`
-	TaskRedisDB       int      `toml:"task_redis_db"`
-	TaskRedisPoolSize int      `toml:"task_redis_pool_size"`
 }
 
 //Cfg 全局配置
